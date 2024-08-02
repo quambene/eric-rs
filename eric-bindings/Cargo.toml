@@ -10,5 +10,7 @@ path = "src/lib.rs"
 name = "eric_bindings"
 
 [dependencies]
+anyhow = { workspace = true }
 
 [build-dependencies]
+bindgen = "0.69.4"
