@@ -1,0 +1,14 @@
+[package]
+name = "eric-bindings"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+build = "build.rs"
+
+[lib]
+path = "src/lib.rs"
+name = "eric_bindings"
+
+[dependencies]
+
+[build-dependencies]
