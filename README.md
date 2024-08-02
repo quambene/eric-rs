@@ -35,8 +35,8 @@ The environment variables `LIBRARY_NAME`, `LIBRARY_PATH`, `HEADER_FILE`, and
 `PLUGIN_PATH` are expected. For example:
 
 ``` bash
-LIBRARY_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib
 LIBRARY_NAME=ericapi
+LIBRARY_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib
 HEADER_FILE=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/include/ericapi.h
 PLUGIN_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib/plugins2
 ```
