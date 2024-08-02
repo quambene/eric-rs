@@ -9,7 +9,7 @@ homepage.workspace = true
 repository.workspace = true
 description = "Rust bindings for the ELSTER Rich Client (ERiC)"
 documentation = "https://docs.rs/eric_bindings"
-keywords = ["eric", "sdk", "bindings",  "taxes", "accounting"]
+keywords = ["eric", "bindings",  "taxes", "accounting"]
 categories = ["external-ffi-bindings"]
 build = "build.rs"
 
