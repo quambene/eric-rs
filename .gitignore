@@ -1,0 +1,14 @@
+# Rust
+/target
+
+# Environment
+**/.env
+
+# Keys
+**/*.jks
+**/*.p8
+**/*.pem
+**/*.pfx
+
+# VS Code
+.vscode
