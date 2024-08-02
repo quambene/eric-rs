@@ -1,0 +1,14 @@
+[workspace]
+members = [
+    "eric-bindings",
+    "eric-sdk",
+]
+resolver = "2"
+
+[workspace.package]
+authors = ["quambene <contact.quambene@gmail.com>"]
+edition = "2021"
+version = "0.1.0"
+
+[workspace.dependencies]
+anyhow = "1.0.86"
