@@ -3,7 +3,17 @@ name = "eric-bindings"
 version = "0.1.0"
 authors.workspace = true
 edition.workspace = true
+readme.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+description = "Rust bindings for the ELSTER Rich Client (ERiC)"
+documentation = "https://docs.rs/eric_bindings"
+keywords = ["eric",  "taxes", "accounting"]
+categories = ["sdk", "bindings"]
 build = "build.rs"
+
+exclude = ["bindings/*"]
 
 [lib]
 path = "src/lib.rs"
