@@ -1,4 +1,7 @@
-use std::{env, io, path::{Path, PathBuf}};
+use std::{
+    env, io,
+    path::{Path, PathBuf},
+};
 
 fn main() -> io::Result<()> {
     let library_path =

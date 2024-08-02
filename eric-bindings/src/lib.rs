@@ -10,21 +10,22 @@ include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::{env, ffi::CString};
     use anyhow::Context;
+    use std::{env, ffi::CString};
 
     #[test]
     fn test_ericapi() {
-        let plugin_path = env::var("PLUGIN_PATH")
-            .expect("Missing environment variable 'PLUGIN_PATH'");
-        let plugin_path = CString::new(plugin_path).context("Can't convert to CString")
+        let plugin_path =
+            env::var("PLUGIN_PATH").expect("Missing environment variable 'PLUGIN_PATH'");
+        let plugin_path = CString::new(plugin_path)
+            .context("Can't convert to CString")
             .unwrap();
 
-        let log_path = env::current_dir()
+        let log_path = env::current_dir().unwrap();
+        let log_path = CString::new(log_path.to_str().unwrap())
+            .context("Can't convert to CString")
             .unwrap();
-        let log_path = CString::new(log_path.to_str().unwrap()).context("Can't convert to CString")
-        .unwrap();
-    
+
         unsafe {
             let error_code = EricInitialisiere(plugin_path.as_ptr(), log_path.as_ptr());
             assert_eq!(error_code, 0);
