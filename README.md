@@ -2,7 +2,7 @@
 
 [![latest version](https://img.shields.io/crates/v/eric-bindings.svg)](https://crates.io/crates/eric-bindings)
 [![documentation](https://docs.rs/eric-bindings/badge.svg)](https://docs.rs/eric-bindings)
-[![build status](https://github.com/quambene/eric/actions/workflows/ci.yml/badge.svg)](https://github.com/quambene/eric/actions/workflows/ci.yml)
+[![build status](https://github.com/quambene/eric-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/quambene/eric-rs/actions/workflows/ci.yml)
 
 Rust bindings and SDK for the ELSTER Rich Client (ERiC)
 

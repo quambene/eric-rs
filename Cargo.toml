@@ -11,8 +11,8 @@ edition = "2021"
 version = "0.1.0"
 readme = "README.md"
 license = "Apache-2.0"
-homepage = "https://github.com/quambene/eric"
-repository = "https://github.com/quambene/eric"
+homepage = "https://github.com/quambene/eric-rs"
+repository = "https://github.com/quambene/eric-rs"
 
 [workspace.dependencies]
 anyhow = "1.0.86"
