@@ -9,7 +9,7 @@
 ## v0.1.2 (2024-08-03)
 
 - changed
-  - Fix `build.rs` on docs.rs
+  - Disable `build.rs` on docs.rs
 
 ## v0.1.1 (2024-08-03)
 
