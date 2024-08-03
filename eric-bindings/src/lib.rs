@@ -5,7 +5,6 @@
 // TODO: extern block uses type u128, which is not FFI-safe
 #![allow(improper_ctypes)]
 
-
 #[cfg(feature = "docs-rs")]
 mod bindings;
 #[cfg(feature = "docs-rs")]
@@ -28,7 +27,8 @@ mod tests {
             .context("Can't convert to CString")
             .unwrap();
 
-        let log_path = env::current_dir().expect("Missing environment variable for current directory");
+        let log_path =
+            env::current_dir().expect("Missing environment variable for current directory");
         let log_path = CString::new(log_path.to_str().unwrap())
             .context("Can't convert to CString")
             .unwrap();
