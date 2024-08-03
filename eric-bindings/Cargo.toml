@@ -1,6 +1,6 @@
 [package]
 name = "eric-bindings"
-version = "0.1.0"
+version = "0.1.1"
 authors.workspace = true
 edition.workspace = true
 readme.workspace = true
@@ -13,7 +13,14 @@ keywords = ["eric", "bindings",  "taxes", "accounting"]
 categories = ["external-ffi-bindings"]
 build = "build.rs"
 
-exclude = ["bindings/*"]
+exclude = ["src/bindings/bindings_eric_38_1_6_0_linux_x86_64.rs"]
+
+[package.metadata.docs.rs]
+features = ["docs-rs"]
+
+[features]
+# This feature is used to publish the documentation for `eric-bindings`.
+docs-rs = []
 
 [lib]
 path = "src/lib.rs"

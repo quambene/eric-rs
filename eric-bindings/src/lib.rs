@@ -5,6 +5,12 @@
 // TODO: extern block uses type u128, which is not FFI-safe
 #![allow(improper_ctypes)]
 
+#[cfg(feature = "docs-rs")]
+mod bindings;
+#[cfg(feature = "docs-rs")]
+pub use bindings::bindings_eric_39_6_4_0_linux_x86_64::*;
+
+#[cfg(not(feature = "docs-rs"))]
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[cfg(test)]
@@ -21,7 +27,8 @@ mod tests {
             .context("Can't convert to CString")
             .unwrap();
 
-        let log_path = env::current_dir().unwrap();
+        let log_path =
+            env::current_dir().expect("Missing environment variable for current directory");
         let log_path = CString::new(log_path.to_str().unwrap())
             .context("Can't convert to CString")
             .unwrap();
