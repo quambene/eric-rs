@@ -3,6 +3,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+#[cfg(not(feature = "docs-rs"))]
 fn main() -> io::Result<()> {
     let library_path =
         env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");
