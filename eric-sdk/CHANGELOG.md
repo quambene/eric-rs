@@ -6,7 +6,7 @@
 - changed
 - removed
 
-## v0.1.0 (2024-08-04)
+## v0.1.0 (2024-08-05)
 
 - added
   - Validate and send xml

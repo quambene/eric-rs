@@ -4,8 +4,12 @@
 
 - added
 - changed
-  - Rename feature from `docs-rs` to `no-build`
 - removed
+
+## v0.2.0 (2024-08-03)
+
+- changed
+  - Rename feature from `docs-rs` to `no-build`
 
 ## v0.1.2 (2024-08-03)
 

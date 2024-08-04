@@ -24,7 +24,7 @@ eric-bindings-no-build = ["eric-bindings/no-build"]
 external-test = []
 
 [dependencies]
-eric-bindings = { version = "0.1.2", path = "../eric-bindings" }
+eric-bindings = { version = "0.2.0", path = "../eric-bindings" }
 anyhow = { workspace = true }
 
 [dev-dependencies]
