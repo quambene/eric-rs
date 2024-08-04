@@ -4,6 +4,6 @@
 
 - added
   - Validate and send xml
-  - Support Eric v39.6.4.0
+  - Support Eric v38.1.6.0
 - changed
 - removed
