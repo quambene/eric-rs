@@ -52,7 +52,7 @@ PLUGIN_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib/plugins2
 The bindings have to be generated on-the-fly for your specific platform and architecture:
 
 ``` bash
-cargo build -p eric-bindings # Build bindings in debug mode
+cargo build -p eric-bindings
 ```
 
 The bindings are generated in `target/debug/build/eric-bindings-<random-id>/out/bindings.rs`.
