@@ -1,6 +1,6 @@
 #![allow(non_camel_case_types)]
 
-/// Represents the availalbe error codes.
+/// Represents the available error codes.
 pub enum ErrorCode {
     /**
      * [0] Verarbeitung fehlerfrei.
