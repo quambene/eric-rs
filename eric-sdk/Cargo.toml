@@ -15,8 +15,12 @@ categories = ["finance"]
 path = "src/lib.rs"
 name = "eric_sdk"
 
+[features]
+external-test = []
+
 [dependencies]
 eric-bindings = { version = "0.1.2", path = "../eric-bindings" }
 anyhow = { workspace = true }
 
 [dev-dependencies]
+roxmltree = "0.20.0"
