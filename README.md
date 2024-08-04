@@ -15,7 +15,9 @@ Rust bindings and SDK for the ELSTER Rich Client (ERiC)
   - [Test bindings](#test-bindings)
 - [Eric SDK](#eric-sdk)
   - [Usage](#usage)
+  - [Supported Eric versions](#supported-eric-versions)
   - [Test SDK](#test-sdk)
+- [Changelog](#changelog)
 
 ## What is ELSTER?
 
@@ -69,6 +71,8 @@ Logs are written to `eric.log` in the current directory.
 
 ## Eric SDK
 
+`eric-sdk` supports single-threaded Eric instances.
+
 ### Usage
 
 To use `eric-sdk`, the shared library has to be provided as environment variable. For example, specify `LD_LIBRARY_PATH` on Linux:
@@ -78,6 +82,12 @@ LD_LIBRARY_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib
 ```
 
 To send the xml file, the path and password of the Elster certificate has to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
+
+### Supported Eric versions
+
+| Rust SDK | Eric     |
+| -------- | -------- |
+| 0.1.0    | 38.1.6.0 |
 
 ### Test SDK
 
@@ -91,3 +101,10 @@ cargo test -p eric-sdk --test '*' -- --test-threads=1
 # Run external tests
 cargo test -p eric-sdk --test '*' --features external-test -- --test-threads=1
 ```
+
+## Changelog
+
+The `eric-rs` repository contains multiple crates with separate changelogs:
+
+- `eric-bindings`: [view changelog](https://github.com/quambene/eric-rs/blob/main/eric-bindings/CHANGELOG.md)
+- `eric-sdk`: [view changelog](https://github.com/quambene/eric-rs/blob/main/eric-sdk/CHANGELOG.md)
