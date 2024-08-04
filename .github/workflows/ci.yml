@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - name: cargo clippy
+      - name: cargo clippy -- -D warnings
         run: cargo clippy --all-targets -p eric-sdk --features eric-bindings-no-build -- -D warnings
   doc:
     runs-on: ubuntu-latest

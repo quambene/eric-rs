@@ -8,7 +8,7 @@ fn test_validate() {
     let current_dirx = current_dir().unwrap();
     println!("current dir: {}", current_dirx.display());
     let xml_path = Path::new("./test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
-    let xml = fs::read_to_string(&xml_path)
+    let xml = fs::read_to_string(xml_path)
         .context(format!("Can't read file: {}", xml_path.display()))
         .unwrap();
     let taxonomy_type = "Bilanz";
@@ -38,7 +38,7 @@ fn test_validate() {
 #[test]
 fn test_validate_and_print() {
     let xml_path = Path::new("./test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
-    let xml = fs::read_to_string(&xml_path)
+    let xml = fs::read_to_string(xml_path)
         .context(format!("Can't read file: {}", xml_path.display()))
         .unwrap();
     let taxonomy_type = "Bilanz";

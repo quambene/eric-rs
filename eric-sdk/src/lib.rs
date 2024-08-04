@@ -20,8 +20,8 @@ pub(crate) enum ProcessingFlag {
 }
 
 impl ProcessingFlag {
-    pub fn into_u32(&self) -> u32 {
-        *self as u32
+    pub fn into_u32(self) -> u32 {
+        self as u32
     }
 }
 

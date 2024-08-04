@@ -8,7 +8,7 @@ use std::{env::current_dir, fs, path::Path};
 fn test_send() {
     let log_path = current_dir().unwrap();
     let xml_path = Path::new("./test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
-    let xml = fs::read_to_string(&xml_path)
+    let xml = fs::read_to_string(xml_path)
         .context(format!("Can't read file: {}", xml_path.display()))
         .unwrap();
     let taxonomy_type = "Bilanz";
@@ -37,7 +37,7 @@ fn test_send() {
 fn test_send_and_print() {
     let log_path = current_dir().unwrap();
     let xml_path = Path::new("./test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
-    let xml = fs::read_to_string(&xml_path)
+    let xml = fs::read_to_string(xml_path)
         .context(format!("Can't read file: {}", xml_path.display()))
         .unwrap();
     let taxonomy_type = "Bilanz";
