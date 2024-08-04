@@ -50,7 +50,6 @@ impl ResponseBuffer {
 }
 
 impl Drop for ResponseBuffer {
-    /// Cleaning up response buffer
     fn drop(&mut self) {
         let error_code = unsafe { EricRueckgabepufferFreigeben(self.ctx) };
 
