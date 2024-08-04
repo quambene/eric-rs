@@ -40,18 +40,20 @@ impl Eric {
     }
 
     /// Validate an XML file for a specific taxonomy.
+    ///
+    /// Optionally, a confirmation is printed to `pdf_path`.
     pub fn validate(
         &self,
         xml: String,
         taxonomy_type: &str,
         taxonomy_version: &str,
-        pdf_name: Option<&str>,
+        pdf_path: Option<&str>,
     ) -> Result<EricResponse, anyhow::Error> {
         let processing_flag: ProcessingFlag;
         let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
-        let print_config = if let Some(pdf_name) = pdf_name {
+        let print_config = if let Some(pdf_path) = pdf_path {
             processing_flag = ProcessingFlag::Print;
-            Some(PrintConfig::new(pdf_name, &processing_flag)?)
+            Some(PrintConfig::new(pdf_path, &processing_flag)?)
         } else {
             processing_flag = ProcessingFlag::Validate;
             None
@@ -63,12 +65,14 @@ impl Eric {
     ///
     /// The Elster certificate is provided via environment variables
     /// `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
+    ///
+    /// Optionally, a confirmation is printed to `pdf_path`.
     pub fn send(
         &self,
         xml: String,
         taxonomy_type: &str,
         taxonomy_version: &str,
-        pdf_name: Option<&str>,
+        pdf_path: Option<&str>,
     ) -> Result<EricResponse, anyhow::Error> {
         let certificate_path = env::var("CERTIFICATE_PATH")
             .context("Missing environment variable 'CERTIFICATE_PATH'")?;
@@ -77,9 +81,9 @@ impl Eric {
 
         let processing_flag: ProcessingFlag;
         let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
-        let print_config = if let Some(pdf_name) = pdf_name {
+        let print_config = if let Some(pdf_path) = pdf_path {
             processing_flag = ProcessingFlag::SendAndPrint;
-            Some(PrintConfig::new(pdf_name, &processing_flag)?)
+            Some(PrintConfig::new(pdf_path, &processing_flag)?)
         } else {
             processing_flag = ProcessingFlag::Send;
             None

@@ -66,8 +66,8 @@ pub struct PrintConfig {
 }
 
 impl PrintConfig {
-    pub fn new(pdf_name: &str, processing_flag: &ProcessingFlag) -> Result<Self, anyhow::Error> {
-        let pdf_path = Path::new(pdf_name).try_to_cstring()?;
+    pub fn new(pdf_path: &str, processing_flag: &ProcessingFlag) -> Result<Self, anyhow::Error> {
+        let pdf_path = Path::new(pdf_path).try_to_cstring()?;
         let print_parameter = PrintParameter::new(&pdf_path, processing_flag);
 
         Ok(Self {
