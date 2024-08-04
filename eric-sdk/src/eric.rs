@@ -62,10 +62,13 @@ impl Eric {
         xml: String,
         taxonomy_type: &str,
         taxonomy_version: &str,
-        certificate_file: &str,
-        certificate_password: &str,
         pdf_name: Option<&str>,
     ) -> Result<EricResponse, anyhow::Error> {
+        let certificate_path = env::var("CERTIFICATE_PATH")
+            .context("Missing environment variable 'CERTIFICATE_PATH'")?;
+        let certificate_password = env::var("CERTIFICATE_PASSWORD")
+            .context("Missing environment variable 'CERTIFICATE_PASSWORD'")?;
+
         let processing_flag: ProcessingFlag;
         let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
         let print_config = if let Some(pdf_name) = pdf_name {
@@ -75,7 +78,7 @@ impl Eric {
             processing_flag = ProcessingFlag::Send;
             None
         };
-        let certificate_config = CertificateConfig::new(certificate_file, certificate_password)?;
+        let certificate_config = CertificateConfig::new(&certificate_path, &certificate_password)?;
         Self::process(
             xml,
             type_version,
