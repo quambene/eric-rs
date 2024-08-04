@@ -5,8 +5,7 @@ use std::{env::current_dir, fs, path::Path};
 
 #[test]
 fn test_validate() {
-    let current_dirx = current_dir().unwrap();
-    println!("current dir: {}", current_dirx.display());
+    let log_path = current_dir().unwrap();
     let xml_path = Path::new("./test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
     let xml = fs::read_to_string(xml_path)
         .context(format!("Can't read file: {}", xml_path.display()))
@@ -14,7 +13,6 @@ fn test_validate() {
     let taxonomy_type = "Bilanz";
     let taxonomy_version = "6.5";
     let pdf_path = None;
-    let log_path = current_dir().unwrap();
 
     let eric = Eric::new(&log_path).unwrap();
 
@@ -37,6 +35,7 @@ fn test_validate() {
 
 #[test]
 fn test_validate_and_print() {
+    let log_path = current_dir().unwrap();
     let xml_path = Path::new("./test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
     let xml = fs::read_to_string(xml_path)
         .context(format!("Can't read file: {}", xml_path.display()))
@@ -44,7 +43,6 @@ fn test_validate_and_print() {
     let taxonomy_type = "Bilanz";
     let taxonomy_version = "6.5";
     let pdf_path = "ebilanz.pdf";
-    let log_path = current_dir().unwrap();
 
     let eric = Eric::new(&log_path).unwrap();
 
