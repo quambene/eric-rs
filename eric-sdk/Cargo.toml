@@ -8,6 +8,7 @@ license.workspace = true
 homepage.workspace = true
 repository.workspace = true
 description = "Rust SDK for the ELSTER Rich Client (ERiC)"
+documentation = "https://docs.rs/eric-sdk"
 keywords = ["eric", "sdk",  "taxes", "accounting"]
 categories = ["finance"]
 
