@@ -19,7 +19,7 @@ use std::{
 pub struct Eric;
 
 impl Eric {
-    /// Initialize a single-threaded eric instance.
+    /// Initializes a single-threaded eric instance.
     pub fn new(log_path: &Path) -> Result<Self, anyhow::Error> {
         println!("Initializing eric");
 
@@ -42,7 +42,7 @@ impl Eric {
         }
     }
 
-    /// Validate an XML file for a specific taxonomy.
+    /// Validates an XML file for a specific taxonomy.
     ///
     /// Optionally, a confirmation is printed to `pdf_path`.
     pub fn validate(
@@ -64,7 +64,7 @@ impl Eric {
         Self::process(xml, type_version, processing_flag, print_config, None, None)
     }
 
-    /// Send an XML file to tax authorities for a specific taxonomy.
+    /// Sends an XML file for a specific taxonomy to the tax authorities.
     ///
     /// The Elster certificate is provided via environment variables
     /// `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
