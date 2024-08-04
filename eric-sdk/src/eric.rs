@@ -13,10 +13,13 @@ use std::{
     ptr,
 };
 
+/// A structure to manage the Eric instance from the shared C library.
+///
+/// Use [`Eric::new`] to initialize Eric. Closes Eric when dropped.
 pub struct Eric;
 
 impl Eric {
-    /// Initialize eric instance.
+    /// Initialize a single-threaded eric instance.
     pub fn new(log_path: &Path) -> Result<Self, anyhow::Error> {
         println!("Initializing eric");
 

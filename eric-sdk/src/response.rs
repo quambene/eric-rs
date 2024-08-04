@@ -5,10 +5,14 @@ use eric_bindings::{
 };
 use std::ffi::CStr;
 
+/// A structure which summarizes the response from the Eric instance.
 #[derive(Debug)]
 pub struct EricResponse {
+    /// The error code returned by the Eric instance.
     pub error_code: i32,
+    /// The response when validating an XML file.
     pub validation_response: String,
+    /// The response when an XML file is send to the tax authorities.
     pub server_response: String,
 }
 
