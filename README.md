@@ -75,11 +75,7 @@ Logs are written to `eric.log` in the current directory.
 
 ### Usage
 
-To use `eric-sdk`, the shared library has to be provided as environment variable. For example, specify `LD_LIBRARY_PATH` on Linux:
-
-``` bash
-LD_LIBRARY_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib
-```
+To use `eric-sdk`, add the path of the shared C library (e.g. to `LD_LIBRARY_PATH` on Linux).
 
 To send the xml file, the path and password of the Elster certificate has to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
 
