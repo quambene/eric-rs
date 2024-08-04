@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Elster xmlns="http://www.elster.de/elsterxml/schema/v11">
+	<TransferHeader version="11">
+		<Verfahren>ElsterBilanz</Verfahren>
+		<DatenArt>Bilanz</DatenArt>
+		<Vorgang>send-Auth</Vorgang>
+		<Testmerker>700000004</Testmerker>
+		<HerstellerID>00000</HerstellerID>
+		<DatenLieferant>Datenlieferant als String</DatenLieferant>
+		<Datei>
+			<Verschluesselung>CMSEncryptedData</Verschluesselung>
+			<Kompression>GZIP</Kompression>
+			<TransportSchluessel/>
+		</Datei>
+		<VersionClient>xyz</VersionClient>
+	</TransferHeader>
+	<DatenTeil>
+		<Nutzdatenblock>
+			<NutzdatenHeader version="11">
+				<NutzdatenTicket>0001</NutzdatenTicket>
+				<Empfaenger id="F">5192</Empfaenger>
+				<Hersteller>
+					<ProduktName>xyz</ProduktName>
+					<ProduktVersion>VX.Y</ProduktVersion>
+				</Hersteller>
+				<DatenLieferant>Datenlieferant als String</DatenLieferant>
+			</NutzdatenHeader>
+			<Nutzdaten>
+				<ebilanz:EBilanz version="000002" xmlns:ebilanz="http://rzf.fin-nrw.de/RMS/EBilanz/2016/XMLSchema">
+					<ebilanz:stichtag>20211231</ebilanz:stichtag>
+					<xbrli:xbrl
+							xmlns:de-gcd="http://www.xbrl.de/taxonomies/de-gcd-2021-04-14"
+							xmlns:link="http://www.xbrl.org/2003/linkbase"
+							xmlns:de-gaap-ci="http://www.xbrl.de/taxonomies/de-gaap-ci-2021-04-14"
+							xmlns:hgbref="http://www.xbrl.de/2008/ref"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xmlns:xbrli="http://www.xbrl.org/2003/instance"
+							xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
+							xmlns:xhtml="http://www.w3.org/1999/xhtml"
+							xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+							xmlns:ref="http://www.xbrl.org/2024/ref"
+							xmlns:xlink="http://www.w3.org/1999/xlink">
+						<link:schemaRef xlink:type="simple" xlink:href="http://www.xbrl.de/taxonomies/de-gcd-2021-04-14/de-gcd-2021-04-14-shell.xsd"/>
+						<link:schemaRef xlink:type="simple" xlink:href="http://www.xbrl.de/taxonomies/de-gaap-ci-2021-04-14/de-gaap-ci-2021-04-14-shell-fiscal.xsd"/>
+						<xbrli:context id="I-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:instant>2021-12-31</xbrli:instant>
+							</xbrli:period>
+						</xbrli:context>
+						<xbrli:context id="D-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:startDate>2021-01-01</xbrli:startDate>
+								<xbrli:endDate>2021-12-31</xbrli:endDate>
+							</xbrli:period>
+						</xbrli:context>
+						<xbrli:context id="D-KKE-01-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:startDate>2021-01-01</xbrli:startDate>
+								<xbrli:endDate>2021-12-31</xbrli:endDate>
+							</xbrli:period>
+							<xbrli:scenario>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_kindsOfEquityAccounts">de-gaap-ci:table.kke.allKindsOfEquityAccounts</xbrldi:explicitMember>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_taxTrans">de-gaap-ci:dim_taxBal</xbrldi:explicitMember>
+								<xbrldi:typedMember dimension="de-gaap-ci:dim_partnerKey">
+									<de-gaap-ci:dim_keyType>0001</de-gaap-ci:dim_keyType>
+								</xbrldi:typedMember>
+							</xbrli:scenario>
+						</xbrli:context>
+						<xbrli:context id="D-KKE-01-LTD-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:startDate>2021-01-01</xbrli:startDate>
+								<xbrli:endDate>2021-12-31</xbrli:endDate>
+							</xbrli:period>
+							<xbrli:scenario>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_kindsOfEquityAccounts">de-gaap-ci:table.kke.allKindsOfEquityAccounts.limitedPartners</xbrldi:explicitMember>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_taxTrans">de-gaap-ci:dim_taxBal</xbrldi:explicitMember>
+								<xbrldi:typedMember dimension="de-gaap-ci:dim_partnerKey">
+									<de-gaap-ci:dim_keyType>0001</de-gaap-ci:dim_keyType>
+								</xbrldi:typedMember>
+							</xbrli:scenario>
+						</xbrli:context>
+						<xbrli:context id="D-KKE-01-LTD-FK-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:startDate>2021-01-01</xbrli:startDate>
+								<xbrli:endDate>2021-12-31</xbrli:endDate>
+							</xbrli:period>
+							<xbrli:scenario>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_kindsOfEquityAccounts">de-gaap-ci:table.kke.allKindsOfEquityAccounts.limitedPartners.FK</xbrldi:explicitMember>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_taxTrans">de-gaap-ci:dim_taxBal</xbrldi:explicitMember>
+								<xbrldi:typedMember dimension="de-gaap-ci:dim_partnerKey">
+									<de-gaap-ci:dim_keyType>0001</de-gaap-ci:dim_keyType>
+								</xbrldi:typedMember>
+							</xbrli:scenario>
+						</xbrli:context>
+						<xbrli:context id="D-KKE-02-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:startDate>2021-01-01</xbrli:startDate>
+								<xbrli:endDate>2021-12-31</xbrli:endDate>
+							</xbrli:period>
+							<xbrli:scenario>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_kindsOfEquityAccounts">de-gaap-ci:table.kke.allKindsOfEquityAccounts</xbrldi:explicitMember>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_taxTrans">de-gaap-ci:dim_taxBal</xbrldi:explicitMember>
+								<xbrldi:typedMember dimension="de-gaap-ci:dim_partnerKey">
+									<de-gaap-ci:dim_keyType>0002</de-gaap-ci:dim_keyType>
+								</xbrldi:typedMember>
+							</xbrli:scenario>
+						</xbrli:context>
+						<xbrli:context id="D-KKE-02-UNLTD-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:startDate>2021-01-01</xbrli:startDate>
+								<xbrli:endDate>2021-12-31</xbrli:endDate>
+							</xbrli:period>
+							<xbrli:scenario>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_kindsOfEquityAccounts">de-gaap-ci:table.kke.allKindsOfEquityAccounts.unlimitedPartners</xbrldi:explicitMember>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_taxTrans">de-gaap-ci:dim_taxBal</xbrldi:explicitMember>
+								<xbrldi:typedMember dimension="de-gaap-ci:dim_partnerKey">
+									<de-gaap-ci:dim_keyType>0002</de-gaap-ci:dim_keyType>
+								</xbrldi:typedMember>
+							</xbrli:scenario>
+						</xbrli:context>
+						<xbrli:context id="D-KKE-02-UNLTD-VK-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:startDate>2021-01-01</xbrli:startDate>
+								<xbrli:endDate>2021-12-31</xbrli:endDate>
+							</xbrli:period>
+							<xbrli:scenario>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_kindsOfEquityAccounts">de-gaap-ci:table.kke.allKindsOfEquityAccounts.unlimitedPartners.VK</xbrldi:explicitMember>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_taxTrans">de-gaap-ci:dim_taxBal</xbrldi:explicitMember>
+								<xbrldi:typedMember dimension="de-gaap-ci:dim_partnerKey">
+									<de-gaap-ci:dim_keyType>0002</de-gaap-ci:dim_keyType>
+								</xbrldi:typedMember>
+							</xbrli:scenario>
+						</xbrli:context>
+						<xbrli:context id="D-BAL-bs.ass.fixAss-dim_comBal-AKTJAHR">
+							<xbrli:entity>
+								<xbrli:identifier scheme="http://www.rzf-nrw.de/Steuernummer">5192050001276</xbrli:identifier>
+							</xbrli:entity>
+							<xbrli:period>
+								<xbrli:startDate>2021-01-01</xbrli:startDate>
+								<xbrli:endDate>2021-12-31</xbrli:endDate>
+							</xbrli:period>
+							<xbrli:scenario>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_changes.nt.ass.gross">de-gaap-ci:bs.ass.fixAss</xbrldi:explicitMember>
+								<xbrldi:explicitMember dimension="de-gaap-ci:dim_taxTrans">de-gaap-ci:dim_comBal</xbrldi:explicitMember>
+							</xbrli:scenario>
+						</xbrli:context>
+						<xbrli:unit id="EUR">
+							<xbrli:measure>iso4217:EUR</xbrli:measure>
+						</xbrli:unit>
+						<xbrli:unit id="PURE">
+							<xbrli:measure>xbrli:pure</xbrli:measure>
+						</xbrli:unit>
+						<de-gcd:genInfo.doc.id.generationDate contextRef="D-AKTJAHR">2021-04-30</de-gcd:genInfo.doc.id.generationDate>
+						<de-gcd:genInfo.report.id.reportType>
+							<de-gcd:genInfo.report.id.reportType.reportType.JA contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.reportType>
+						<de-gcd:genInfo.report.id.reportStatus>
+							<de-gcd:genInfo.report.id.reportStatus.reportStatus.E contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.reportStatus>
+						<de-gcd:genInfo.report.id.revisionStatus>
+							<de-gcd:genInfo.report.id.revisionStatus.revisionStatus.E contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.revisionStatus>
+						<de-gcd:genInfo.report.id.statementType>
+							<de-gcd:genInfo.report.id.statementType.statementType.E contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.statementType>
+						<de-gcd:genInfo.report.id.statementType.tax>
+							<de-gcd:genInfo.report.id.statementType.tax.statementTypeTax.GHB contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.statementType.tax>
+						<de-gcd:genInfo.report.id.incomeStatementendswithBalProfit contextRef="D-AKTJAHR">false</de-gcd:genInfo.report.id.incomeStatementendswithBalProfit>
+						<de-gcd:genInfo.report.id.accountingStandard>
+							<de-gcd:genInfo.report.id.accountingStandard.accountingStandard.AO contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.accountingStandard>
+						<de-gcd:genInfo.report.id.specialAccountingStandard>
+							<de-gcd:genInfo.report.id.specialAccountingStandard.K contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.specialAccountingStandard>
+						<de-gcd:genInfo.report.id.incomeStatementFormat>
+							<de-gcd:genInfo.report.id.incomeStatementFormat.incomeStatementFormat.GKV contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.incomeStatementFormat>
+						<de-gcd:genInfo.report.id.consolidationRange>
+							<de-gcd:genInfo.report.id.consolidationRange.consolidationRange.EA contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.consolidationRange>
+						<de-gcd:genInfo.report.id.reportElement>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.B contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.BAL xsi:nil="true" contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.BVV contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.EB xsi:nil="true" contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.EV contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.GuV contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.KKE contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.SGE contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.SGEP contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.reportElement.reportElements.STU xsi:nil="true" contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.reportElement>
+						<de-gcd:genInfo.report.audit.city contextRef="D-AKTJAHR">Berlin</de-gcd:genInfo.report.audit.city>
+						<de-gcd:genInfo.report.audit.date contextRef="D-AKTJAHR">2021-03-03</de-gcd:genInfo.report.audit.date>
+						<de-gcd:genInfo.report.period.fiscalYearBegin contextRef="D-AKTJAHR">2021-01-01</de-gcd:genInfo.report.period.fiscalYearBegin>
+						<de-gcd:genInfo.report.period.fiscalYearEnd contextRef="D-AKTJAHR">2021-12-31</de-gcd:genInfo.report.period.fiscalYearEnd>
+						<de-gcd:genInfo.report.period.balSheetClosingDate contextRef="D-AKTJAHR">2021-12-31</de-gcd:genInfo.report.period.balSheetClosingDate>
+						<de-gcd:genInfo.company.id.business xsi:nil="true" contextRef="D-AKTJAHR"/>
+						<de-gcd:genInfo.company.id.internet contextRef="D-AKTJAHR"/>
+						<de-gcd:genInfo.company.id.name contextRef="D-AKTJAHR">Muster Autoverkäufer</de-gcd:genInfo.company.id.name>
+						<de-gcd:genInfo.company.id.location contextRef="D-AKTJAHR">Firmensitz</de-gcd:genInfo.company.id.location>
+						<de-gcd:genInfo.company.id.location.street contextRef="D-AKTJAHR">Musterstraße</de-gcd:genInfo.company.id.location.street>
+						<de-gcd:genInfo.company.id.location.houseNo contextRef="D-AKTJAHR">1</de-gcd:genInfo.company.id.location.houseNo>
+						<de-gcd:genInfo.company.id.location.zipCode contextRef="D-AKTJAHR">11111</de-gcd:genInfo.company.id.location.zipCode>
+						<de-gcd:genInfo.company.id.location.city contextRef="D-AKTJAHR">Musterstadt</de-gcd:genInfo.company.id.location.city>
+						<de-gcd:genInfo.company.id.location.country contextRef="D-AKTJAHR">Sachsen</de-gcd:genInfo.company.id.location.country>
+						<de-gcd:genInfo.company.id.domesticBranchOfForeignCompany>
+							<de-gcd:genInfo.company.id.domesticBranchOfForeignCompany.other xsi:nil="true" contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.company.id.domesticBranchOfForeignCompany>
+						<de-gcd:genInfo.company.id.entityWithTaxablePurposeBusiness>
+							<de-gcd:genInfo.company.id.entityWithTaxablePurposeBusiness.normal xsi:nil="true" contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.company.id.entityWithTaxablePurposeBusiness>
+						<de-gcd:genInfo.company.id.incomeClassification>
+							<de-gcd:genInfo.company.id.incomeClassification.trade contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.company.id.incomeClassification>
+						<de-gcd:genInfo.company.id.legalStatus>
+							<de-gcd:genInfo.company.id.legalStatus.legalStatus.GKG contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.company.id.legalStatus>
+						<de-gcd:genInfo.company.id.idNo>
+							<de-gcd:genInfo.company.id.idNo.type.companyId.ST13 contextRef="D-AKTJAHR">5192050001276</de-gcd:genInfo.company.id.idNo.type.companyId.ST13>
+							<de-gcd:genInfo.company.id.idNo.type.companyId.STID xsi:nil="true" contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.company.id.idNo>
+						<de-gcd:genInfo.company.id.shareholder>
+							<de-gcd:genInfo.company.id.shareholder.name contextRef="D-AKTJAHR">Muster Autoverkäufer</de-gcd:genInfo.company.id.shareholder.name>
+							<de-gcd:genInfo.company.id.shareholder.id contextRef="D-AKTJAHR">0001</de-gcd:genInfo.company.id.shareholder.id>
+							<de-gcd:genInfo.company.id.shareholder.group>
+								<de-gcd:genInfo.company.id.shareholder.group.limPartner contextRef="D-AKTJAHR"/>
+							</de-gcd:genInfo.company.id.shareholder.group>
+							<de-gcd:genInfo.company.id.shareholder.currentnumber decimals="0" contextRef="D-AKTJAHR" unitRef="PURE">123</de-gcd:genInfo.company.id.shareholder.currentnumber>
+							<de-gcd:genInfo.company.id.shareholder.taxnumber contextRef="D-AKTJAHR">5192050001276</de-gcd:genInfo.company.id.shareholder.taxnumber>
+							<de-gcd:genInfo.company.id.shareholder.taxid xsi:nil="true" contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.company.id.shareholder.legalStatus>
+								<de-gcd:genInfo.company.id.shareholder.legalStatus.legalStatus.KOER contextRef="D-AKTJAHR"/>
+							</de-gcd:genInfo.company.id.shareholder.legalStatus>
+							<de-gcd:genInfo.company.id.shareholder.ShareDivideKey>
+								<de-gcd:genInfo.company.id.shareholder.ShareDivideKey.numerator contextRef="D-AKTJAHR">0</de-gcd:genInfo.company.id.shareholder.ShareDivideKey.numerator>
+								<de-gcd:genInfo.company.id.shareholder.ShareDivideKey.denominator contextRef="D-AKTJAHR">1</de-gcd:genInfo.company.id.shareholder.ShareDivideKey.denominator>
+							</de-gcd:genInfo.company.id.shareholder.ShareDivideKey>
+							<de-gcd:genInfo.company.id.shareholder.SpecialBalanceRequired contextRef="D-AKTJAHR">true</de-gcd:genInfo.company.id.shareholder.SpecialBalanceRequired>
+							<de-gcd:genInfo.company.id.shareholder.extensionRequired contextRef="D-AKTJAHR">false</de-gcd:genInfo.company.id.shareholder.extensionRequired>
+						</de-gcd:genInfo.company.id.shareholder>
+						<de-gcd:genInfo.company.id.shareholder>
+							<de-gcd:genInfo.company.id.shareholder.name contextRef="D-AKTJAHR">Hans Maier</de-gcd:genInfo.company.id.shareholder.name>
+							<de-gcd:genInfo.company.id.shareholder.id contextRef="D-AKTJAHR">0002</de-gcd:genInfo.company.id.shareholder.id>
+							<de-gcd:genInfo.company.id.shareholder.group>
+								<de-gcd:genInfo.company.id.shareholder.group.genPartnerFullyLiable contextRef="D-AKTJAHR"/>
+							</de-gcd:genInfo.company.id.shareholder.group>
+							<de-gcd:genInfo.company.id.shareholder.currentnumber decimals="0" contextRef="D-AKTJAHR" unitRef="PURE">456</de-gcd:genInfo.company.id.shareholder.currentnumber>
+							<de-gcd:genInfo.company.id.shareholder.taxnumber contextRef="D-AKTJAHR">5192050001287</de-gcd:genInfo.company.id.shareholder.taxnumber>
+							<de-gcd:genInfo.company.id.shareholder.legalStatus>
+								<de-gcd:genInfo.company.id.shareholder.legalStatus.legalStatus.NPB contextRef="D-AKTJAHR"/>
+							</de-gcd:genInfo.company.id.shareholder.legalStatus>
+							<de-gcd:genInfo.company.id.shareholder.ShareDivideKey>
+								<de-gcd:genInfo.company.id.shareholder.ShareDivideKey.numerator contextRef="D-AKTJAHR">1</de-gcd:genInfo.company.id.shareholder.ShareDivideKey.numerator>
+								<de-gcd:genInfo.company.id.shareholder.ShareDivideKey.denominator contextRef="D-AKTJAHR">1</de-gcd:genInfo.company.id.shareholder.ShareDivideKey.denominator>
+							</de-gcd:genInfo.company.id.shareholder.ShareDivideKey>
+							<de-gcd:genInfo.company.id.shareholder.SpecialBalanceRequired contextRef="D-AKTJAHR">false</de-gcd:genInfo.company.id.shareholder.SpecialBalanceRequired>
+							<de-gcd:genInfo.company.id.shareholder.extensionRequired contextRef="D-AKTJAHR">false</de-gcd:genInfo.company.id.shareholder.extensionRequired>
+						</de-gcd:genInfo.company.id.shareholder>
+						<de-gcd:genInfo.report.id.accordingTo>
+							<de-gcd:genInfo.report.id.accordingTo.name xsi:nil="true" contextRef="D-AKTJAHR"/>
+							<de-gcd:genInfo.report.id.accordingTo.idNo>
+								<de-gcd:genInfo.company.id.idNo.type.companyId.ST13 xsi:nil="true" contextRef="D-AKTJAHR"/>
+								<de-gcd:genInfo.company.id.idNo.type.companyId.BF4 xsi:nil="true" contextRef="D-AKTJAHR"/>
+							</de-gcd:genInfo.report.id.accordingTo.idNo>
+							<de-gcd:genInfo.report.id.accordingTo.yearEnd xsi:nil="true" contextRef="D-AKTJAHR"/>
+						</de-gcd:genInfo.report.id.accordingTo>
+						<de-gcd:genInfo.report.period.fiscalPreviousYearBegin contextRef="D-AKTJAHR">2020-01-01</de-gcd:genInfo.report.period.fiscalPreviousYearBegin>
+						<de-gcd:genInfo.report.period.fiscalPreviousYearEnd contextRef="D-AKTJAHR">2020-12-31</de-gcd:genInfo.report.period.fiscalPreviousYearEnd>
+						<de-gcd:genInfo.report.period.balSheetClosingDatePreviousYear contextRef="D-AKTJAHR">2020-12-31</de-gcd:genInfo.report.period.balSheetClosingDatePreviousYear>
+						<de-gaap-ci:BVV.profitLoss decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">26591.55</de-gaap-ci:BVV.profitLoss>
+						<de-gaap-ci:BVV.profitLoss.EStG6b decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">-6167.32</de-gaap-ci:BVV.profitLoss.EStG6b>
+						<de-gaap-ci:BVV.profitLoss.assetsCurrentYear decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">59375.78</de-gaap-ci:BVV.profitLoss.assetsCurrentYear>
+						<de-gaap-ci:BVV.profitLoss.assetsPreviousYear decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">21465.58</de-gaap-ci:BVV.profitLoss.assetsPreviousYear>
+						<de-gaap-ci:BVV.profitLoss.assetsPreviousYear.assets decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">41889.81</de-gaap-ci:BVV.profitLoss.assetsPreviousYear.assets>
+						<de-gaap-ci:BVV.profitLoss.assetsPreviousYear.capAdjustments decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">-20424.23</de-gaap-ci:BVV.profitLoss.assetsPreviousYear.capAdjustments>
+						<de-gaap-ci:BVV.profitLoss.contribution decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">92657.33</de-gaap-ci:BVV.profitLoss.contribution>
+						<de-gaap-ci:BVV.profitLoss.withdrawalDistrib decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">75171.36</de-gaap-ci:BVV.profitLoss.withdrawalDistrib>
+						<de-gaap-ci:all xsi:nil="true" contextRef="D-BAL-bs.ass.fixAss-dim_comBal-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">88688.63</de-gaap-ci:bs.ass>
+						<de-gaap-ci:bs.ass.currAss decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">57383.25</de-gaap-ci:bs.ass.currAss>
+						<de-gaap-ci:bs.ass.currAss.cashEquiv xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.cashEquiv.cash xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.inventory decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">67227.44</de-gaap-ci:bs.ass.currAss.inventory>
+						<de-gaap-ci:bs.ass.currAss.inventory.advPaymPaid xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.inventory.advPaymReceived xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.inventory.finishedAndMerch decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">67227.44</de-gaap-ci:bs.ass.currAss.inventory.finishedAndMerch>
+						<de-gaap-ci:bs.ass.currAss.inventory.finishedAndMerch.merchandise decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">67227.44</de-gaap-ci:bs.ass.currAss.inventory.finishedAndMerch.merchandise>
+						<de-gaap-ci:bs.ass.currAss.inventory.gross xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.inventory.inProgress xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.inventory.material xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">-9844.19</de-gaap-ci:bs.ass.currAss.receiv>
+						<de-gaap-ci:bs.ass.currAss.receiv.affil xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.colEntity xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.globValAllowanceAccounted xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">-9844.19</de-gaap-ci:bs.ass.currAss.receiv.other>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.assetManaging xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.commPart xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.commPart.atyp xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.commPart.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.reInsurClaim xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.shareholders xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.unpaidCapital xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.unpaidCapitalLimitedLiablePartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.unpaidCapitalUnlimitedLiablePartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.other.vat decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">-9844.19</de-gaap-ci:bs.ass.currAss.receiv.other.vat>
+						<de-gaap-ci:bs.ass.currAss.receiv.particip xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.shareholders xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.shareholders.gmbh xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.shareholders.limitedLiable xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.shareholders.unlimitedLiable xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.specValAllowanceAccounted xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.trade xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.trade.shareholders xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.unpaidCapitalPartners xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.unpaidCapitalPartners.limitedLiable xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.receiv.unpaidCapitalPartners.unlimitedLiable xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.securities xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.securities.affil xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.currAss.securities.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossLimitedLiablePartnerS xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossLimitedLiablePartnerS.beginYear xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossLimitedLiablePartnerS.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossLimitedLiablePartnerS.capAdjust6bRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossLimitedLiablePartnerS.capMovements xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossLimitedLiablePartnerS.incomeUseDeposits xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossLimitedLiablePartnerS.incomeUseWithdrawals xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossLimitedLiablePartnerS.netIncome xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossUnlimitedLiablePartnerS xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossUnlimitedLiablePartnerS.beginYear xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossUnlimitedLiablePartnerS.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossUnlimitedLiablePartnerS.capAdjust6bRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossUnlimitedLiablePartnerS.capMovements xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossUnlimitedLiablePartnerS.incomeUseDeposits xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossUnlimitedLiablePartnerS.incomeUseWithdrawals xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.lossUnlimitedLiablePartnerS.netIncome xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.privateAccountSP xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.privateAccountSP.beginYear xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.privateAccountSP.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.privateAccountSP.capAdjust6bRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.privateAccountSP.incomeUseDeposits xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.privateAccountSP.incomeUseWithdrawals xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.privateAccountSP.netIncome xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalLimitedLiablePartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalLimitedLiablePartner.beginYear xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalLimitedLiablePartner.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalLimitedLiablePartner.capAdjust6bRules xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalLimitedLiablePartner.capMovements xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalLimitedLiablePartner.incomeUseDeposits xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalLimitedLiablePartner.incomeUseWithdrawals xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalLimitedLiablePartner.netIncome xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalsUnlimitedLiablePartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalsUnlimitedLiablePartner.beginYear xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalsUnlimitedLiablePartner.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalsUnlimitedLiablePartner.capAdjust6bRules xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalsUnlimitedLiablePartner.capMovements xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalsUnlimitedLiablePartner.incomeUseDeposit xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalsUnlimitedLiablePartner.incomeUseWithdrawals xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.deficitNotCoveredByCapital.withdrawalsUnlimitedLiablePartner.netIncome xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">30645.00</de-gaap-ci:bs.ass.fixAss>
+						<de-gaap-ci:bs.ass.fixAss.fin xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToAffil xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToAffil.corporations xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToAffil.partnerships xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToAffil.partnerships.sharesSilentAtyp xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToParticip xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToParticip.corporations xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToParticip.partnerships xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToParticip.partnerships.atypSilent xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToParticip.partnerships.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToSharehold xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToSharehold.gmbh xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToSharehold.limitedLiable xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.loansToSharehold.unlimitedLiable xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.otherFinAss xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.otherFinAss.reInsurClaim xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.otherLoans xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.otherLoans.assetManaging xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.otherLoans.partnership.comm xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.otherLoans.partnership.comm.atypSilent xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.otherLoans.partnership.comm.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.particip xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.particip.corporations xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.particip.partnerships xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.particip.partnerships.assetManaging xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.particip.partnerships.commPart xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.particip.partnerships.commPart.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.particip.partnerships.commPart.silentAtyp xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.particip.silent xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.securities xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.sharesInAffil xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.sharesInAffil.corporations xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.sharesInAffil.partnerships xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.sharesInAffil.partnerships.assetManaging xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.sharesInAffil.partnerships.commPart xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.sharesInAffil.partnerships.commPart.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.fin.sharesInAffil.partnerships.commPart.silentAtyp xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.intan xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.intan.advPaym xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.intan.concessionBrands xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.intan.goodwill xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">30645.00</de-gaap-ci:bs.ass.fixAss.tan>
+						<de-gaap-ci:bs.ass.fixAss.tan.branche_kfz decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">23381.00</de-gaap-ci:bs.ass.fixAss.tan.branche_kfz>
+						<de-gaap-ci:bs.ass.fixAss.tan.inConstrAdvPaym xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.landBuildings xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.landBuildings.buildingsOnNonOwnedLand xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.landBuildings.buildingsOnOwnLand xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.landBuildings.buildingsOnOwnLand.buildings xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.landBuildings.buildingsOnOwnLand.land xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.landBuildings.costAllocItem xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.landBuildings.landWithoutBuildings xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.landBuildings.rightEquivalentToLandWithoutBuildings xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.machinery decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">5166.00</de-gaap-ci:bs.ass.fixAss.tan.machinery>
+						<de-gaap-ci:bs.ass.fixAss.tan.machinery.machinery decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">5166.00</de-gaap-ci:bs.ass.fixAss.tan.machinery.machinery>
+						<de-gaap-ci:bs.ass.fixAss.tan.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.fixAss.tan.otherEquipm decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">2098.00</de-gaap-ci:bs.ass.fixAss.tan.otherEquipm>
+						<de-gaap-ci:bs.ass.fixAss.tan.otherEquipm.office decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">2098.00</de-gaap-ci:bs.ass.fixAss.tan.otherEquipm.office>
+						<de-gaap-ci:bs.ass.fixAss.tan.otherEquipm.passengerCars xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.ass.prepaidExp id="id_footnote_elem_10943534" decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">660.38</de-gaap-ci:bs.ass.prepaidExp>
+						<de-gaap-ci:bs.ass.taxbalanceOrgancomp xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">88688.63</de-gaap-ci:bs.eqLiab>
+						<de-gaap-ci:bs.eqLiab.accruals decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">1700.00</de-gaap-ci:bs.eqLiab.accruals>
+						<de-gaap-ci:bs.eqLiab.accruals.other decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">1500.00</de-gaap-ci:bs.eqLiab.accruals.other>
+						<de-gaap-ci:bs.eqLiab.accruals.other.businessRecordsRetension decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">1500.00</de-gaap-ci:bs.eqLiab.accruals.other.businessRecordsRetension>
+						<de-gaap-ci:bs.eqLiab.accruals.other.uncertainLiab decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">1500.00</de-gaap-ci:bs.eqLiab.accruals.other.uncertainLiab>
+						<de-gaap-ci:bs.eqLiab.accruals.pensions xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.accruals.pensions.direct xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.accruals.pensions.externalFunds xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.accruals.pensions.shareholder xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.accruals.tax decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">200.00</de-gaap-ci:bs.eqLiab.accruals.tax>
+						<de-gaap-ci:bs.eqLiab.accruals.tax.gewst decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">200.00</de-gaap-ci:bs.eqLiab.accruals.tax.gewst>
+						<de-gaap-ci:bs.eqLiab.defIncome xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">59375.78</de-gaap-ci:bs.eqLiab.equity>
+						<de-gaap-ci:bs.eqLiab.equity.capRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.deficitNotCovered xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.deficitNotCoveredByCapital xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.netIncome xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.netIncome.taxBalanceGenerally xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.netIncome.taxBalanceGenerally.finalPrev xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.netIncome.taxBalanceGenerally.transferDiffTaxAccounts xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.profitLoss xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.reservesPartnership xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.retainedEarnings xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.revenueRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.revenueRes.legal xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.revenueRes.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.revenueRes.special xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.revenueRes.statutory xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">59375.78</de-gaap-ci:bs.eqLiab.equity.subscribed>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.corp xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.corp.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.corp.finalPrev xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">59375.78</de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.beginYear decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">32784.23</de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.beginYear>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.capAdjust6bRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.capMovements xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.incomeUseDeposits xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.incomeUseWithdrawals xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.netIncome decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">26591.55</de-gaap-ci:bs.eqLiab.equity.subscribed.limitedLiablePartners.netIncome>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.privateAccountSP xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.privateAccountSP.beginYear xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.privateAccountSP.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.privateAccountSP.capAdjust6bRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.privateAccountSP.incomeUseDeposits xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.privateAccountSP.incomeUseWithdrawals xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.privateAccountSP.netIncome xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">0.00</de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.beginYear decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">0.00</de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.beginYear>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.capAdjust xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.capAdjust6bRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.capMovements xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.incomeUseDeposits decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">0.00</de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.incomeUseDeposits>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.incomeUseWithdrawals decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">0.00</de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.incomeUseWithdrawals>
+						<de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.netIncome decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">0.00</de-gaap-ci:bs.eqLiab.equity.subscribed.unlimitedLiablePartners.netIncome>
+						<de-gaap-ci:bs.eqLiab.liab decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">15612.85</de-gaap-ci:bs.eqLiab.liab>
+						<de-gaap-ci:bs.eqLiab.liab.advPaym decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">1000.00</de-gaap-ci:bs.eqLiab.liab.advPaym>
+						<de-gaap-ci:bs.eqLiab.liab.assocComp xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.assocComp.SilentPartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.bank xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.bank.silentPartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.colEntity xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.notes decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">1000.00</de-gaap-ci:bs.eqLiab.liab.notes>
+						<de-gaap-ci:bs.eqLiab.liab.other decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">9479.73</de-gaap-ci:bs.eqLiab.liab.other>
+						<de-gaap-ci:bs.eqLiab.liab.other.shareholders decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">8558.73</de-gaap-ci:bs.eqLiab.liab.other.shareholders>
+						<de-gaap-ci:bs.eqLiab.liab.other.theroffTax decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">921.00</de-gaap-ci:bs.eqLiab.liab.other.theroffTax>
+						<de-gaap-ci:bs.eqLiab.liab.particip xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.particip.silentPartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.regulatory decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">1000.00</de-gaap-ci:bs.eqLiab.liab.regulatory>
+						<de-gaap-ci:bs.eqLiab.liab.securities decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">1000.00</de-gaap-ci:bs.eqLiab.liab.securities>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders.gmbh xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders.limitedPartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders.silentPart xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders.unlimitedPartner xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders.upTo1year xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders.upTo1year.gmbhSilent xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders.upTo1year.limitedLiable xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.shareholders.upTo1year.unlimitedLiable xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.liab.trade decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">2133.12</de-gaap-ci:bs.eqLiab.liab.trade>
+						<de-gaap-ci:bs.eqLiab.liab.trade.shareholders decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">2133.12</de-gaap-ci:bs.eqLiab.liab.trade.shareholders>
+						<de-gaap-ci:bs.eqLiab.otherSpecRes xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.otherSpecRes.other xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.otherSpecRes.other.EStG6b xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.otherSpecRes.other.releaseWithdrawalEStG4g xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.otherSpecRes.other.replacement xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.otherSpecRes.taxbalanceOrgancomp xsi:nil="true" contextRef="I-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:bs.eqLiab.pretaxRes decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">12000.00</de-gaap-ci:bs.eqLiab.pretaxRes>
+						<de-gaap-ci:bs.eqLiab.pretaxRes.misc decimals="2" contextRef="I-AKTJAHR" unitRef="EUR">12000.00</de-gaap-ci:bs.eqLiab.pretaxRes.misc>
+						<de-gaap-ci:fpl decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">26791.55</de-gaap-ci:fpl>
+						<de-gaap-ci:fpl.additionDeductsTpl xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additionDeductsTpl.div2Years xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additionDeductsTpl.div3Years xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additionDeductsTpl.fullValueYearChange xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">487.45</de-gaap-ci:fpl.additions>
+						<de-gaap-ci:fpl.additions.AStG1 decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">287.45</de-gaap-ci:fpl.additions.AStG1>
+						<de-gaap-ci:fpl.additions.EStG4_4a xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.EStG4k xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.EarningsStrippingRuleEStG4h xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.KStG8b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.OtherEgAO160 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.UmwStG4_6 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.UmwStG7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.additionsEStG4c xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.additionsEStG4d xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.additionsEStG4e xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.additionsEStG4f xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.costOfRightsEStG4j xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.nonDeductableDeductionsESTG3c xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.nonDeductableDeductionsESTG3c.operatingCostsRelatingToDoubleTaxationTaxExemptCosts xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.nonDeductableDeductionsESTG3c.sub2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.nonDeductableDeductionsESTG3c.sub3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.nonDeductableDeductionsESTG3c.sub4etc xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.nonDeductableExpEStG4_5EStG4_7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.otherPersonalTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.profitMarkupEStG6b_10 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.profitMarkupEStG6b_7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.releaseInvestmentDeductionEStG7g_2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.releaseInvestmentDeductionEStG7g_2.reversal2PrevYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.releaseInvestmentDeductionEStG7g_2.reversal3PrevYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.releaseInvestmentDeductionEStG7g_2.reversal4PrevYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.releaseInvestmentDeductionEStG7g_2.reversalPrevYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.restrictedSpecialBusinessExpenses xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.additions.tradeTaxEStG4_5b decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">200.00</de-gaap-ci:fpl.additions.tradeTaxEStG4_5b>
+						<de-gaap-ci:fpl.deductions xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.EarningsStrippingRuleEStG4h xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.InvestmentDeductionEStG7g xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.InvestmentDeductionEStG7g._3_1follYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.InvestmentDeductionEStG7g._3_2follYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.InvestmentDeductionEStG7g._3_3follYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.InvestmentDeductionEStG7g._4_4follYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.InvestmentDeductionEStG7g.currYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.Other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.deductionsEStG4d_3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.deductionsEStG4e_3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.deductionsEStG4f xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.nonTaxableProfitsIncomeTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.nonTaxableProfitsIncomeTax.investmentGrant xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.nonTaxableProfitsIncomeTax.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsDBA xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsEStG3_40 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsKStG8b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsKStG8b.KStG8b_3sent8 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsKStG8b.TakeoverUmwStG4_7sent2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsKStG8b.add5ptSub3_5 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsKStG8b.addNonDeductKStG8b_10 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsKStG8b.sub1_2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeProfitsTakeoverUmwStG4_7sent2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFreeRecapitalisationGainsEStG3a xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.deductions.taxFrerProfitsOther xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.fiscalCorrectionsPartPartnerships.EStG3_40EStG3c_2KStG8b decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">-287.45</de-gaap-ci:fpl.fiscalCorrectionsPartPartnerships.EStG3_40EStG3c_2KStG8b>
+						<de-gaap-ci:fpl.fiscalCorrectionsPartPartnerships.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.fiscalCorrectonsPartPartnerships decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">-287.45</de-gaap-ci:fpl.fiscalCorrectonsPartPartnerships>
+						<de-gaap-ci:fpl.fiscalCorrectonsTaxGroup xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.fiscalCorrectonsTaxGroup.ExpenseFromChangeOfAdjustmentItem xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.fiscalCorrectonsTaxGroup.IncomeFromChangeOfAdjustmentItem xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.fiscalCorrectonsTaxGroup.LossCompensationByParent xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.fiscalCorrectonsTaxGroup.ProfitRecordedWithParent xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.fiscalCorrectonsTaxGroup.earningProfSharingPreconsoliRemittShortfall xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.fiscalCorrectonsTaxGroup.earningProfSharingPreconsoliRemittSurplus xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fpl.netIncome decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">26591.55</de-gaap-ci:fpl.netIncome>
+						<de-gaap-ci:fplgm.add xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.add.taxExempt xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.add.taxFreeProfitsKStG8b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.add.taxFreeProfitsKStG8b.addNonDeductKStG8b_10 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.add.taxFreeProfitsKStG8b.less5ptSub3_5 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.add.taxFreeProfitsKStG8b.plusKStG8b_3sent8 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.add.taxFreeProfitsKStG8b.sub1_2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.add.taxFreeProfitsKStG8b.takeoverUmwStG4_7sent2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.add.taxFreeProfitsTakeoverUmwStG4_7sent2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.correctionsEStG3_40EStG3c_2KStG8b decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">287.45</de-gaap-ci:fplgm.correctionsEStG3_40EStG3c_2KStG8b>
+						<de-gaap-ci:fplgm.deduct xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.deduct.EStGs3c xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.deduct.KStG8b_3sent3etSeq xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.deduct.UmwStGs4_6 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:fplgm.net decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">26791.55</de-gaap-ci:fplgm.net>
+						<de-gaap-ci:fplgm.netmethod decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">27079.00</de-gaap-ci:fplgm.netmethod>
+						<de-gaap-ci:incomeUse.accumLoss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.additionalDividends xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.capitalRelease xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.deposits xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.distributionInLineWithLegalRequirements xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.dividends xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">0.00</de-gaap-ci:incomeUse.gainLoss>
+						<de-gaap-ci:incomeUse.gainLoss.accumLossPrevYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.additionCummLoss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.additionOtherRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.additionPartnersAccount xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.additionRetainedEarnings xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.additionRevenReserves xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.additionRevenReserves.legalRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.additionRevenReserves.statRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.dividensPlanned xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.netIncome xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.releaseCapReserves xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.releaseCapital xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.releaseCapitalReserve xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.releaseOtherRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.releasePartnersAccount xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.releaseRevenReserves xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.releaseRevenReserves.legalRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.releaseRevenReserves.statRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.gainLoss.retainedEarningsPrevYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.paidInCapital xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.paidInCapital.toReserves xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.paidInCapital.toSubscrCap xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.retainedEarnings xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:incomeUse.withdrawals xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">26591.55</de-gaap-ci:is.netIncome>
+						<de-gaap-ci:is.netIncome.eat decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">28787.08</de-gaap-ci:is.netIncome.eat>
+						<de-gaap-ci:is.netIncome.extraord.income.merger xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.incomeSharing xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.incomeSharing.gain xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.incomeSharing.loss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.otherTaxes decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">2195.53</de-gaap-ci:is.netIncome.otherTaxes>
+						<de-gaap-ci:is.netIncome.otherTaxes.other decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">2195.53</de-gaap-ci:is.netIncome.otherTaxes.other>
+						<de-gaap-ci:is.netIncome.regular.fin decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">-3644.99</de-gaap-ci:is.netIncome.regular.fin>
+						<de-gaap-ci:is.netIncome.regular.fin.commPart xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.lossCommPart xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">3741.99</de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.regularInterest decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">3741.99</de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.regularInterest>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.regularInterest.AO233a decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">3741.99</de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.regularInterest.AO233a>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.regularInterest.EStG4_4aFixedAssets xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.regularInterest.PartnersLoans xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.regularInterest.PartnersLoans.participationOver25pt xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.regularInterest.partners xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.expenses.valueDiscount xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.income decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">97.00</de-gaap-ci:is.netIncome.regular.fin.netInterest.income>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.income.deposits decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">97.00</de-gaap-ci:is.netIncome.regular.fin.netInterest.income.deposits>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.income.deposits.AO233a decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">97.00</de-gaap-ci:is.netIncome.regular.fin.netInterest.income.deposits.AO233a>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.income.discount xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.income.securities xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.income.securities.dividends xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netInterest.income.valueDiscount xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.amortFinanc xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.amortFinanc.financialsExcept xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.amortFinanc.financialsExcept.participCorp xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.amortFinanc.group xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.amortFinanc.longTermRecAllowance xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.amortFinanc.longTermRecLumSumAllow xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.amortFinanc.partnerships xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.amortFinanc.secCurrAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earningProfSharing xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earningSecurities xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earningSecurities.corporations xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earningSecurities.interestDividend xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earningSecurities.interestDividend.dividend xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earningSecurities.partnerships xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earnings xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earnings.corporations xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earnings.partnerships xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.earnings.silentPart xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.expenseTaxAllocSubsidiary xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.incomeTaxAlloc xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.fin.netParticipation.loss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.adminCost xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.currAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.currAss.inventory xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.currAss.receiv xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.currAss.receiv.againstCorpParticip xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.currAss.receiv.sharehRelPart xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.goodwill xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.otherIntan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.specific xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.specific.deductValueEStG6b_3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.specific.deductValueEStG7g_2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.specific.exceptionalDepr xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.specific.exceptionalDepr.goodwill xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.specific.exceptionalDepr.otherIntan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.specific.exceptionalDepr.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.specific.impairment xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.tan.buildings xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.tan.lowValueAs xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.deprAm.fixAss.tan.lowValueAsCollItem xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.cogs xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.cogs.group xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.UStG13b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.UStG25_25a xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.UStGs25_2_4 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.generalRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.otherRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.reducedRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.taxExemptOther xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.taxExemptUStG4_1a xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.taxExemptUStG4_1b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.taxExemptUStG4_2til7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.taxExemptUStG4_8 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.taxExemptUStG4_8.UStG4_12 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.grossSales.untaxable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.UStGs13b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.UStGs4No1a xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.UStGs4No1b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.UStGs4No2-7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.UStGs4No8ff xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.generalRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.noTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.otherRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.othernonTaxable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.reducedRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.netSales.reductionsFromGrossSales.taxFromGrossSales xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss.bookValue xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss.bookValue.fin xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss.bookValue.intan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss.bookValue.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss.sale xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss.sale.fin xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss.sale.intan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.disposFixAss.sale.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.group xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.insuranceRefunds xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.lease xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.licenses xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.merger xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.miscellaneous xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.ownConsumption xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.ownConsumption.merchandiseWithdrawals xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.ownConsumption.nonCashBenefitsCompCar xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.ownConsumption.nonCashBenefitsOther xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.ownConsumption.otherWithdrawals xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.ownConsumption.privateUseVehicles xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.recoveryWriteoffs xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releaseLiab xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releaseLossProv xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releaseLossProv.globalValuation xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releaseLossProv.specificValuation xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releasePreTaxRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releasePreTaxRes.EStG4g xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releasePreTaxRes.EStG5_7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releasePreTaxRes.EStG6b_10 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releasePreTaxRes.EStG6b_3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releasePreTaxRes.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releasePreTaxRes.substEStR6_6 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.releaseProv xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.revalCurrAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.revalFixAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.grossOpProfit.otherRevenue.subsidies xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.inventoryChange xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.purchased xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.purchased.generalRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.purchased.intraEU xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.purchased.inventoryChange xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.purchased.reducedRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.purchased.withoutVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.rawMatConsSup xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.rawMatConsSup.generalRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.rawMatConsSup.intraEU xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.rawMatConsSup.inventoryChange xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.material.rawMatConsSup.reducedRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.services xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.services.OtherDedInputTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.services.OtherNonDedInputTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.services.UStG13bDedInputTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.materialServices.services.UStG13bNonDedInputTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCost xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCost.merger xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.addPreTaxRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.addPreTaxRes.EStG4g xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.addPreTaxRes.EStG5_7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.addPreTaxRes.EStG6b_10 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.addPreTaxRes.EStG6b_3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.addPreTaxRes.substEStR6_6 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.businessTravelOwner xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.communication xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.concessLicenses xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.disposFixAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.disposFixAss.bookValue xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.disposFixAss.bookValue.fin xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.disposFixAss.bookValue.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.disposFixAss.sale xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.disposFixAss.sale.intan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.disposFixAss.sale.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.disposalCorp xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.energyCost xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.fees xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.freight xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.insurance xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leaseMovable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leaseMovable.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leaseMovable.shareholders xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leaseMoveable.partners xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leasefix xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leasefix.partners xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leasefix.shareholders xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leasingAll xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leasingAll.immovable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leasingAll.moveable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.leasingAll.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.legalConsulting xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible.entertainment xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible.entertainment.deductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible.entertainment.nonDeductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible.entertainment.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible.gifts xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible.gifts.deductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible.gifts.nondeductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.limitedDeductible.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.marketing xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.merger xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.miscellaneous xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.otherTaxes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.provisions xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.refundcoop xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.regularAllowance xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.training xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.transferValuatonPresentYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.transferValuatonPresentYear.global xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.transferValuatonPresentYear.specific xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.otherCostTC.vehicles xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.ownWork xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.salesCost xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.salaries xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.salaries.inKind xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.salaries.managerPartner xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.salaries.minijobs xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.salaries.salariedPartnersEStG15 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.salaries.voluntaryBenefits xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social.pensions xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social.pensions.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social.pensions.partner xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social.pensions.shareholderManager xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social.socExp xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social.socExp.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social.socExp.partnersEStG15 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingCOGS.staff.social.welfare xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">33353.07</de-gaap-ci:is.netIncome.regular.operatingTC>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.cooperative.Refunds xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">4847.41</de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.currAss decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">4295.29</de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.currAss>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.currAss.inventory decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">4295.29</de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.currAss.inventory>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.currAss.receiv xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.currAss.receiv.againstCorpParticip xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.currAss.receiv.sharehRelPart xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">552.12</de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.goodwill xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.otherIntan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">397.36</de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific.EStG6b_3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific.except xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific.except.goodwill xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific.except.otherIntan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific.except.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific.impairment decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">397.36</de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.specific.impairment>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.tan decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">154.76</de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.tan>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.tan.buildings xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.tan.lowValueAs decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">154.76</de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.tan.lowValueAs>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.deprAmort.fixAss.tan.lowValueAsCollItem xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">61138.75</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">948546.62</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.group xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">948546.62</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">897931.07</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased.generalRateVAT decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">897931.07</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased.generalRateVAT>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased.intraEU xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased.inventoryChange xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased.reducedRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased.unknownVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.purchased.withoutVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">50615.55</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup.generalRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup.intraEU xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup.inventoryChange xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup.misc xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup.reducedRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup.unknownVAT decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">50615.55</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.material.rawMatConsSup.unknownVAT>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.services xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.services.OtherDedInputTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.services.OtherNonDedInputTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.services.UStG13bDedInputTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.materialServices.services.UStG13bNonDedInputTax xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">1002065.51</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.inventoryChange xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">1002065.51</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">1002065.51</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.UStG13b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.UStG25_25a xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.generalRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.otherRateVAT decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">977865.51</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.otherRateVAT>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.reducedRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.taxExemptOther xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.taxExemptUStG4_1a xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.taxExemptUStG4_1b decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">24200.00</de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.taxExemptUStG4_1b>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.taxExemptUStG4_2til7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.taxExemptUStG4_8 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.taxExemptUStG4_8.UStG4_12 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.grossSales.untaxable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.generalRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.otherRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.reducedRateVAT xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.taxExemptOther xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.taxExemptUStG4_1a xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.taxExemptUStG4_1b xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.taxExemptUStG4_2til7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.taxExemptUStG4_8 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.untaxable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.reductionsFromGrossSales.untaxed xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.netSales.taxFromGrossSales xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.grossTradingProfit.totalOutput.ownWork xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">21437.07</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.addPreTaxRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.addPreTaxRes.EStG4g xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.addPreTaxRes.EStG5_7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.addPreTaxRes.EStG6b_10 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.addPreTaxRes.EStG6b_3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.addPreTaxRes.substEStR6_6 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.businessTravelOwner decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">14.66</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.businessTravelOwner>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.communication decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">580.23</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.communication>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.concessLicenses xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.deductValueEStG7g_2 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss.bookValue xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss.bookValue.fin xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss.bookValue.intan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss.bookValue.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss.sale xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss.sale.fin xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss.sale.intan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposFixAss.sale.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.disposalCorp xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.energyCost decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">592.44</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.energyCost>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.fees xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.fixing decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">110.38</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.fixing>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.freight xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.insurance decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">1263.63</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.insurance>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseFix decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">6783.49</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseFix>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseFix.other decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">6783.49</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseFix.other>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseFix.partners xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseFix.shareholders xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseMovable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseMoveable.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseMoveable.partners xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leaseMoveable.shareholders xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leasingAll xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leasingAll.immovable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leasingAll.moveable xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.leasingAll.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.legalConsulting decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">4412.85</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.legalConsulting>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible.entertainment xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible.entertainment.deductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible.entertainment.nonDeductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible.entertainment.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible.gifts xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible.gifts.deductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible.gifts.nondeductible xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.limitedDeductible.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.marketing decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">560.30</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.marketing>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.merger xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.miscellaneous decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">7119.09</de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.miscellaneous>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.otherTaxes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.provisions xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.regAllowance xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.training xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.transferValuatonPresentYear xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.transferValuatonPresentYear.global xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.transferValuatonPresentYear.specific xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherCost.vehicles xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">7619.86</de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">6757.79</de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.bookValue xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.bookValue.fin xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.bookValue.intan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.bookValue.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.sale decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">6757.79</de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.sale>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.sale.fin xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.sale.intan decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">6757.79</de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.sale.intan>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.disposFixAss.sale.tan xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.group xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.insuranceRefunds xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.lease xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.licenses xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.miscellaneous decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">862.07</de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.miscellaneous>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.ownConsumption xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.ownConsumption.merchandiseWithdrawals xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.ownConsumption.nonCashBenefitsCompCar xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.ownConsumption.nonCashBenefitsOther xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.ownConsumption.otherWithdrawals xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.ownConsumption.privateUseVehicles xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.recoveryWriteoffs xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releasLiab xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releaseLossProv xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releaseLossProv.globalValuation xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releaseLossProv.specificValuation xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releasePreTaxRes xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releasePreTaxRes.EStG4g xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releasePreTaxRes.EStG5_7 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releasePreTaxRes.EStG6b_10 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releasePreTaxRes.EStG6b_3 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releasePreTaxRes.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releasePreTaxRes.substEStR6_6 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.releaseProv xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.revalCurrAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.revalFixAss xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.otherOpRevenue.subsidies xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">1501.20</de-gaap-ci:is.netIncome.regular.operatingTC.staff>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.group xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.salaries decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">1224.00</de-gaap-ci:is.netIncome.regular.operatingTC.staff.salaries>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.salaries.inKind xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.salaries.managerPartner xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.salaries.minijobs decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">1224.00</de-gaap-ci:is.netIncome.regular.operatingTC.staff.salaries.minijobs>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.salaries.salariedPartnersEStG15 xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.salaries.voluntayBenefits xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">277.20</de-gaap-ci:is.netIncome.regular.operatingTC.staff.social>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.pensions xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.pensions.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.pensions.partner xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.pensions.shareholderManager xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.socExp decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">277.20</de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.socExp>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.socExp.other xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.socExp.partnersEStG15 decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">277.20</de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.socExp.partnersEStG15>
+						<de-gaap-ci:is.netIncome.regular.operatingTC.staff.social.welfare xsi:nil="true" contextRef="D-AKTJAHR" unitRef="EUR"/>
+						<de-gaap-ci:is.netIncome.tax decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">921.00</de-gaap-ci:is.netIncome.tax>
+						<de-gaap-ci:is.netIncome.tax.gewst decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">200.00</de-gaap-ci:is.netIncome.tax.gewst>
+						<de-gaap-ci:is.netIncome.tax.prevPeriodPaid decimals="2" contextRef="D-AKTJAHR" unitRef="EUR">721.00</de-gaap-ci:is.netIncome.tax.prevPeriodPaid>
+						<de-gaap-ci:kke xsi:nil="true" contextRef="I-AKTJAHR"/>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd decimals="2" contextRef="D-KKE-01-AKTJAHR" unitRef="EUR">28765.23</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin decimals="2" contextRef="D-KKE-01-AKTJAHR" unitRef="EUR">23563.78</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes decimals="2" contextRef="D-KKE-01-AKTJAHR" unitRef="EUR">-1669.82</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther decimals="2" contextRef="D-KKE-01-AKTJAHR" unitRef="EUR">-13412.00</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements decimals="2" contextRef="D-KKE-01-AKTJAHR" unitRef="EUR">19423.57</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits decimals="2" contextRef="D-KKE-01-AKTJAHR" unitRef="EUR">26921.89</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare decimals="2" contextRef="D-KKE-01-AKTJAHR" unitRef="EUR">15081.82</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals decimals="2" contextRef="D-KKE-01-AKTJAHR" unitRef="EUR">41144.01</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd decimals="2" contextRef="D-KKE-01-LTD-AKTJAHR" unitRef="EUR">28765.23</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin decimals="2" contextRef="D-KKE-01-LTD-AKTJAHR" unitRef="EUR">23563.78</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes decimals="2" contextRef="D-KKE-01-LTD-AKTJAHR" unitRef="EUR">-1669.82</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther decimals="2" contextRef="D-KKE-01-LTD-AKTJAHR" unitRef="EUR">-13412.00</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements decimals="2" contextRef="D-KKE-01-LTD-AKTJAHR" unitRef="EUR">19423.57</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits decimals="2" contextRef="D-KKE-01-LTD-AKTJAHR" unitRef="EUR">26921.89</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare decimals="2" contextRef="D-KKE-01-LTD-AKTJAHR" unitRef="EUR">15081.82</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals decimals="2" contextRef="D-KKE-01-LTD-AKTJAHR" unitRef="EUR">41144.01</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd decimals="2" contextRef="D-KKE-01-LTD-FK-AKTJAHR" unitRef="EUR">28765.23</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin decimals="2" contextRef="D-KKE-01-LTD-FK-AKTJAHR" unitRef="EUR">23563.78</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes decimals="2" contextRef="D-KKE-01-LTD-FK-AKTJAHR" unitRef="EUR">-1669.82</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther decimals="2" contextRef="D-KKE-01-LTD-FK-AKTJAHR" unitRef="EUR">-13412.00</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements decimals="2" contextRef="D-KKE-01-LTD-FK-AKTJAHR" unitRef="EUR">19423.57</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits decimals="2" contextRef="D-KKE-01-LTD-FK-AKTJAHR" unitRef="EUR">26921.89</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare decimals="2" contextRef="D-KKE-01-LTD-FK-AKTJAHR" unitRef="EUR">15081.82</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals decimals="2" contextRef="D-KKE-01-LTD-FK-AKTJAHR" unitRef="EUR">41144.01</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd decimals="2" contextRef="D-KKE-02-AKTJAHR" unitRef="EUR">30610.55</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin decimals="2" contextRef="D-KKE-02-AKTJAHR" unitRef="EUR">18326.03</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes decimals="2" contextRef="D-KKE-02-AKTJAHR" unitRef="EUR">-4497.50</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther decimals="2" contextRef="D-KKE-02-AKTJAHR" unitRef="EUR">-7012.23</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements decimals="2" contextRef="D-KKE-02-AKTJAHR" unitRef="EUR">-19423.57</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits decimals="2" contextRef="D-KKE-02-AKTJAHR" unitRef="EUR">65735.44</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare decimals="2" contextRef="D-KKE-02-AKTJAHR" unitRef="EUR">11509.73</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals decimals="2" contextRef="D-KKE-02-AKTJAHR" unitRef="EUR">34027.35</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd decimals="2" contextRef="D-KKE-02-UNLTD-AKTJAHR" unitRef="EUR">30610.55</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin decimals="2" contextRef="D-KKE-02-UNLTD-AKTJAHR" unitRef="EUR">18326.03</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes decimals="2" contextRef="D-KKE-02-UNLTD-AKTJAHR" unitRef="EUR">-4497.50</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther decimals="2" contextRef="D-KKE-02-UNLTD-AKTJAHR" unitRef="EUR">-7012.23</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements decimals="2" contextRef="D-KKE-02-UNLTD-AKTJAHR" unitRef="EUR">-19423.57</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits decimals="2" contextRef="D-KKE-02-UNLTD-AKTJAHR" unitRef="EUR">65735.44</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare decimals="2" contextRef="D-KKE-02-UNLTD-AKTJAHR" unitRef="EUR">11509.73</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals decimals="2" contextRef="D-KKE-02-UNLTD-AKTJAHR" unitRef="EUR">34027.35</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd decimals="2" contextRef="D-KKE-02-UNLTD-VK-AKTJAHR" unitRef="EUR">30610.55</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin decimals="2" contextRef="D-KKE-02-UNLTD-VK-AKTJAHR" unitRef="EUR">18326.03</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.begin>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes decimals="2" contextRef="D-KKE-02-UNLTD-VK-AKTJAHR" unitRef="EUR">-4497.50</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capAdjust6bRes>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther decimals="2" contextRef="D-KKE-02-UNLTD-VK-AKTJAHR" unitRef="EUR">-7012.23</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalAdjustmentOther>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements decimals="2" contextRef="D-KKE-02-UNLTD-VK-AKTJAHR" unitRef="EUR">-19423.57</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.capitalMovements>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits decimals="2" contextRef="D-KKE-02-UNLTD-VK-AKTJAHR" unitRef="EUR">65735.44</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.deposits>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare decimals="2" contextRef="D-KKE-02-UNLTD-VK-AKTJAHR" unitRef="EUR">11509.73</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.incomeShare>
+						<de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals decimals="2" contextRef="D-KKE-02-UNLTD-VK-AKTJAHR" unitRef="EUR">34027.35</de-gaap-ci:table.kke.sumEquityAccounts.sumYearEnd.withdrawals>
+						<!-- Beispiel für Fußnote, Verwendung eines im "xbrl"-Element definierten Namespace-Präfixes -->
+						<link:footnoteLink xlink:type="extended" xlink:role="http://www.xbrl.org/2003/role/link">
+							<link:loc xlink:type="locator" xlink:href="#id_footnote_elem_10943534" xlink:label="bs.ass_10943534"/>
+							<link:footnote xlink:type="resource" xlink:label="footnote_16317416" xlink:role="http://www.xbrl.org/2003/role/footnote" xml:lang="de">
+								<xhtml:html>
+									<xhtml:head>
+										<xhtml:title>Eine Fussnote</xhtml:title>
+									</xhtml:head>
+									<xhtml:body>
+										<xhtml:ul>
+											<xhtml:li>
+												<xhtml:u>list item</xhtml:u>
+											</xhtml:li>
+										</xhtml:ul>
+									</xhtml:body>
+								</xhtml:html>
+							</link:footnote>
+							<link:footnoteArc xlink:type="arc" xlink:arcrole="http://www.xbrl.org/2003/arcrole/fact-footnote" xlink:from="bs.ass_10943534" xlink:to="footnote_16317416" order="1.0"/>
+						</link:footnoteLink>
+					</xbrli:xbrl>
+				</ebilanz:EBilanz>
+			</Nutzdaten>
+		</Nutzdatenblock>
+	</DatenTeil>
+</Elster>
