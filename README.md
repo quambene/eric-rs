@@ -85,6 +85,7 @@ To send the xml file, the path and password of the Elster certificate has to be 
 | Rust SDK | Eric     |
 | -------- | -------- |
 | 0.1.0    | 38.1.6.0 |
+| 0.2.0    | 39.6.4.0 |
 
 ### Test SDK
 
