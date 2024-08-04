@@ -16,6 +16,7 @@ use std::{
 pub struct Eric;
 
 impl Eric {
+    /// Initialize eric instance.
     pub fn new(log_path: &Path) -> Result<Self, anyhow::Error> {
         println!("Initializing eric");
 
@@ -38,6 +39,7 @@ impl Eric {
         }
     }
 
+    /// Validate an XML file for a specific taxonomy.
     pub fn validate(
         &self,
         xml: String,
@@ -57,6 +59,10 @@ impl Eric {
         Self::process(xml, type_version, processing_flag, print_config, None, None)
     }
 
+    /// Send an XML file to tax authorities for a specific taxonomy.
+    ///
+    /// The Elster certificate is provided via environment variables
+    /// `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
     pub fn send(
         &self,
         xml: String,
