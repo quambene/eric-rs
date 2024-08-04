@@ -14,6 +14,8 @@ Rust bindings and SDK for the ELSTER Rich Client (ERiC)
   - [Generate bindings](#generate-bindings)
   - [Test bindings](#test-bindings)
 - [Eric SDK](#eric-sdk)
+  - [Usage](#usage)
+  - [Test SDK](#test-sdk)
 
 ## What is ELSTER?
 
@@ -67,6 +69,8 @@ Logs are written to `eric.log` in the current directory.
 
 ## Eric SDK
 
+### Usage
+
 To use `eric-sdk`, the shared library has to be provided as environment variable. For example, specify `LD_LIBRARY_PATH` on Linux:
 
 ``` bash
@@ -74,3 +78,16 @@ LD_LIBRARY_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib
 ```
 
 To send the xml file, the path and password of the Elster certificate has to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
+
+### Test SDK
+
+``` bash
+# Run unit tests
+cargo test -p eric-sdk -- --test-threads=1
+
+# Run integration tests
+cargo test -p eric-sdk --test '*' -- --test-threads=1
+
+# Run external tests
+cargo test -p eric-sdk --test '*' --features external-test -- --test-threads=1
+```
