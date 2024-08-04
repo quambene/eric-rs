@@ -30,6 +30,8 @@ impl Certificate {
 
 impl Drop for Certificate {
     fn drop(&mut self) {
+        println!("Cleaning up certificate");
+
         let error_code = unsafe { EricCloseHandleToCertificate(self.handle) };
 
         match error_code {
