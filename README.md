@@ -19,7 +19,7 @@ Elster (short for _Elektronische Steuererklärung_) is a project by the German t
 
 ## What is ERiC?
 
-ERiC is a C library that is integrated into a tax application. ERiC checks the data supplied by the tax application for plausibility, and transmits the data encrypted to the computing center of the respective tax administration.
+ERiC is a shared C library that is integrated into a tax application. ERiC checks the data supplied by the tax application for plausibility, and transmits the data encrypted to the computing center of the respective tax administration.
 
 ## Requirements
 
