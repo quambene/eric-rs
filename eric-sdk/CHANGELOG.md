@@ -6,6 +6,11 @@
 - changed
 - removed
 
+## v0.2.0 (2024-08-05)
+
+- added
+  - Support Eric v39.6.4.0
+
 ## v0.1.0 (2024-08-05)
 
 - added
