@@ -89,6 +89,10 @@ dependencies = [
 [[package]]
 name = "eric-sdk"
 version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "eric-bindings",
+]
 
 [[package]]
 name = "errno"
