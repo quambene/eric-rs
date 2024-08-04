@@ -13,11 +13,11 @@ fn test_send() {
         .unwrap();
     let taxonomy_type = "Bilanz";
     let taxonomy_version = "6.5";
-    let pdf_name = None;
+    let pdf_path = None;
 
     let eric = Eric::new(&log_path).unwrap();
 
-    let res = eric.send(xml, taxonomy_type, taxonomy_version, pdf_name);
+    let res = eric.send(xml, taxonomy_type, taxonomy_version, pdf_path);
     println!("{:#?}", res);
     assert!(res.is_ok(), "{}", res.unwrap_err());
 
@@ -42,11 +42,11 @@ fn test_send_and_print() {
         .unwrap();
     let taxonomy_type = "Bilanz";
     let taxonomy_version = "6.5";
-    let pdf_name = "ebilanz.pdf";
+    let pdf_path = "ebilanz.pdf";
 
     let eric = Eric::new(&log_path).unwrap();
 
-    let res = eric.send(xml, taxonomy_type, taxonomy_version, Some(pdf_name));
+    let res = eric.send(xml, taxonomy_type, taxonomy_version, Some(pdf_path));
     println!("{:#?}", res);
     assert!(res.is_ok(), "{}", res.unwrap_err());
 

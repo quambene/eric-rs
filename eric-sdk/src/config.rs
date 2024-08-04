@@ -60,8 +60,8 @@ impl CertificateParameter {
 
 #[derive(Debug)]
 pub struct PrintConfig {
-    // allocate pdf_name as CString
-    pub(crate) pdf_name: CString,
+    // allocate pdf path as CString
+    pub(crate) pdf_path: CString,
     pub(crate) print_parameter: PrintParameter,
 }
 
@@ -71,7 +71,7 @@ impl PrintConfig {
         let print_parameter = PrintParameter::new(&pdf_path, processing_flag);
 
         Ok(Self {
-            pdf_name: pdf_path,
+            pdf_path,
             print_parameter,
         })
     }
@@ -85,7 +85,7 @@ pub(crate) struct PrintParameter {
 }
 
 impl PrintParameter {
-    pub(crate) fn new(pdf_name: &CStr, processing_flag: &ProcessingFlag) -> Self {
+    pub(crate) fn new(pdf_path: &CStr, processing_flag: &ProcessingFlag) -> Self {
         let print_parameter = eric_druck_parameter_t {
             version: 2,
             vorschau: match processing_flag {
@@ -95,8 +95,10 @@ impl PrintParameter {
             },
             ersteSeite: 0,
             duplexDruck: 0,
-            // SAFETY: pdf_name.as_ptr() is not dangling as pdf_name is allocated in struct PrintConfig and pdf_name is not moved as a reference to the CString is given
-            pdfName: pdf_name.as_ptr(),
+            // SAFETY: pdf_path.as_ptr() is not dangling as pdf_path is
+            // allocated in struct PrintConfig and pdf_path is not moved as a
+            // reference to the CString is given.
+            pdfName: pdf_path.as_ptr(),
             fussText: ptr::null(),
         };
 

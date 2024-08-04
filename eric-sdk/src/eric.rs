@@ -154,7 +154,7 @@ impl Eric {
         match &print_config {
             Some(print_config) => println!(
                 "Printing confirmation to file '{}'",
-                print_config.pdf_name.to_str()?
+                print_config.pdf_path.to_str()?
             ),
             None => (),
         }
