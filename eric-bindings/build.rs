@@ -1,7 +1,7 @@
 use std::io;
 
 fn main() -> io::Result<()> {
-    #[cfg(not(feature = "docs-rs"))]
+    #[cfg(not(feature = "no-build"))]
     {
         use std::{
             env,

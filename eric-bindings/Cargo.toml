@@ -13,14 +13,14 @@ keywords = ["eric", "bindings",  "taxes", "accounting"]
 categories = ["external-ffi-bindings"]
 build = "build.rs"
 
-exclude = ["src/bindings/bindings_eric_38_1_6_0_linux_x86_64.rs"]
+exclude = ["src/bindings/bindings_eric_39_6_4_0_linux_x86_64.rs"]
 
 [package.metadata.docs.rs]
-features = ["docs-rs"]
+features = ["no-build"]
 
 [features]
 # This feature is used to publish the documentation for `eric-bindings`.
-docs-rs = []
+no-build = []
 
 [lib]
 path = "src/lib.rs"

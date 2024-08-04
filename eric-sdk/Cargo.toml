@@ -16,6 +16,7 @@ path = "src/lib.rs"
 name = "eric_sdk"
 
 [features]
+eric-bindings-no-build = ["eric-bindings/no-build"]
 external-test = []
 
 [dependencies]
