@@ -13,7 +13,6 @@ use std::{
     ptr,
 };
 
-#[derive(Debug)]
 pub struct Eric;
 
 impl Eric {
@@ -42,12 +41,12 @@ impl Eric {
     pub fn validate(
         &self,
         xml: String,
-        tax_type: &str,
-        tax_version: &str,
+        taxonomy_type: &str,
+        taxonomy_version: &str,
         pdf_name: Option<&str>,
     ) -> Result<EricResponse, anyhow::Error> {
         let processing_flag: ProcessingFlag;
-        let type_version = format!("{}_{}", tax_type, tax_version);
+        let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
         let print_config = if let Some(pdf_name) = pdf_name {
             processing_flag = ProcessingFlag::Print;
             Some(PrintConfig::new(pdf_name, &processing_flag)?)
@@ -61,14 +60,14 @@ impl Eric {
     pub fn send(
         &self,
         xml: String,
-        tax_type: &str,
-        tax_version: &str,
+        taxonomy_type: &str,
+        taxonomy_version: &str,
         certificate_file: &str,
         certificate_password: &str,
         pdf_name: Option<&str>,
     ) -> Result<EricResponse, anyhow::Error> {
         let processing_flag: ProcessingFlag;
-        let type_version = format!("{}_{}", tax_type, tax_version);
+        let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
         let print_config = if let Some(pdf_name) = pdf_name {
             processing_flag = ProcessingFlag::SendAndPrint;
             Some(PrintConfig::new(pdf_name, &processing_flag)?)
