@@ -19,7 +19,7 @@ use std::{
 pub struct Eric;
 
 impl Eric {
-    /// Initializes a single-threaded eric instance.
+    /// Initializes a single-threaded Eric instance.
     pub fn new(log_path: &Path) -> Result<Self, anyhow::Error> {
         println!("Initializing eric");
 
