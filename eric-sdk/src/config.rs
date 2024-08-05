@@ -41,10 +41,9 @@ pub(crate) struct CertificateParameter {
 impl CertificateParameter {
     pub(crate) fn new(certificate: &Certificate, password: &CStr) -> Self {
         let certificate_parameter = eric_verschluesselungs_parameter_t {
-            abrufCode: ptr::null(),
             // SAFETY: password.as_ptr() is not dangling as password is allocated in struct CertificateConfig and password is not moved as a reference to the CString is given
             pin: password.as_ptr(),
-            version: 2,
+            version: 3,
             zertifikatHandle: certificate.handle,
         };
 
@@ -89,13 +88,12 @@ impl PrintParameter {
         let mut user_data: EricPdfCallback = None;
         let user_data_ptr: *mut c_void = &mut user_data as *mut _ as *mut c_void;
         let print_parameter = eric_druck_parameter_t {
-            version: 2,
+            version: 4,
             vorschau: match processing_flag {
                 ProcessingFlag::Validate => Preview::Yes as u32,
                 ProcessingFlag::Print => Preview::Yes as u32,
                 _ => Preview::No as u32,
             },
-            ersteSeite: 0,
             duplexDruck: 0,
             // SAFETY: pdf_path.as_ptr() is not dangling as pdf_path is
             // allocated in struct PrintConfig and pdf_path is not moved as a

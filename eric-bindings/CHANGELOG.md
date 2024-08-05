@@ -6,6 +6,11 @@
 - changed
 - removed
 
+## v0.4.0 (2024-08-05)
+
+- added
+  - Bindings for ERiC as of v40.1
+
 ## v0.3.0 (2024-08-04)
 
 - changed

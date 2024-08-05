@@ -1,6 +1,6 @@
 [package]
 name = "eric-sdk"
-version = "0.2.0"
+version = "0.3.0"
 authors.workspace = true
 edition.workspace = true
 readme.workspace = true
@@ -24,7 +24,7 @@ eric-bindings-no-build = ["eric-bindings/no-build"]
 external-test = []
 
 [dependencies]
-eric-bindings = { version = "0.3.0", path = "../eric-bindings" }
+eric-bindings = { version = "0.4.0", path = "../eric-bindings" }
 anyhow = { workspace = true }
 
 [dev-dependencies]
