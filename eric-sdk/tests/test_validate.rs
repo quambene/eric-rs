@@ -4,6 +4,7 @@ use roxmltree::Document;
 use std::{env::current_dir, fs, path::Path};
 
 #[test]
+#[cfg_attr(feature = "external-test", ignore)]
 fn test_validate() {
     let log_path = current_dir().unwrap();
     let xml_path = Path::new("./test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
@@ -34,6 +35,7 @@ fn test_validate() {
 }
 
 #[test]
+#[cfg_attr(feature = "external-test", ignore)]
 fn test_validate_and_print() {
     let log_path = current_dir().unwrap();
     let xml_path = Path::new("./test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");

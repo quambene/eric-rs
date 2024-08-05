@@ -1,7 +1,7 @@
 use crate::{certificate::Certificate, utils::ToCString, Preview, ProcessingFlag};
-use eric_bindings::{eric_druck_parameter_t, eric_verschluesselungs_parameter_t};
+use eric_bindings::{eric_druck_parameter_t, eric_verschluesselungs_parameter_t, EricPdfCallback};
 use std::{
-    ffi::{CStr, CString},
+    ffi::{c_void, CStr, CString},
     path::Path,
     ptr,
 };
@@ -86,6 +86,8 @@ pub(crate) struct PrintParameter {
 
 impl PrintParameter {
     pub(crate) fn new(pdf_path: &CStr, processing_flag: &ProcessingFlag) -> Self {
+        let mut user_data: EricPdfCallback = None;
+        let user_data_ptr: *mut c_void = &mut user_data as *mut _ as *mut c_void;
         let print_parameter = eric_druck_parameter_t {
             version: 2,
             vorschau: match processing_flag {
@@ -100,6 +102,8 @@ impl PrintParameter {
             // reference to the CString is given.
             pdfName: pdf_path.as_ptr(),
             fussText: ptr::null(),
+            pdfCallback: None,
+            pdfCallbackBenutzerdaten: user_data_ptr,
         };
 
         Self {
