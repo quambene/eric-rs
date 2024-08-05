@@ -6,9 +6,15 @@
 - changed
 - removed
 
+## v0.3.0 (2024-08-04)
+
+- changed
+  - Support documentation for Eric v39.6.4.0
+
 ## v0.2.0 (2024-08-04)
 
 - changed
+  - Support documentation for Eric v38.1.6.0
   - Rename feature from `docs-rs` to `no-build`
 
 ## v0.1.2 (2024-08-03)
