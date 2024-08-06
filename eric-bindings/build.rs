@@ -47,10 +47,13 @@ fn select_bindings() -> io::Result<()> {
     let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
-    println!("cargo:rustc-link-search={}", library_path);
-    println!("cargo:rustc-link-lib={}", library_name);
-    println!("cargo:rerun-if-changed={}", header_file);
-    println!("cargo:rustc-env=LD_LIBRARY_PATH={}", library_path);
+    #[cfg(not(test))]
+    {
+        println!("cargo:rustc-link-search={}", library_path);
+        println!("cargo:rustc-link-lib={}", library_name);
+        println!("cargo:rerun-if-changed={}", header_file);
+        println!("cargo:rustc-env=LD_LIBRARY_PATH={}", library_path);
+    }
 
     let eric_version = if library_path.contains("38.1.6.0") {
         EricVersion::Eric38_1_6_0
