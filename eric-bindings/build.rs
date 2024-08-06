@@ -34,14 +34,23 @@ pub fn main() -> io::Result<()> {
     Ok(())
 }
 
+/// Select existing bindings
 #[cfg(not(feature = "generate-bindings"))]
 fn select_bindings() -> io::Result<()> {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").expect("Set by cargo");
     let is_windows = std::env::var("CARGO_CFG_WINDOWS").is_ok();
+    let library_name =
+        env::var("LIBRARY_NAME").expect("Missing environment variable 'LIBRARY_NAME'");
     let library_path =
         env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");
+    let header_file = env::var("HEADER_FILE").expect("Missing environment variable 'HEADER_FILE'");
     let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
+
+    println!("cargo:rustc-link-search={}", library_path);
+    println!("cargo:rustc-link-lib={}", library_name);
+    println!("cargo:rerun-if-changed={}", header_file);
+    println!("cargo:rustc-env=LD_LIBRARY_PATH={}", library_path);
 
     let eric_version = if library_path.contains("38.1.6.0") {
         EricVersion::Eric38_1_6_0
@@ -80,15 +89,15 @@ fn select_bindings() -> io::Result<()> {
     Ok(())
 }
 
+/// Generate bindings on-the-fly
 #[cfg(feature = "generate-bindings")]
 fn generate_bindings() -> io::Result<()> {
-    let library_path =
-        env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");
     let library_name =
         env::var("LIBRARY_NAME").expect("Missing environment variable 'LIBRARY_NAME'");
+    let library_path =
+        env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");
     let header_file = env::var("HEADER_FILE").expect("Missing environment variable 'HEADER_FILE'");
 
-    println!("Missing bindings: bindings are generated on-th-fly");
     let library_path = Path::new(&library_path);
     let header_file = Path::new(&header_file);
 
