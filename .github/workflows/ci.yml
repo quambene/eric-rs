@@ -13,21 +13,21 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo check
-        run: cargo check --all-targets -p eric-sdk
+        run: cargo check --all-targets
   clippy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo clippy -- -D warnings
-        run: cargo clippy --all-targets -p eric-sdk -- -D warnings
+        run: cargo clippy --all-targets -- -D warnings
   doc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo doc
-        run: cargo doc --no-deps -p eric-sdk
+        run: cargo doc --no-deps
   fmt:
     runs-on: ubuntu-latest
     steps:
