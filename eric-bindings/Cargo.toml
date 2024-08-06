@@ -13,12 +13,11 @@ keywords = ["eric", "bindings",  "taxes", "accounting"]
 categories = ["external-ffi-bindings"]
 build = "build.rs"
 
-exclude = ["bindings/*"]
+exclude = ["bindings/"]
 
 [features]
-# This feature is used to publish the documentation for `eric-bindings`.
-no-build = []
-generate-bindings = []
+default = []
+generate-bindings = ["dep:bindgen"]
 
 [lib]
 path = "src/lib.rs"
@@ -29,4 +28,4 @@ anyhow = { workspace = true }
 
 [build-dependencies]
 anyhow = { workspace = true }
-bindgen = "0.69.4"
+bindgen = { version = "0.69.4", optional = true }

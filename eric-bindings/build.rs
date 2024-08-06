@@ -21,15 +21,16 @@ impl fmt::Display for EricVersion {
 }
 
 pub fn main() -> io::Result<()> {
-    if cfg!(feature = "generate-bindings") {
-        generate_bindings()?;
-    } else {
-        select_bindings()?;
-    }
+    #[cfg(feature = "generate-bindings")]
+    generate_bindings()?;
+
+    #[cfg(not(feature = "generate-bindings"))]
+    select_bindings()?;
 
     Ok(())
 }
 
+#[cfg(not(feature = "generate-bindings"))]
 fn select_bindings() -> io::Result<()> {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").expect("Set by cargo");
     let is_windows = std::env::var("CARGO_CFG_WINDOWS").is_ok();
@@ -67,6 +68,7 @@ fn select_bindings() -> io::Result<()> {
     Ok(())
 }
 
+#[cfg(feature = "generate-bindings")]
 fn generate_bindings() -> io::Result<()> {
     let library_path =
         env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");

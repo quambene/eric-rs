@@ -17,6 +17,7 @@ path = "src/lib.rs"
 name = "eric_sdk"
 
 [features]
+default = []
 external-test = []
 
 [dependencies]
