@@ -59,11 +59,13 @@ fn select_bindings() -> io::Result<()> {
     let root_dir = std::env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
     let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);
 
-    std::fs::copy(bindings_path.clone(), bindings_target.clone()).expect(&format!(
-        "Can't copy file from {} to {}",
-        bindings_path.display(),
-        bindings_target.display(),
-    ));
+    std::fs::copy(bindings_path.clone(), bindings_target.clone()).unwrap_or_else(|_| {
+        panic!(
+            "Can't copy file from {} to {}",
+            bindings_path.display(),
+            bindings_target.display(),
+        )
+    });
 
     Ok(())
 }
