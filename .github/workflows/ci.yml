@@ -12,21 +12,21 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo check
-        run: cargo check --all-targets -p eric-sdk --features eric-bindings-no-build
+        run: cargo check --all-targets -p eric-sdk
   clippy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo clippy -- -D warnings
-        run: cargo clippy --all-targets -p eric-sdk --features eric-bindings-no-build -- -D warnings
+        run: cargo clippy --all-targets -p eric-sdk -- -D warnings
   doc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo doc
-        run: cargo doc --no-deps -p eric-sdk --features eric-bindings-no-build
+        run: cargo doc --no-deps -p eric-sdk
   fmt:
     runs-on: ubuntu-latest
     steps:
@@ -49,11 +49,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo test --lib
-        run: cargo test --lib -p eric-sdk --features eric-bindings-no-build
+        run: cargo test --lib -p eric-sdk
   doc-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo test --doc
-        run: cargo test --locked --doc -p eric-sdk --features eric-bindings-no-build
+        run: cargo test --locked --doc -p eric-sdk
