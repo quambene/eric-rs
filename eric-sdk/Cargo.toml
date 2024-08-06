@@ -18,6 +18,7 @@ name = "eric_sdk"
 
 [features]
 default = []
+no-linking = ["eric-bindings/no-linking"]
 external-test = []
 
 [dependencies]
