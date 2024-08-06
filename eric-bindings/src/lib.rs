@@ -5,12 +5,6 @@
 // TODO: extern block uses type u128, which is not FFI-safe
 #![allow(improper_ctypes)]
 
-#[cfg(feature = "no-build")]
-mod bindings;
-#[cfg(feature = "no-build")]
-pub use bindings::bindings_eric_as_of_40_1_linux::*;
-
-#[cfg(not(feature = "no-build"))]
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[cfg(test)]

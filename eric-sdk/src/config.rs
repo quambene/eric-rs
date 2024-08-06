@@ -45,6 +45,7 @@ impl CertificateParameter {
             pin: password.as_ptr(),
             version: 3,
             zertifikatHandle: certificate.handle,
+            abrufCode: ptr::null(),
         };
 
         Self {
@@ -94,6 +95,7 @@ impl PrintParameter {
                 ProcessingFlag::Print => Preview::Yes as u32,
                 _ => Preview::No as u32,
             },
+            ersteSeite: 0,
             duplexDruck: 0,
             // SAFETY: pdf_path.as_ptr() is not dangling as pdf_path is
             // allocated in struct PrintConfig and pdf_path is not moved as a
