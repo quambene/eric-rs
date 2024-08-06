@@ -16,11 +16,7 @@ categories = ["finance"]
 path = "src/lib.rs"
 name = "eric_sdk"
 
-[package.metadata.docs.rs]
-features = ["eric-bindings-no-build"]
-
 [features]
-eric-bindings-no-build = ["eric-bindings/no-build"]
 external-test = []
 
 [dependencies]
