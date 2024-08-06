@@ -9,7 +9,7 @@
 ## v0.4.0 (unreleased)
 
 - added
-  - Bindings for ERiC as of v40.1
+  - Add bindings for Eric v40.1.8.0
   - Add feature flag `generate-bindings`
 - changed
   - Select existing bindings

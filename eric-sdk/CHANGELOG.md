@@ -9,7 +9,7 @@
 ## v0.3.0 (unreleased)
 
 - added
-  - Support ERiC v40.2.10.0
+  - Support ERiC v40.1.8.0
 
 ## v0.2.0 (2024-08-05)
 

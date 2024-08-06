@@ -7,6 +7,8 @@ use std::{
 pub enum EricVersion {
     Eric38_1_6_0,
     Eric39_6_4_0,
+    Eric40_1_8_0,
+    Eric40_2_10_0,
 }
 
 impl fmt::Display for EricVersion {
@@ -14,6 +16,8 @@ impl fmt::Display for EricVersion {
         let request_method = match self {
             Self::Eric38_1_6_0 => "38.1.6.0",
             Self::Eric39_6_4_0 => "39.6.4.0",
+            Self::Eric40_1_8_0 => "40.1.8.0",
+            Self::Eric40_2_10_0 => "40.2.10.0",
         };
 
         write!(f, "{}", request_method)
@@ -43,12 +47,18 @@ fn select_bindings() -> io::Result<()> {
         EricVersion::Eric38_1_6_0
     } else if library_path.contains("39.6.4.0") {
         EricVersion::Eric39_6_4_0
+    } else if library_path.contains("40.1.8.0") {
+        EricVersion::Eric40_1_8_0
+    } else if library_path.contains("40.2.10.0") {
+        EricVersion::Eric40_2_10_0
     } else {
         panic!("Missing bindings: Unknown Eric version");
     };
     let bindings_file = match (&eric_version, target_arch.as_ref(), is_windows) {
         (EricVersion::Eric38_1_6_0, "x86_64", false) => "bindings_eric_38_1_6_0_linux_x86_64.rs",
         (EricVersion::Eric39_6_4_0, "x86_64", false) => "bindings_eric_39_6_4_0_linux_x86_64.rs",
+        (EricVersion::Eric40_1_8_0, "x86_64", false) => "bindings_eric_40_1_8_0_linux_x86_64.rs",
+        (EricVersion::Eric40_2_10_0, "x86_64", false) => "bindings_eric_40_2_10_0_linux_x86_64.rs",
         _ => {
             panic!("Missing bindings for Eric version {eric_version} and target {target_arch}");
         }
