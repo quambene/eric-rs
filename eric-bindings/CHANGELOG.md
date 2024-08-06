@@ -6,6 +6,16 @@
 - changed
 - removed
 
+## v0.4.0 (unreleased)
+
+- added
+  - Bindings for ERiC as of v40.1
+  - Add feature flag `generate-bindings`
+- changed
+  - Select existing bindings
+- removed
+  - Remove feature flag `no-build`
+
 ## v0.3.0 (2024-08-04)
 
 - changed

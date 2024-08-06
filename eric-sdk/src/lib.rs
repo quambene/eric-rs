@@ -11,12 +11,14 @@ pub use response::EricResponse;
 
 #[derive(Debug, Clone, Copy)]
 pub(crate) enum ProcessingFlag {
-    Validate = 2,
-    Send = 4,
-    Print = 32,
-    SendAndPrint = 36,
+    Validate = 1 << 1,
+    Send = 1 << 2,
+    Print = 1 << 5,
+    SendAndPrint = 1 << 2 | 1 << 5,
     #[allow(dead_code)]
-    CheckHints = 128,
+    CheckHints = 1 << 7,
+    #[allow(dead_code)]
+    ValidateWithoutDate = 1 << 8,
 }
 
 impl ProcessingFlag {
