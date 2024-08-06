@@ -5,7 +5,11 @@ on:
   pull_request:
 env:
   CARGO_TERM_COLOR: always
-  LIBRARY_PATH: ERiC-39.6.4.0-Linux-x86_64/ERiC-39.6.4.0/Linux-x86_64
+  PATH_VENDOR: ERiC-39.6.4.0-Linux-x86_64/ERiC-39.6.4.0/Linux-x86_64
+  LIBRARY_NAME: ericapi
+  LIBRARY_PATH: $PATH_VENDOR/lib
+  HEADER_FILE: $PATH_VENDOR/include/ericapi.h
+  PLUGIN_PATH: $PATH_VENDOR/lib/plugins2
 jobs:
   check:
     runs-on: ubuntu-latest
