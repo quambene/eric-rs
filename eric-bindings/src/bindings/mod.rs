@@ -1,1 +1,1 @@
-pub mod bindings_eric_39_6_4_0_linux_x86_64;
+pub mod bindings_eric_as_of_40_1_linux;

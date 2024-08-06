@@ -46,10 +46,11 @@ To generate the bindings, `eric-bindings` expects the environment variables `LIB
 `PLUGIN_PATH`. For example:
 
 ``` bash
+PATH_VENDOR="ERiC-40.2.10.0-Linux-x86_64/ERiC-40.2.10.0/Linux-x86_64"
 LIBRARY_NAME=ericapi
-LIBRARY_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib
-HEADER_FILE=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/include/ericapi.h
-PLUGIN_PATH=ERiC-38.1.6.0-Linux-x86_64/ERiC-38.1.6.0/Linux-x86_64/lib/plugins2
+LIBRARY_PATH="$PATH_VENDOR/lib"
+HEADER_FILE="$PATH_VENDOR/include/ericapi.h"
+PLUGIN_PATH="$PATH_VENDOR/lib/plugins2"
 ```
 
 The bindings have to be generated on-the-fly for your specific platform and architecture:
@@ -82,10 +83,11 @@ To send the xml file, the path and password of the Elster certificate has to be 
 
 ### Supported Eric versions
 
-| Rust SDK | Eric     |
-| -------- | -------- |
-| 0.1.0    | 38.1.6.0 |
-| 0.2.0    | 39.6.4.0 |
+| Rust SDK | Eric      |
+| -------- | --------- |
+| 0.1.0    | 38.1.6.0  |
+| 0.2.0    | 39.6.4.0  |
+| 0.3.0    | 40.2.10.0 |
 
 ### Test SDK
 

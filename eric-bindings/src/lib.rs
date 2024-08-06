@@ -8,7 +8,7 @@
 #[cfg(feature = "no-build")]
 mod bindings;
 #[cfg(feature = "no-build")]
-pub use bindings::bindings_eric_39_6_4_0_linux_x86_64::*;
+pub use bindings::bindings_eric_as_of_40_1_linux::*;
 
 #[cfg(not(feature = "no-build"))]
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
