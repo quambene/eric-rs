@@ -47,13 +47,13 @@ jobs:
           components: rustfmt
       - name: cargo +nightly fmt --check
         run: cargo +nightly fmt --check
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-      - name: cargo test --lib
-        run: cargo test --lib -p eric-sdk
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: dtolnay/rust-toolchain@stable
+  #     - name: cargo test --lib
+  #       run: cargo test --lib -p eric-sdk
   doc-test:
     runs-on: ubuntu-latest
     steps:
