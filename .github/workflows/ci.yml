@@ -53,7 +53,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo test --lib
-        run: cargo test --lib
+        run: cargo test --lib -p eric-sdk
   doc-test:
     runs-on: ubuntu-latest
     steps:
