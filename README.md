@@ -40,9 +40,8 @@ apt install llvm-dev libclang-dev clang
 
 ## Rust bindings
 
-### Generate bindings
-
-To generate the bindings, `eric-bindings` expects the environment variables `LIBRARY_NAME`, `LIBRARY_PATH`, `HEADER_FILE`, and
+The bindings are selected from the pre-generated bindings by specifying the
+environment variables `PATH_VENDOR`, `LIBRARY_NAME`, `LIBRARY_PATH`, `HEADER_FILE`, and
 `PLUGIN_PATH`. For example:
 
 ``` bash
@@ -53,10 +52,13 @@ HEADER_FILE="$PATH_VENDOR/include/ericapi.h"
 PLUGIN_PATH="$PATH_VENDOR/lib/plugins2"
 ```
 
-The bindings have to be generated on-the-fly for your specific platform and architecture:
+### Generate bindings
+
+You can also generate bindings on-the-fly for your specific platform and
+architecture by using feature flag `generate-bindings`:
 
 ``` bash
-cargo build -p eric-bindings
+cargo build -p eric-bindings --features generate-bindings
 ```
 
 The bindings are generated in `target/debug/build/eric-bindings-<random-id>/out/bindings.rs`.
