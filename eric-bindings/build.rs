@@ -29,13 +29,20 @@ pub fn main() -> io::Result<()> {
     generate_bindings()?;
 
     #[cfg(not(feature = "generate-bindings"))]
-    select_bindings()?;
+    {
+        #[cfg(not(feature = "docs-rs"))]
+        select_bindings()?;
+
+        #[cfg(feature = "docs-rs")]
+        select_bindings_for_docs_rs()?;
+    }
 
     Ok(())
 }
 
 /// Select existing bindings
 #[cfg(not(feature = "generate-bindings"))]
+#[cfg(not(feature = "docs-rs"))]
 fn select_bindings() -> io::Result<()> {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").expect("Set by cargo");
     let is_windows = std::env::var("CARGO_CFG_WINDOWS").is_ok();
@@ -124,5 +131,26 @@ fn generate_bindings() -> io::Result<()> {
         .write_to_file(output_path.join("bindings.rs"))
         .expect("Can't write bindings");
 
+    Ok(())
+}
+
+/// Select latest bindings for documentation on docs.rs
+#[cfg(feature = "docs-rs")]
+fn select_bindings_for_docs_rs() -> io::Result<()> {
+    let bindings_file = "bindings_eric_40_1_8_0_linux_x86_64.rs";
+
+    let root_dir = std::env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
+    let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);
+
+    let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
+    let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
+
+    std::fs::copy(bindings_path.clone(), bindings_target.clone()).unwrap_or_else(|_| {
+        panic!(
+            "Can't copy file from {} to {}",
+            bindings_path.display(),
+            bindings_target.display(),
+        )
+    });
     Ok(())
 }

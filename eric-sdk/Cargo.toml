@@ -1,6 +1,6 @@
 [package]
 name = "eric-sdk"
-version = "0.3.0"
+version = "0.3.1"
 authors.workspace = true
 edition.workspace = true
 readme.workspace = true
@@ -16,13 +16,19 @@ categories = ["finance"]
 path = "src/lib.rs"
 name = "eric_sdk"
 
+[package.metadata.docs.rs]
+features = ["docs-rs"]
+
 [features]
 default = []
-no-linking = ["eric-bindings/no-linking"]
 external-test = []
+# This feature is used in CI pipeline for unit tests.
+no-linking = ["eric-bindings/no-linking"]
+# This feature is used to publish the documentation for `eric-sdk`.
+docs-rs = ["eric-bindings/docs-rs"]
 
 [dependencies]
-eric-bindings = { version = "0.4.0", path = "../eric-bindings" }
+eric-bindings = { version = "0.4.1", path = "../eric-bindings" }
 anyhow = { workspace = true }
 
 [dev-dependencies]

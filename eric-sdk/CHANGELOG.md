@@ -6,6 +6,11 @@
 - changed
 - removed
 
+## v0.3.1 (2024-08-07)
+
+- changed
+  - Fix publishing on docs.rs
+
 ## v0.3.0 (2024-08-07)
 
 - added

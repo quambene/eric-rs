@@ -1,6 +1,6 @@
 [package]
 name = "eric-bindings"
-version = "0.4.0"
+version = "0.4.1"
 authors.workspace = true
 edition.workspace = true
 readme.workspace = true
@@ -13,14 +13,20 @@ keywords = ["eric", "bindings",  "taxes", "accounting"]
 categories = ["external-ffi-bindings"]
 build = "build.rs"
 
-[features]
-default = []
-generate-bindings = ["dep:bindgen"]
-no-linking = []
-
 [lib]
 path = "src/lib.rs"
 name = "eric_bindings"
+
+[package.metadata.docs.rs]
+features = ["docs-rs"]
+
+[features]
+default = []
+generate-bindings = ["dep:bindgen"]
+# This feature is used in CI pipeline for unit tests.
+no-linking = []
+# This feature is used to publish the documentation for `eric-bindings`.
+docs-rs = []
 
 [dependencies]
 anyhow = { workspace = true }
