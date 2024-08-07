@@ -8,6 +8,8 @@
 
 ## v0.4.1 (2024-08-07)
 
+- added
+  - Add feature flag `docs-rs`
 - changed
   - Fix publishing on docs.rs
 
