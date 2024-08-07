@@ -13,8 +13,6 @@ keywords = ["eric", "bindings",  "taxes", "accounting"]
 categories = ["external-ffi-bindings"]
 build = "build.rs"
 
-exclude = ["bindings/"]
-
 [features]
 default = []
 generate-bindings = ["dep:bindgen"]
