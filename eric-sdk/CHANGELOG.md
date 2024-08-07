@@ -6,7 +6,7 @@
 - changed
 - removed
 
-## v0.3.0 (unreleased)
+## v0.3.0 (2024-08-07)
 
 - added
   - Support ERiC v40.1.8.0
