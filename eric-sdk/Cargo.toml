@@ -22,7 +22,8 @@ features = ["docs-rs"]
 [features]
 default = []
 external-test = []
-eric-no-linking = ["eric-bindings/no-linking"]
+# This feature is used in CI pipeline for unit tests.
+no-linking = ["eric-bindings/no-linking"]
 # This feature is used to publish the documentation for `eric-sdk`.
 docs-rs = ["eric-bindings/docs-rs"]
 

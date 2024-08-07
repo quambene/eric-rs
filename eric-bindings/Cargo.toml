@@ -23,7 +23,7 @@ features = ["docs-rs"]
 [features]
 default = []
 generate-bindings = ["dep:bindgen"]
-# This feature is used in unit tests.
+# This feature is used in CI pipeline for unit tests.
 no-linking = []
 # This feature is used to publish the documentation for `eric-bindings`.
 docs-rs = []
