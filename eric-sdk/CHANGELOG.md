@@ -6,6 +6,11 @@
 - changed
 - removed
 
+## v0.3.2 (unreleased)
+
+- added
+  - Test `cargo package` in CI pipeline
+
 ## v0.3.1 (2024-08-07)
 
 - added

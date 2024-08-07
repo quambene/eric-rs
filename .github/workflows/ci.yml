@@ -61,3 +61,12 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo test --doc
         run: cargo test --locked --doc -p eric-sdk
+  package-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: cargo package -p eric-bindings
+        run: cargo package -p eric-bindings --features docs-rs
+      - name: cargo package -p eric-sdk
+        run: cargo package -p eric-sdk --features docs-rs
