@@ -96,7 +96,7 @@ To send the xml file, the path and password of the Elster certificate have to be
 
 ``` bash
 # Run unit tests
-cargo test -p eric-sdk -- --test-threads=1
+cargo test -p eric-sdk --lib
 
 # Run integration tests
 cargo test -p eric-sdk --test '*' -- --test-threads=1
