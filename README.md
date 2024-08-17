@@ -26,17 +26,11 @@ Elster (short for _Elektronische Steuererklärung_) is a project by the German t
 
 ## What is ERiC?
 
-ERiC is a shared C library that is integrated into a tax application. ERiC checks the data supplied by the tax application for plausibility, and transmits the data encrypted to the computing center of the respective tax administration.
+ERiC is a shared C library that is integrated into a tax application. ERiC checks the data provided by the tax application for plausibility, and transmits the validated data in encrypted form to the computing center of the respective tax administration.
 
 ## Requirements
 
 You need to have the shared library `libericapi.so` and the header file `ericapi.h` available on your system which can be downloaded from [ELSTER for developers](https://www.elster.de/elsterweb/entwickler/login) after access has been requested [here](https://www.elster.de/elsterweb/registrierung-entwickler/form).
-
-For generating the bindings on your platform and architecture, you need `libclang` as well. For example, on Debian/Ubuntu install:
-
-``` bash
-apt install llvm-dev libclang-dev clang
-```
 
 ## Rust bindings
 
@@ -61,7 +55,14 @@ architecture by using feature flag `generate-bindings`:
 cargo build -p eric-bindings --features generate-bindings
 ```
 
-The bindings are generated in `target/debug/build/eric-bindings-<random-id>/out/bindings.rs`.
+The bindings are generated in
+`target/debug/build/eric-bindings-<random-id>/out/bindings.rs`.
+
+To generate the bindings on your platform and architecture, you need `libclang` as well. For example, on Debian/Ubuntu install:
+
+``` bash
+apt install llvm-dev libclang-dev clang
+```
 
 ### Test bindings
 
@@ -79,9 +80,9 @@ Logs are written to `eric.log` in the current directory.
 
 ### Usage
 
-To use `eric-sdk`, add the path of the shared C library (e.g. to `LD_LIBRARY_PATH` on Linux).
+To use `eric-sdk`, add the shared C library to your path (e.g. to `LD_LIBRARY_PATH` on Linux).
 
-To send the xml file, the path and password of the Elster certificate has to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
+To send the xml file, the path and password of the Elster certificate have to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
 
 ### Supported Eric versions
 
