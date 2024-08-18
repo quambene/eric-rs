@@ -22,11 +22,11 @@ Rust bindings and SDK for the ELSTER Rich Client (ERiC)
 
 ## What is ELSTER?
 
-Elster (short for _Elektronische Steuererklärung_) is a project by the German tax administrations to process tax returns and declarations.
+Elster (short for _Elektronische Steuererklärung_) is a project by the German tax administration to process tax returns and declarations.
 
 ## What is ERiC?
 
-ERiC is a shared C library that is integrated into a tax application. ERiC checks the data provided by the tax application for plausibility, and transmits the validated data in encrypted form to the computing center of the respective tax administration.
+ERiC (short for _Elster Rich Client_) is a shared C library that is integrated into a tax application. ERiC checks the data provided by the tax application for plausibility, and transmits the validated data in encrypted form to the computing center of the respective tax administration.
 
 ## Requirements
 
