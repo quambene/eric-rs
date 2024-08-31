@@ -12,6 +12,7 @@ Rust bindings and SDK for the ELSTER Rich Client (ERiC)
 - [What is ERiC?](#what-is-eric)
 - [Requirements](#requirements)
 - [Rust bindings](#rust-bindings)
+  - [Select bindings](#select-bindings)
   - [Generate bindings](#generate-bindings)
   - [Test bindings](#test-bindings)
 - [Eric SDK](#eric-sdk)
@@ -33,6 +34,8 @@ ERiC (short for _Elster Rich Client_) is a shared C library that is integrated i
 You need to have the shared library `libericapi.so` and the header file `ericapi.h` available on your system which can be downloaded from [ELSTER for developers](https://www.elster.de/elsterweb/entwickler/login) after access has been requested [here](https://www.elster.de/elsterweb/registrierung-entwickler/form).
 
 ## Rust bindings
+
+### Select bindings
 
 The bindings are selected from the pre-generated bindings by specifying the
 environment variables `PATH_VENDOR`, `LIBRARY_NAME`, `LIBRARY_PATH`, `HEADER_FILE`, and
