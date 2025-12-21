@@ -6,7 +6,10 @@ use crate::{
     ProcessingFlag,
 };
 use anyhow::{anyhow, Context};
-use eric_bindings::{EricBearbeiteVorgang, EricBeende, EricDekodiereDaten, EricInitialisiere};
+use eric_bindings::{
+    EricBearbeiteVorgang, EricBeende, EricDekodiereDaten, EricEntladePlugins, EricHoleFehlerText,
+    EricInitialisiere,
+};
 use std::{
     env::{self},
     path::Path,
@@ -100,6 +103,17 @@ impl Eric {
             Some(certificate_config),
             None,
         )
+    }
+
+    /// Returns the error text for a specific error code.
+    pub fn get_error_text(&self, error_code: i32) -> Result<String, anyhow::Error> {
+        let response_buffer = ResponseBuffer::new()?;
+
+        unsafe {
+            EricHoleFehlerText(error_code, response_buffer.as_ptr());
+        }
+
+        Ok(response_buffer.read()?.to_string())
     }
 
     #[allow(dead_code)]
@@ -201,6 +215,20 @@ impl Eric {
         let validation_response = validation_response_buffer.read()?;
         // TODO: parse server response via EricGetErrormessagesFromXMLAnswer()
         let server_response = server_response_buffer.read()?;
+
+        if error_code != ErrorCode::ERIC_OK as i32 {
+            let response_buffer = ResponseBuffer::new()?;
+            unsafe {
+                EricHoleFehlerText(error_code, response_buffer.as_ptr());
+            }
+            let error_text = response_buffer.read()?;
+            return Err(anyhow!(
+                "Fehler bei der Verarbeitung: {} ({})",
+                error_text,
+                error_code
+            ));
+        }
+
         let response = EricResponse::new(
             error_code,
             validation_response.to_string(),
@@ -215,13 +243,18 @@ impl Drop for Eric {
     fn drop(&mut self) {
         println!("Closing eric");
 
-        // TODO: implement EricEntladePlugins
+        unsafe {
+            let error_code = EricEntladePlugins();
+            if error_code != ErrorCode::ERIC_OK as i32 {
+                println!("Error while unloading plugins: {}", error_code);
+            }
 
-        let error_code = unsafe { EricBeende() };
+            let error_code = EricBeende();
 
-        match error_code {
-            x if x == ErrorCode::ERIC_OK as i32 => (),
-            error_code => panic!("Can't close eric: {}", error_code),
+            match error_code {
+                x if x == ErrorCode::ERIC_OK as i32 => (),
+                error_code => println!("Can't close eric: {}", error_code),
+            }
         }
     }
 }
