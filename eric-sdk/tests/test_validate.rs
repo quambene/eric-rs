@@ -64,3 +64,21 @@ fn test_validate_and_print() {
 
     assert!(response.server_response.is_empty());
 }
+
+#[test]
+fn test_validate_invalid_xml() {
+    let log_path = current_dir().unwrap();
+    let xml = "<Invalid>XML</Invalid>".to_string();
+    let taxonomy_type = "Bilanz";
+    let taxonomy_version = "6.5";
+    let pdf_path = None;
+
+    let eric = Eric::new(&log_path).unwrap();
+
+    let res = eric.validate(xml, taxonomy_type, taxonomy_version, pdf_path);
+    assert!(res.is_err());
+    let err = res.unwrap_err().to_string();
+    println!("Caught expected error: {}", err);
+    // Expecting something like "Error during processing: Fehler während der Plausibilitätsprüfung... (610001002)"
+    assert!(err.contains("610001002") || err.contains("610301200"));
+}
