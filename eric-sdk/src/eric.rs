@@ -223,9 +223,10 @@ impl Eric {
             }
             let error_text = response_buffer.read()?;
             return Err(anyhow!(
-                "Fehler bei der Verarbeitung: {} ({})",
+                "Error during processing: {} ({})\nServer response: {}",
                 error_text,
-                error_code
+                error_code,
+                server_response
             ));
         }
 
