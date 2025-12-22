@@ -1,6 +1,6 @@
 [package]
 name = "eric-sdk"
-version = "0.3.1"
+version = "0.4.0"
 authors.workspace = true
 edition.workspace = true
 readme.workspace = true
@@ -28,7 +28,7 @@ no-linking = ["eric-bindings/no-linking"]
 docs-rs = ["eric-bindings/docs-rs"]
 
 [dependencies]
-eric-bindings = { version = "0.4.1", path = "../eric-bindings" }
+eric-bindings = { version = "0.5.0", path = "../eric-bindings" }
 anyhow = { workspace = true }
 
 [dev-dependencies]

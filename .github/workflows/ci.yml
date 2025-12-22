@@ -6,9 +6,9 @@ on:
 env:
   CARGO_TERM_COLOR: always
   LIBRARY_NAME: ericapi
-  LIBRARY_PATH: ERiC-39.6.4.0-Linux-x86_64/ERiC-39.6.4.0/Linux-x86_64/lib
-  HEADER_FILE: ERiC-39.6.4.0-Linux-x86_64/ERiC-39.6.4.0/Linux-x86_64/include/ericapi.h
-  PLUGIN_PATH: ERiC-39.6.4.0-Linux-x86_64/ERiC-39.6.4.0/Linux-x86_64/lib/plugins2
+  LIBRARY_PATH: ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64/lib
+  HEADER_FILE: ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64/include/ericapi.h
+  PLUGIN_PATH: ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64/lib/plugins
 jobs:
   check:
     runs-on: ubuntu-latest
