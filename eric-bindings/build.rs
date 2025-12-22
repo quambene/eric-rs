@@ -48,16 +48,17 @@ pub fn main() -> io::Result<()> {
 fn select_bindings() -> io::Result<()> {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").expect("Set by cargo");
     let is_windows = std::env::var("CARGO_CFG_WINDOWS").is_ok();
-    let library_name =
-        env::var("LIBRARY_NAME").expect("Missing environment variable 'LIBRARY_NAME'");
     let library_path =
         env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");
-    let header_file = env::var("HEADER_FILE").expect("Missing environment variable 'HEADER_FILE'");
     let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
     #[cfg(not(feature = "no-linking"))]
     {
+        let library_name =
+            env::var("LIBRARY_NAME").expect("Missing environment variable 'LIBRARY_NAME'");
+        let header_file =
+            env::var("HEADER_FILE").expect("Missing environment variable 'HEADER_FILE'");
         println!("cargo:rustc-link-search={}", library_path);
         println!("cargo:rustc-link-lib={}", library_name);
         println!("cargo:rerun-if-changed={}", header_file);
@@ -142,7 +143,7 @@ fn generate_bindings() -> io::Result<()> {
 /// Select latest bindings for documentation on docs.rs
 #[cfg(feature = "docs-rs")]
 fn select_bindings_for_docs_rs() -> io::Result<()> {
-    let bindings_file = "bindings_eric_40_1_8_0_linux_x86_64.rs";
+    let bindings_file = "bindings_eric_43_3_2_0_linux_x86_64.rs";
 
     let root_dir = std::env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
     let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);
