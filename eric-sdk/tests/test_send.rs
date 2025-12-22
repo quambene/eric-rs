@@ -1,7 +1,11 @@
 use anyhow::Context;
 use eric_sdk::{Eric, ErrorCode};
 use roxmltree::Document;
-use std::{env::{self, current_dir}, fs, path::Path};
+use std::{
+    env::{self, current_dir},
+    fs,
+    path::Path,
+};
 
 fn setup_test_env() -> bool {
     let mut cert_path = current_dir().unwrap();
@@ -11,7 +15,7 @@ fn setup_test_env() -> bool {
     } else {
         cert_path.push("vendor/Test_Zertifikate/test-softidnr-pse.pfx");
     }
-    
+
     if !cert_path.exists() {
         println!("WARNING: Test certificate not found at {:?}", cert_path);
         println!("To run transmission tests:");
@@ -24,9 +28,11 @@ fn setup_test_env() -> bool {
     let cert_path = cert_path.canonicalize().unwrap();
     env::set_var("CERTIFICATE_PATH", cert_path.to_str().unwrap());
     env::set_var("CERTIFICATE_PASSWORD", "123456");
-    
+
     if env::var("HERSTELLER_ID").is_err() {
-        println!("WARNING: HERSTELLER_ID not set. Using fallback 00000 (might fail server validation).");
+        println!(
+            "WARNING: HERSTELLER_ID not set. Using fallback 00000 (might fail server validation)."
+        );
     }
 
     true
@@ -37,9 +43,12 @@ fn get_xml_with_hersteller_id() -> String {
     let xml = fs::read_to_string(xml_path)
         .context(format!("Can't read file: {}", xml_path.display()))
         .unwrap();
-    
+
     let hersteller_id = env::var("HERSTELLER_ID").unwrap_or_else(|_| "00000".to_string());
-    xml.replace("<HerstellerID>00000</HerstellerID>", &format!("<HerstellerID>{}</HerstellerID>", hersteller_id))
+    xml.replace(
+        "<HerstellerID>00000</HerstellerID>",
+        &format!("<HerstellerID>{}</HerstellerID>", hersteller_id),
+    )
 }
 
 #[test]
@@ -47,7 +56,7 @@ fn test_send() {
     if !setup_test_env() {
         return;
     }
-    
+
     let log_path = current_dir().unwrap();
     let xml = get_xml_with_hersteller_id();
     let taxonomy_type = "Bilanz";
@@ -72,7 +81,7 @@ fn test_send_and_print() {
     if !setup_test_env() {
         return;
     }
-    
+
     let log_path = current_dir().unwrap();
     let xml = get_xml_with_hersteller_id();
     let taxonomy_type = "Bilanz";
