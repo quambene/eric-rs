@@ -7,58 +7,34 @@ use std::{
     path::Path,
 };
 
-fn setup_test_env() -> bool {
-    let mut cert_path = current_dir().unwrap();
-    // When running from eric-sdk
-    if cert_path.ends_with("eric-sdk") {
-        cert_path.push("../vendor/Test_Zertifikate/test-softidnr-pse.pfx");
-    } else {
-        cert_path.push("vendor/Test_Zertifikate/test-softidnr-pse.pfx");
-    }
-
-    if !cert_path.exists() {
-        println!("WARNING: Test certificate not found at {:?}", cert_path);
-        println!("To run transmission tests:");
-        println!("1. Download 'ERiC-Testzertifikate' from the ELSTER Developer Portal.");
-        println!("2. Place them in 'vendor/Test_Zertifikate/'.");
-        println!("3. Configure your HERSTELLER_ID in a .env file.");
-        return false;
-    }
-
-    let cert_path = cert_path.canonicalize().unwrap();
-    env::set_var("CERTIFICATE_PATH", cert_path.to_str().unwrap());
-    env::set_var("CERTIFICATE_PASSWORD", "123456");
-
-    if env::var("HERSTELLER_ID").is_err() {
-        println!(
-            "WARNING: HERSTELLER_ID not set. Using fallback 00000 (might fail server validation)."
-        );
-    }
-
-    true
+fn require_test_env() -> Result<(), anyhow::Error> {
+    env::var("CERTIFICATE_PATH").context("CERTIFICATE_PATH is required for external test")?;
+    env::var("CERTIFICATE_PASSWORD")
+        .context("CERTIFICATE_PASSWORD is required for external test")?;
+    Ok(())
 }
 
-fn get_xml_with_hersteller_id() -> String {
+fn get_xml_with_vendor_id() -> Result<String, anyhow::Error> {
     let xml_path = Path::new("test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
-    let xml = fs::read_to_string(xml_path)
-        .context(format!("Can't read file: {}", xml_path.display()))
-        .unwrap();
+    let xml =
+        fs::read_to_string(xml_path).context(format!("Can't read file: {}", xml_path.display()))?;
 
-    let hersteller_id = env::var("HERSTELLER_ID").unwrap_or_else(|_| "00000".to_string());
-    xml.replace(
+    let vendor_id = env::var("VENDOR_ID").context("VENDOR_ID is required for external test")?;
+    Ok(xml.replace(
         "<HerstellerID>00000</HerstellerID>",
-        &format!("<HerstellerID>{}</HerstellerID>", hersteller_id),
-    )
+        &format!("<HerstellerID>{}</HerstellerID>", vendor_id),
+    ))
 }
 
 #[test]
 fn test_send() {
-    if !setup_test_env() {
+    if let Err(e) = require_test_env() {
+        println!("Skipping test: {}", e);
         return;
     }
 
     let log_path = current_dir().unwrap();
-    let xml = get_xml_with_hersteller_id();
+    let xml = get_xml_with_vendor_id().unwrap();
     let taxonomy_type = "Bilanz";
     let taxonomy_version = "6.5";
     let pdf_path = None;
@@ -78,12 +54,13 @@ fn test_send() {
 
 #[test]
 fn test_send_and_print() {
-    if !setup_test_env() {
+    if let Err(e) = require_test_env() {
+        println!("Skipping test: {}", e);
         return;
     }
 
     let log_path = current_dir().unwrap();
-    let xml = get_xml_with_hersteller_id();
+    let xml = get_xml_with_vendor_id().unwrap();
     let taxonomy_type = "Bilanz";
     let taxonomy_version = "6.5";
     let pdf_path = "ebilanz_send.pdf";

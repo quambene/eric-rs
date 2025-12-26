@@ -204,8 +204,6 @@ impl Eric {
             )
         };
 
-        // TODO: EricHoleFehlerText() for error code
-
         let transfer_code = unsafe { transfer_code.as_ref() };
 
         if let Some(code) = transfer_code {
@@ -223,9 +221,9 @@ impl Eric {
             }
             let error_text = response_buffer.read()?;
             return Err(anyhow!(
-                "Error during processing: {} ({})\nServer response: {}",
-                error_text,
+                "processing failed with error code {}: {}\nServer response: {}",
                 error_code,
+                error_text,
                 server_response
             ));
         }
@@ -244,18 +242,17 @@ impl Drop for Eric {
     fn drop(&mut self) {
         println!("Closing eric");
 
-        unsafe {
-            let error_code = EricEntladePlugins();
-            if error_code != ErrorCode::ERIC_OK as i32 {
-                println!("Error while unloading plugins: {}", error_code);
-            }
+        let error_code = unsafe { EricEntladePlugins() };
 
-            let error_code = EricBeende();
+        if error_code != ErrorCode::ERIC_OK as i32 {
+            println!("Error while unloading plugins: {}", error_code);
+        }
 
-            match error_code {
-                x if x == ErrorCode::ERIC_OK as i32 => (),
-                error_code => println!("Can't close eric: {}", error_code),
-            }
+        let error_code = unsafe { EricBeende() };
+
+        match error_code {
+            x if x == ErrorCode::ERIC_OK as i32 => (),
+            error_code => println!("Can't close eric: {}", error_code),
         }
     }
 }
