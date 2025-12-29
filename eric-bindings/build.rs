@@ -9,6 +9,7 @@ pub enum EricVersion {
     Eric39_6_4_0,
     Eric40_1_8_0,
     Eric40_2_10_0,
+    Eric43_3_2_0,
 }
 
 impl fmt::Display for EricVersion {
@@ -18,6 +19,7 @@ impl fmt::Display for EricVersion {
             Self::Eric39_6_4_0 => "39.6.4.0",
             Self::Eric40_1_8_0 => "40.1.8.0",
             Self::Eric40_2_10_0 => "40.2.10.0",
+            Self::Eric43_3_2_0 => "43.3.2.0",
         };
 
         write!(f, "{}", request_method)
@@ -46,16 +48,17 @@ pub fn main() -> io::Result<()> {
 fn select_bindings() -> io::Result<()> {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").expect("Set by cargo");
     let is_windows = std::env::var("CARGO_CFG_WINDOWS").is_ok();
-    let library_name =
-        env::var("LIBRARY_NAME").expect("Missing environment variable 'LIBRARY_NAME'");
     let library_path =
         env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");
-    let header_file = env::var("HEADER_FILE").expect("Missing environment variable 'HEADER_FILE'");
     let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
     #[cfg(not(feature = "no-linking"))]
     {
+        let library_name =
+            env::var("LIBRARY_NAME").expect("Missing environment variable 'LIBRARY_NAME'");
+        let header_file =
+            env::var("HEADER_FILE").expect("Missing environment variable 'HEADER_FILE'");
         println!("cargo:rustc-link-search={}", library_path);
         println!("cargo:rustc-link-lib={}", library_name);
         println!("cargo:rerun-if-changed={}", header_file);
@@ -70,6 +73,8 @@ fn select_bindings() -> io::Result<()> {
         EricVersion::Eric40_1_8_0
     } else if library_path.contains("40.2.10.0") {
         EricVersion::Eric40_2_10_0
+    } else if library_path.contains("43.3.2.0") {
+        EricVersion::Eric43_3_2_0
     } else {
         panic!("Missing bindings: Unknown Eric version");
     };
@@ -78,6 +83,7 @@ fn select_bindings() -> io::Result<()> {
         (EricVersion::Eric39_6_4_0, "x86_64", false) => "bindings_eric_39_6_4_0_linux_x86_64.rs",
         (EricVersion::Eric40_1_8_0, "x86_64", false) => "bindings_eric_40_1_8_0_linux_x86_64.rs",
         (EricVersion::Eric40_2_10_0, "x86_64", false) => "bindings_eric_40_2_10_0_linux_x86_64.rs",
+        (EricVersion::Eric43_3_2_0, "x86_64", false) => "bindings_eric_43_3_2_0_linux_x86_64.rs",
         _ => {
             panic!("Missing bindings for Eric version {eric_version} and target {target_arch}");
         }
@@ -137,7 +143,7 @@ fn generate_bindings() -> io::Result<()> {
 /// Select latest bindings for documentation on docs.rs
 #[cfg(feature = "docs-rs")]
 fn select_bindings_for_docs_rs() -> io::Result<()> {
-    let bindings_file = "bindings_eric_40_1_8_0_linux_x86_64.rs";
+    let bindings_file = "bindings_eric_43_3_2_0_linux_x86_64.rs";
 
     let root_dir = std::env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
     let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);

@@ -85,26 +85,36 @@ Logs are written to `eric.log` in the current directory.
 
 To use `eric-sdk`, add the shared C library to your path (e.g. to `LD_LIBRARY_PATH` on Linux).
 
-To send the xml file, the path and password of the Elster certificate have to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
+To send the xml file, the path and password of the Elster certificate have to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`. External tests also require a `VENDOR_ID`.
 
 ### Supported Eric versions
 
-| Rust SDK | Eric     |
-| -------- | -------- |
-| 0.1.0    | 38.1.6.0 |
-| 0.2.0    | 39.6.4.0 |
-| 0.3.0    | 40.1.8.0 |
+| Rust SDK | Eric      |
+| -------- | --------- |
+| 0.1.0    | 38.1.6.0  |
+| 0.2.0    | 39.6.4.0  |
+| 0.3.0    | 40.1.8.0  |
+| 0.4.0    | 43.3.2.0  |
 
 ### Test SDK
 
+To run the full suite of tests, including those that interact with the ELSTER servers, you need to provide the following environment variables:
+
+- `CERTIFICATE_PATH`: Path to your ELSTER certificate (`.pfx`).
+- `CERTIFICATE_PASSWORD`: Password for your certificate.
+- `VENDOR_ID`: Your official ELSTER Vendor ID (Hersteller-ID).
+
 ``` bash
-# Run unit tests
+# Run unit tests (no ERiC installation required)
 cargo test -p eric-sdk --lib
 
-# Run integration tests
+# Run integration tests (requires ERiC installation)
 cargo test -p eric-sdk --test '*' -- --test-threads=1
 
-# Run external tests
+# Run external tests (requires ERiC and credentials)
+CERTIFICATE_PATH="/path/to/cert.pfx" \
+CERTIFICATE_PASSWORD="your_password" \
+VENDOR_ID="your_vendor_id" \
 cargo test -p eric-sdk --test '*' --features external-test -- --test-threads=1
 ```
 
