@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD059 -->
+
 # Eric
 
 [![latest version](https://img.shields.io/crates/v/eric-bindings.svg?label=eric-bindings)](https://crates.io/crates/eric-bindings)
