@@ -1,5 +1,6 @@
 # Rust
 /target
+config.toml
 
 # Eric
 ERiC-*/
