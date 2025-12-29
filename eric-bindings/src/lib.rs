@@ -27,16 +27,14 @@ mod tests {
             .context("Can't convert to CString")
             .unwrap();
 
-        unsafe {
-            let error_code = EricInitialisiere(plugin_path.as_ptr(), log_path.as_ptr());
-            assert_eq!(error_code, 0);
+        let error_code = unsafe { EricInitialisiere(plugin_path.as_ptr(), log_path.as_ptr()) };
+        assert_eq!(error_code, 0);
 
-            let buffer = EricRueckgabepufferErzeugen();
-            let error_code = EricVersion(buffer);
-            assert_eq!(error_code, 0);
+        let buffer = unsafe { EricRueckgabepufferErzeugen() };
+        let error_code = unsafe { EricVersion(buffer) };
+        assert_eq!(error_code, 0);
 
-            let error_code = EricBeende();
-            assert_eq!(error_code, 0);
-        }
+        let error_code = unsafe { EricBeende() };
+        assert_eq!(error_code, 0);
     }
 }
