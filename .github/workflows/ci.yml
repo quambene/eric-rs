@@ -68,5 +68,5 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo package -p eric-bindings
         run: cargo package -p eric-bindings --features docs-rs
-      - name: cargo package -p eric-sdk
-        run: cargo package -p eric-sdk --features docs-rs
+      # - name: cargo package -p eric-sdk
+      #   run: cargo package -p eric-sdk --features docs-rs
