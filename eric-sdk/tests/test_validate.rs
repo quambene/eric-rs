@@ -66,6 +66,7 @@ fn test_validate_and_print() {
 }
 
 #[test]
+#[cfg_attr(feature = "external-test", ignore)]
 fn test_validate_invalid_xml() {
     let log_path = current_dir().unwrap();
     let xml = "<Invalid>XML</Invalid>".to_string();

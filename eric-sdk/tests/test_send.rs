@@ -27,6 +27,7 @@ fn get_xml_with_vendor_id() -> Result<String, anyhow::Error> {
 }
 
 #[test]
+#[cfg_attr(not(feature = "external-test"), ignore)]
 fn test_send() {
     require_test_env().unwrap();
 
@@ -50,6 +51,7 @@ fn test_send() {
 }
 
 #[test]
+#[cfg_attr(not(feature = "external-test"), ignore)]
 fn test_send_and_print() {
     require_test_env().unwrap();
 
