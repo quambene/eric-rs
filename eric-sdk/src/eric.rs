@@ -153,9 +153,7 @@ impl Eric {
             ProcessingFlag::Send => println!("Sending xml file"),
             ProcessingFlag::SendAndPrint => println!("Send and print"),
             ProcessingFlag::CheckHints => println!("Check hints"),
-            ProcessingFlag::ValidateWithoutDate => {
-                println!("Validate without release date (German: Validiere ohne Freigabadatum)")
-            }
+            ProcessingFlag::ValidateWithoutDate => println!("Validate without release date"),
         }
 
         let xml = xml.try_to_cstring()?;
