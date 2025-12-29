@@ -28,10 +28,7 @@ fn get_xml_with_vendor_id() -> Result<String, anyhow::Error> {
 
 #[test]
 fn test_send() {
-    if let Err(e) = require_test_env() {
-        println!("Skipping test: {}", e);
-        return;
-    }
+    require_test_env().unwrap();
 
     let log_path = current_dir().unwrap();
     let xml = get_xml_with_vendor_id().unwrap();
@@ -54,10 +51,7 @@ fn test_send() {
 
 #[test]
 fn test_send_and_print() {
-    if let Err(e) = require_test_env() {
-        println!("Skipping test: {}", e);
-        return;
-    }
+    require_test_env().unwrap();
 
     let log_path = current_dir().unwrap();
     let xml = get_xml_with_vendor_id().unwrap();
