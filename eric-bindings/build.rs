@@ -1,7 +1,6 @@
 use std::{
     env, fmt, io,
     path::{Path, PathBuf},
-    str::FromStr,
 };
 
 /// Supported versions of the Eric library.
@@ -162,18 +161,25 @@ fn select_bindings_for_docs_rs() -> io::Result<()> {
     Ok(())
 }
 
+#[cfg(not(feature = "docs-rs"))]
 fn get_library_name() -> String {
     env::var("LIBRARY_NAME").unwrap_or_else(|_| "ericapi".to_owned())
 }
 
+#[cfg(not(feature = "docs-rs"))]
 fn get_library_path(eric_path: &Path) -> PathBuf {
+    use std::str::FromStr;
+
     env::var("LIBRARY_PATH")
         .ok()
         .map(|path| PathBuf::from_str(&path).expect("invalid path for `LIBRARY_PATH`"))
         .unwrap_or_else(|| eric_path.join("lib"))
 }
 
+#[cfg(not(feature = "docs-rs"))]
 fn get_header_file(eric_path: &Path) -> PathBuf {
+    use std::str::FromStr;
+
     env::var("HEADER_FILE")
         .ok()
         .map(|path| PathBuf::from_str(&path).expect("invalid path for `HEADER_FILE`"))
