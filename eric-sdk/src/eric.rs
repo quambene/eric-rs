@@ -42,7 +42,6 @@ impl Eric {
         println!("Setting log path '{}'", log_path.display());
         println!("Logging to '{}'", log_path.join("eric.log").display());
 
-        // let plugin_path = plugin_path.try_to_cstring()?;
         let log_path = log_path.try_to_cstring()?;
 
         let error_code = unsafe { EricInitialisiere(plugin_ptr, log_path.as_ptr()) };
