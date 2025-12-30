@@ -1,8 +1,10 @@
 use std::{
     env, fmt, io,
     path::{Path, PathBuf},
+    str::FromStr,
 };
 
+/// Supported versions of the Eric library.
 #[derive(Debug)]
 pub enum EricVersion {
     Eric38_1_6_0,
@@ -22,7 +24,7 @@ impl fmt::Display for EricVersion {
             Self::Eric43_3_2_0 => "43.3.2.0",
         };
 
-        write!(f, "{}", request_method)
+        write!(f, "{request_method}")
     }
 }
 
@@ -48,36 +50,27 @@ pub fn main() -> io::Result<()> {
 fn select_bindings() -> io::Result<()> {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").expect("Set by cargo");
     let is_windows = std::env::var("CARGO_CFG_WINDOWS").is_ok();
-    let library_path =
-        env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");
+    let eric_path = env::var("ERIC_PATH").expect("Missing environment variable 'ERIC_PATH'");
+
     let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
-    #[cfg(not(feature = "no-linking"))]
-    {
-        let library_name =
-            env::var("LIBRARY_NAME").expect("Missing environment variable 'LIBRARY_NAME'");
-        let header_file =
-            env::var("HEADER_FILE").expect("Missing environment variable 'HEADER_FILE'");
-        println!("cargo:rustc-link-search={}", library_path);
-        println!("cargo:rustc-link-lib={}", library_name);
-        println!("cargo:rerun-if-changed={}", header_file);
-        println!("cargo:rustc-env=LD_LIBRARY_PATH={}", library_path);
-    }
-
-    let eric_version = if library_path.contains("38.1.6.0") {
+    let eric_version = if eric_path.contains("38.1.6.0") {
         EricVersion::Eric38_1_6_0
-    } else if library_path.contains("39.6.4.0") {
+    } else if eric_path.contains("39.6.4.0") {
         EricVersion::Eric39_6_4_0
-    } else if library_path.contains("40.1.8.0") {
+    } else if eric_path.contains("40.1.8.0") {
         EricVersion::Eric40_1_8_0
-    } else if library_path.contains("40.2.10.0") {
+    } else if eric_path.contains("40.2.10.0") {
         EricVersion::Eric40_2_10_0
-    } else if library_path.contains("43.3.2.0") {
+    } else if eric_path.contains("43.3.2.0") {
         EricVersion::Eric43_3_2_0
     } else {
         panic!("Missing bindings: Unknown Eric version");
     };
+
+    println!("Select bindings for Eric version {eric_version} and target {target_arch}");
+
     let bindings_file = match (&eric_version, target_arch.as_ref(), is_windows) {
         (EricVersion::Eric38_1_6_0, "x86_64", false) => "bindings_eric_38_1_6_0_linux_x86_64.rs",
         (EricVersion::Eric39_6_4_0, "x86_64", false) => "bindings_eric_39_6_4_0_linux_x86_64.rs",
@@ -89,7 +82,18 @@ fn select_bindings() -> io::Result<()> {
         }
     };
 
-    println!("Select bindings for Eric version {eric_version} and target {target_arch}");
+    #[cfg(not(feature = "no-linking"))]
+    {
+        let eric_path = Path::new(&eric_path);
+        let library_name = get_library_name();
+        let library_path = get_library_path(eric_path);
+        let header_file = get_header_file(eric_path);
+
+        println!("cargo:rustc-link-search={}", library_path.display());
+        println!("cargo:rustc-link-lib={}", library_name);
+        println!("cargo:rerun-if-changed={}", header_file.display());
+        println!("cargo:rustc-env=LD_LIBRARY_PATH={}", library_path.display());
+    }
 
     let root_dir = std::env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
     let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);
@@ -108,14 +112,11 @@ fn select_bindings() -> io::Result<()> {
 /// Generate bindings on-the-fly
 #[cfg(feature = "generate-bindings")]
 fn generate_bindings() -> io::Result<()> {
-    let library_name =
-        env::var("LIBRARY_NAME").expect("Missing environment variable 'LIBRARY_NAME'");
-    let library_path =
-        env::var("LIBRARY_PATH").expect("Missing environment variable 'LIBRARY_PATH'");
-    let header_file = env::var("HEADER_FILE").expect("Missing environment variable 'HEADER_FILE'");
-
-    let library_path = Path::new(&library_path);
-    let header_file = Path::new(&header_file);
+    let eric_path = env::var("ERIC_PATH").expect("Missing environment variable 'ERIC_PATH'");
+    let eric_path = Path::new(&eric_path);
+    let library_name = get_library_name();
+    let library_path = get_library_path(eric_path);
+    let header_file = get_header_file(eric_path);
 
     println!("cargo:rustc-link-search={}", library_path.display());
     println!("cargo:rustc-link-lib={}", library_name);
@@ -145,7 +146,7 @@ fn generate_bindings() -> io::Result<()> {
 fn select_bindings_for_docs_rs() -> io::Result<()> {
     let bindings_file = "bindings_eric_43_3_2_0_linux_x86_64.rs";
 
-    let root_dir = std::env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
+    let root_dir = env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
     let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);
 
     let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
@@ -159,4 +160,22 @@ fn select_bindings_for_docs_rs() -> io::Result<()> {
         )
     });
     Ok(())
+}
+
+fn get_library_name() -> String {
+    env::var("LIBRARY_NAME").unwrap_or_else(|_| "ericapi".to_owned())
+}
+
+fn get_library_path(eric_path: &Path) -> PathBuf {
+    env::var("LIBRARY_PATH")
+        .ok()
+        .map(|path| PathBuf::from_str(&path).expect("invalid path for `LIBRARY_PATH`"))
+        .unwrap_or_else(|| eric_path.join("lib"))
+}
+
+fn get_header_file(eric_path: &Path) -> PathBuf {
+    env::var("HEADER_FILE")
+        .ok()
+        .map(|path| PathBuf::from_str(&path).expect("invalid path for `HEADER_FILE`"))
+        .unwrap_or_else(|| eric_path.join("include").join("ericapi.h"))
 }
