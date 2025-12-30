@@ -124,7 +124,7 @@ cargo test -p eric-sdk --lib
 cargo test -p eric-sdk --test '*' -- --test-threads=1
 ```
 
-To run the full suite of tests, including those that interact with the ELSTER servers, you need to provide the following environment variables:
+To run those tests that interact with the ELSTER servers, you need to provide the following environment variables:
 
 - `CERTIFICATE_PATH`: Path to your ELSTER certificate (`.pfx`)
 - `CERTIFICATE_PASSWORD`: Password for your certificate
