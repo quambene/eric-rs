@@ -116,6 +116,14 @@ Currently, only the latest version of the Eric library is supported.
 
 ### Test SDK
 
+``` bash
+# Run unit tests
+cargo test -p eric-sdk --lib
+
+# Run integration tests (requires ERiC library)
+cargo test -p eric-sdk --test '*' -- --test-threads=1
+```
+
 To run the full suite of tests, including those that interact with the ELSTER servers, you need to provide the following environment variables:
 
 - `CERTIFICATE_PATH`: Path to your ELSTER certificate (`.pfx`).
@@ -123,16 +131,6 @@ To run the full suite of tests, including those that interact with the ELSTER se
 - `VENDOR_ID`: Your official ELSTER Vendor ID (Hersteller-ID).
 
 ``` bash
-# Run unit tests
-cargo test -p eric-sdk --lib
-
-# Run integration tests (requires ERiC library)
-cargo test -p eric-sdk --test '*' -- --test-threads=1
-
-# Run external tests (requires ERiC and credentials)
-CERTIFICATE_PATH="/path/to/cert.pfx" \
-CERTIFICATE_PASSWORD="your_password" \
-VENDOR_ID="your_vendor_id" \
 cargo test -p eric-sdk --test '*' --features external-test -- --test-threads=1
 ```
 
