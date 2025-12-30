@@ -23,6 +23,8 @@ pub struct Eric;
 
 impl Eric {
     /// Initializes a single-threaded Eric instance.
+    ///
+    /// The `log_path` specifies the path to the `eric.log` file.
     pub fn new(log_path: &Path) -> Result<Self, anyhow::Error> {
         println!("Initializing eric");
 
