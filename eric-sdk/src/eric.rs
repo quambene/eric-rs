@@ -26,18 +26,26 @@ impl Eric {
     pub fn new(log_path: &Path) -> Result<Self, anyhow::Error> {
         println!("Initializing eric");
 
-        let plugin_path =
-            env::var("PLUGIN_PATH").context("Missing environment variable 'PLUGIN_PATH'")?;
-        let plugin_path = Path::new(&plugin_path);
+        let plugin_path = env::var("PLUGIN_PATH").ok();
+        let plugin_ptr = match plugin_path {
+            Some(plugin_path) => {
+                println!(
+                    "Setting plugin path '{}'",
+                    Path::new(&plugin_path).display()
+                );
 
-        println!("Setting plugin path '{}'", plugin_path.display());
+                plugin_path.try_to_cstring()?.as_ptr()
+            }
+            None => ptr::null(),
+        };
+
         println!("Setting log path '{}'", log_path.display());
         println!("Logging to '{}'", log_path.join("eric.log").display());
 
-        let plugin_path = plugin_path.try_to_cstring()?;
+        // let plugin_path = plugin_path.try_to_cstring()?;
         let log_path = log_path.try_to_cstring()?;
 
-        let error_code = unsafe { EricInitialisiere(plugin_path.as_ptr(), log_path.as_ptr()) };
+        let error_code = unsafe { EricInitialisiere(plugin_ptr, log_path.as_ptr()) };
 
         match error_code {
             x if x == ErrorCode::ERIC_OK as i32 => Ok(Eric),
