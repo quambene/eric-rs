@@ -126,9 +126,9 @@ cargo test -p eric-sdk --test '*' -- --test-threads=1
 
 To run the full suite of tests, including those that interact with the ELSTER servers, you need to provide the following environment variables:
 
-- `CERTIFICATE_PATH`: Path to your ELSTER certificate (`.pfx`).
-- `CERTIFICATE_PASSWORD`: Password for your certificate.
-- `VENDOR_ID`: Your official ELSTER Vendor ID (Hersteller-ID).
+- `CERTIFICATE_PATH`: Path to your ELSTER certificate (`.pfx`)
+- `CERTIFICATE_PASSWORD`: Password for your certificate
+- `VENDOR_ID`: Your official ELSTER Vendor ID (Hersteller-ID)
 
 ``` bash
 cargo test -p eric-sdk --test '*' --features external-test -- --test-threads=1
