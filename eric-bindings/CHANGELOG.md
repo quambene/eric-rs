@@ -6,10 +6,11 @@
 - changed
 - removed
 
-## v0.4.2 (unreleased)
+## v0.5.0 (2025-12-30)
 
 - added
   - Test `cargo package` in CI pipeline
+  - Add bindings for Eric v43.3.2.0
 
 ## v0.4.1 (2024-08-07)
 

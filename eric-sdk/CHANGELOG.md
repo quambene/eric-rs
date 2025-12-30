@@ -6,10 +6,13 @@
 - changed
 - removed
 
-## v0.3.2 (unreleased)
+## v0.4.0 (2025-12-30)
+
+This release requires Eric library >= 43.x. Older versions are no longer supported.
+Rust API is backward-compatible, but linking to older Eric versions will fail.
 
 - added
-  - Test `cargo package` in CI pipeline
+  - Support ERiC v43.3.2.0
 
 ## v0.3.1 (2024-08-07)
 

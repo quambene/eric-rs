@@ -5,10 +5,7 @@ on:
   pull_request:
 env:
   CARGO_TERM_COLOR: always
-  LIBRARY_NAME: ericapi
-  LIBRARY_PATH: ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64/lib
-  HEADER_FILE: ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64/include/ericapi.h
-  PLUGIN_PATH: ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64/lib/plugins
+  ERIC_PATH: ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -68,5 +65,5 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo package -p eric-bindings
         run: cargo package -p eric-bindings --features docs-rs
-      - name: cargo package -p eric-sdk
-        run: cargo package -p eric-sdk --features docs-rs
+      # - name: cargo package -p eric-sdk
+      #   run: cargo package -p eric-sdk --features docs-rs

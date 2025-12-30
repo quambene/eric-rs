@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD059 -->
+
 # Eric
 
 [![latest version](https://img.shields.io/crates/v/eric-bindings.svg?label=eric-bindings)](https://crates.io/crates/eric-bindings)
@@ -35,18 +37,28 @@ You need to have the shared library `libericapi.so` and the header file `ericapi
 
 ## Rust bindings
 
-### Select bindings
-
-The bindings are selected from the pre-generated bindings by specifying the
-environment variables `PATH_VENDOR`, `LIBRARY_NAME`, `LIBRARY_PATH`, `HEADER_FILE`, and
-`PLUGIN_PATH`. For example:
+Specify the path to the Eric library via environment variable `ERIC_PATH`. For
+example:
 
 ``` bash
-PATH_VENDOR="ERiC-40.2.10.0-Linux-x86_64/ERiC-40.2.10.0/Linux-x86_64"
+ERIC_PATH="ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64"
+```
+
+Relevant environment variables then default to
+
+``` bash
 LIBRARY_NAME=ericapi
-LIBRARY_PATH="$PATH_VENDOR/lib"
-HEADER_FILE="$PATH_VENDOR/include/ericapi.h"
-PLUGIN_PATH="$PATH_VENDOR/lib/plugins2"
+LIBRARY_PATH="$ERIC_PATH/lib"
+HEADER_FILE="$ERIC_PATH/include/ericapi.h"
+PLUGIN_PATH="$ERIC_PATH/lib/plugins"
+```
+
+### Select bindings
+
+Select bindings from the pre-generated bindings:
+
+``` bash
+cargo build -p eric-bindings
 ```
 
 ### Generate bindings
@@ -83,38 +95,42 @@ Logs are written to `eric.log` in the current directory.
 
 ### Usage
 
-To use `eric-sdk`, add the shared C library to your path (e.g. to `LD_LIBRARY_PATH` on Linux).
+To use `eric-sdk`, add the shared C library to your path (e.g. to `LD_LIBRARY_PATH` on Linux):
+
+``` bash
+export LD_LIBRARY_PATH="$ERIC_PATH/lib:$LD_LIBRARY_PATH"
+```
 
 To send the xml file, the path and password of the Elster certificate have to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`. External tests also require a `VENDOR_ID`.
 
 ### Supported Eric versions
 
-| Rust SDK | Eric      |
-| -------- | --------- |
-| 0.1.0    | 38.1.6.0  |
-| 0.2.0    | 39.6.4.0  |
-| 0.3.0    | 40.1.8.0  |
-| 0.4.0    | 43.3.2.0  |
+Currently, only the latest version of the Eric library is supported.
+
+| Rust SDK | Rust bindings | Eric     |
+| -------- | ------------- | -------- |
+| 0.1.0    | 0.2.0         | 38.1.6.0 |
+| 0.2.0    | 0.3.0         | 39.6.4.0 |
+| 0.3.0    | 0.4.0         | 40.1.8.0 |
+| 0.4.0    | 0.5.0         | 43.3.2.0 |
 
 ### Test SDK
 
-To run the full suite of tests, including those that interact with the ELSTER servers, you need to provide the following environment variables:
-
-- `CERTIFICATE_PATH`: Path to your ELSTER certificate (`.pfx`).
-- `CERTIFICATE_PASSWORD`: Password for your certificate.
-- `VENDOR_ID`: Your official ELSTER Vendor ID (Hersteller-ID).
-
 ``` bash
-# Run unit tests (no ERiC installation required)
+# Run unit tests
 cargo test -p eric-sdk --lib
 
-# Run integration tests (requires ERiC installation)
+# Run integration tests (requires ERiC library)
 cargo test -p eric-sdk --test '*' -- --test-threads=1
+```
 
-# Run external tests (requires ERiC and credentials)
-CERTIFICATE_PATH="/path/to/cert.pfx" \
-CERTIFICATE_PASSWORD="your_password" \
-VENDOR_ID="your_vendor_id" \
+To run those tests that interact with the ELSTER servers, you need to provide the following environment variables:
+
+- `CERTIFICATE_PATH`: Path to your ELSTER certificate (`.pfx`)
+- `CERTIFICATE_PASSWORD`: Password for your certificate
+- `VENDOR_ID`: Your official ELSTER Vendor ID (Hersteller-ID)
+
+``` bash
 cargo test -p eric-sdk --test '*' --features external-test -- --test-threads=1
 ```
 
