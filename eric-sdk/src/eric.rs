@@ -1,5 +1,6 @@
 use crate::{
     config::{CertificateConfig, PrintConfig},
+    error::EricError,
     error_code::ErrorCode,
     response::{EricResponse, ResponseBuffer},
     utils::ToCString,
@@ -63,7 +64,7 @@ impl Eric {
         taxonomy_type: &str,
         taxonomy_version: &str,
         pdf_path: Option<&str>,
-    ) -> Result<EricResponse, anyhow::Error> {
+    ) -> Result<EricResponse, EricError> {
         let processing_flag: ProcessingFlag;
         let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
         let print_config = if let Some(pdf_path) = pdf_path {
@@ -88,7 +89,7 @@ impl Eric {
         taxonomy_type: &str,
         taxonomy_version: &str,
         pdf_path: Option<&str>,
-    ) -> Result<EricResponse, anyhow::Error> {
+    ) -> Result<EricResponse, EricError> {
         let certificate_path = env::var("CERTIFICATE_PATH")
             .context("Missing environment variable 'CERTIFICATE_PATH'")?;
         let certificate_password = env::var("CERTIFICATE_PASSWORD")
@@ -153,7 +154,7 @@ impl Eric {
         print_config: Option<PrintConfig>,
         certificate_config: Option<CertificateConfig>,
         transfer_code: Option<u32>,
-    ) -> Result<EricResponse, anyhow::Error> {
+    ) -> Result<EricResponse, EricError> {
         println!("Processing xml file");
 
         match processing_flag {
@@ -178,7 +179,7 @@ impl Eric {
         match &print_config {
             Some(print_config) => println!(
                 "Printing confirmation to file '{}'",
-                print_config.pdf_path.to_str()?
+                print_config.pdf_path.to_str().context("failed to convert path to string")?
             ),
             None => (),
         }
@@ -227,12 +228,12 @@ impl Eric {
                 EricHoleFehlerText(error_code, response_buffer.as_ptr());
             }
             let error_text = response_buffer.read()?;
-            return Err(anyhow!(
-                "processing failed with error code {}: {}\nServer response: {}",
-                error_code,
-                error_text,
-                server_response
-            ));
+            return Err(EricError::ApiError {
+                code: error_code,
+                message: error_text.to_string(),
+                validation_response: validation_response.to_string(),
+                server_response: server_response.to_string(),
+            });
         }
 
         let response = EricResponse::new(
