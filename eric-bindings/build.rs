@@ -47,11 +47,12 @@ pub fn main() -> io::Result<()> {
 #[cfg(not(feature = "generate-bindings"))]
 #[cfg(not(feature = "docs-rs"))]
 fn select_bindings() -> io::Result<()> {
-    let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").expect("Set by cargo");
+    let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH")
+        .expect("environment variable `environment variable` not set");
     let is_windows = std::env::var("CARGO_CFG_WINDOWS").is_ok();
-    let eric_path = env::var("ERIC_PATH").expect("Missing environment variable 'ERIC_PATH'");
+    let eric_path = env::var("ERIC_PATH").expect("environment variable `ERIC_PATH` not set");
 
-    let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
+    let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
     let eric_version = if eric_path.contains("38.1.6.0") {
@@ -94,7 +95,8 @@ fn select_bindings() -> io::Result<()> {
         println!("cargo:rustc-env=LD_LIBRARY_PATH={}", library_path.display());
     }
 
-    let root_dir = std::env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
+    let root_dir = std::env::var("CARGO_MANIFEST_DIR")
+        .expect("environment variable `CARGO_MANIFEST_DIR` not set");
     let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);
 
     std::fs::copy(bindings_path.clone(), bindings_target.clone()).unwrap_or_else(|_| {
@@ -111,7 +113,7 @@ fn select_bindings() -> io::Result<()> {
 /// Generate bindings on-the-fly
 #[cfg(feature = "generate-bindings")]
 fn generate_bindings() -> io::Result<()> {
-    let eric_path = env::var("ERIC_PATH").expect("Missing environment variable 'ERIC_PATH'");
+    let eric_path = env::var("ERIC_PATH").expect("environment variable `ERIC_PATH` not set");
     let eric_path = Path::new(&eric_path);
     let library_name = get_library_name();
     let library_path = get_library_path(eric_path);
@@ -130,7 +132,7 @@ fn generate_bindings() -> io::Result<()> {
         .generate()
         .expect("Can't generate bindings");
 
-    let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
+    let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
     let output_path = PathBuf::from(out_dir);
 
     bindings
@@ -148,7 +150,7 @@ fn select_bindings_for_docs_rs() -> io::Result<()> {
     let root_dir = env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
     let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);
 
-    let out_dir = env::var("OUT_DIR").expect("Can't read environment variable 'OUT_DIR'");
+    let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
     std::fs::copy(bindings_path.clone(), bindings_target.clone()).unwrap_or_else(|_| {
