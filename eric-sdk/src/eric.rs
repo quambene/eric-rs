@@ -179,7 +179,10 @@ impl Eric {
         match &print_config {
             Some(print_config) => println!(
                 "Printing confirmation to file '{}'",
-                print_config.pdf_path.to_str().context("failed to convert path to string")?
+                print_config
+                    .pdf_path
+                    .to_str()
+                    .context("failed to convert path to string")?
             ),
             None => (),
         }
