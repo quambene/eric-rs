@@ -6,6 +6,11 @@
 - changed
 - removed
 
+## v0.5.0 (unreleased)
+
+- added
+  - Add structured error `EricError`
+
 ## v0.4.0 (2025-12-30)
 
 This release requires Eric library >= 43.x. Older versions are no longer supported.
