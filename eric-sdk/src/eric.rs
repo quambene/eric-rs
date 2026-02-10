@@ -261,9 +261,8 @@ impl Drop for Eric {
 
         let error_code = unsafe { EricBeende() };
 
-        match error_code {
-            x if x == ErrorCode::ERIC_OK as i32 => (),
-            error_code => println!("Can't close eric: {}", error_code),
+        if error_code != ErrorCode::ERIC_OK as i32 {
+            println!("Can't close eric: {}", error_code)
         }
     }
 }
