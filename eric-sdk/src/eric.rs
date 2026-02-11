@@ -51,7 +51,10 @@ impl Eric {
 
         match error_code {
             x if x == ErrorCode::ERIC_OK as i32 => Ok(Eric),
-            error_code => Err(anyhow!("Can't init eric: {}", error_code).into()),
+            error_code => Err(EricError::Internal(anyhow!(
+                "Can't init eric: {}",
+                error_code
+            ))),
         }
     }
 
