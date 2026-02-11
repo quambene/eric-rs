@@ -26,7 +26,7 @@ impl Eric {
     /// Initializes a single-threaded Eric instance.
     ///
     /// The `log_path` specifies the path to the `eric.log` file.
-    pub fn new(log_path: &Path) -> Result<Self, anyhow::Error> {
+    pub fn new(log_path: &Path) -> Result<Self, EricError> {
         println!("Initializing eric");
 
         let plugin_path = env::var("PLUGIN_PATH").ok();
@@ -51,7 +51,7 @@ impl Eric {
 
         match error_code {
             x if x == ErrorCode::ERIC_OK as i32 => Ok(Eric),
-            error_code => Err(anyhow!("Can't init eric: {}", error_code)),
+            error_code => Err(anyhow!("Can't init eric: {}", error_code).into()),
         }
     }
 
@@ -116,7 +116,7 @@ impl Eric {
     }
 
     /// Returns the error text for a specific error code.
-    pub fn get_error_text(&self, error_code: i32) -> Result<String, anyhow::Error> {
+    pub fn get_error_text(&self, error_code: i32) -> Result<String, EricError> {
         let response_buffer = ResponseBuffer::new()?;
 
         unsafe {
@@ -131,7 +131,7 @@ impl Eric {
         &self,
         encrypted_file: &str,
         certificate_config: CertificateConfig,
-    ) -> Result<i32, anyhow::Error> {
+    ) -> Result<i32, EricError> {
         let encrypted_data = encrypted_file.try_to_cstring()?;
         let response_buffer = ResponseBuffer::new()?;
 
