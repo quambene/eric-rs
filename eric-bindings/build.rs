@@ -70,15 +70,21 @@ fn select_bindings() -> io::Result<()> {
         panic!("Missing bindings: Unknown Eric version");
     };
 
-    println!("Select bindings for Eric version {eric_version} and target {target_os}/{target_arch}");
+    println!(
+        "Select bindings for Eric version {eric_version} and target {target_os}/{target_arch}"
+    );
 
     let bindings_file = match (&eric_version, target_os.as_ref(), target_arch.as_ref()) {
         (EricVersion::Eric38_1_6_0, "linux", "x86_64") => "bindings_eric_38_1_6_0_linux_x86_64.rs",
         (EricVersion::Eric39_6_4_0, "linux", "x86_64") => "bindings_eric_39_6_4_0_linux_x86_64.rs",
         (EricVersion::Eric40_1_8_0, "linux", "x86_64") => "bindings_eric_40_1_8_0_linux_x86_64.rs",
-        (EricVersion::Eric40_2_10_0, "linux", "x86_64") => "bindings_eric_40_2_10_0_linux_x86_64.rs",
+        (EricVersion::Eric40_2_10_0, "linux", "x86_64") => {
+            "bindings_eric_40_2_10_0_linux_x86_64.rs"
+        }
         (EricVersion::Eric43_3_2_0, "linux", "x86_64") => "bindings_eric_43_3_2_0_linux_x86_64.rs",
-        (EricVersion::Eric43_3_2_0, "macos", "aarch64") => "bindings_eric_43_3_2_0_darwin_aarch64.rs",
+        (EricVersion::Eric43_3_2_0, "macos", "aarch64") => {
+            "bindings_eric_43_3_2_0_darwin_aarch64.rs"
+        }
         _ => {
             panic!("Missing bindings for Eric version {eric_version} and target {target_os}/{target_arch}");
         }
