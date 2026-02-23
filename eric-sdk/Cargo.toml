@@ -11,6 +11,11 @@ description = "Rust SDK for the ELSTER Rich Client (ERiC)"
 documentation = "https://docs.rs/eric-sdk"
 keywords = ["eric", "sdk",  "taxes", "accounting"]
 categories = ["finance"]
+include = [
+  "src/**",
+  "LICENSE",
+  "CHANGELOG.md",
+]
 
 [lib]
 path = "src/lib.rs"

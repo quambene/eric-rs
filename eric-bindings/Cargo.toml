@@ -12,6 +12,13 @@ documentation = "https://docs.rs/eric-bindings"
 keywords = ["eric", "bindings",  "taxes", "accounting"]
 categories = ["external-ffi-bindings"]
 build = "build.rs"
+include = [
+  "src/**",
+  "bindings/**",
+  "build.rs",
+  "LICENSE",
+  "CHANGELOG.md",
+]
 
 [lib]
 path = "src/lib.rs"
