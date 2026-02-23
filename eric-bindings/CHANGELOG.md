@@ -6,6 +6,13 @@
 - changed
 - removed
 
+## 0.5.1 (unreleased)
+
+- changed
+  - Match on `CARGO_CFG_TARGET_OS` instead of `CARGO_CFG_WINDOWS` for more explicit platform selection
+- removed
+  - `cargo:rustc-env=LD_LIBRARY_PATH=...` build instruction
+
 ## v0.5.0 (2025-12-30)
 
 - added

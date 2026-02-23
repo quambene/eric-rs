@@ -10,6 +10,7 @@
 
 - added
   - Add structured error `EricError`
+  - Add feature `generate-bindings`
 
 ## v0.4.0 (2025-12-30)
 
