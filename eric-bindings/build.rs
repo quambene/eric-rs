@@ -48,8 +48,9 @@ pub fn main() -> io::Result<()> {
 #[cfg(not(feature = "docs-rs"))]
 fn select_bindings() -> io::Result<()> {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH")
-        .expect("environment variable `environment variable` not set");
-    let is_windows = std::env::var("CARGO_CFG_WINDOWS").is_ok();
+        .expect("environment variable `CARGO_CFG_TARGET_ARCH` not set");
+    let target_os = std::env::var("CARGO_CFG_TARGET_OS")
+        .expect("environment variable `CARGO_CFG_TARGET_OS` not set");
     let eric_path = env::var("ERIC_PATH").expect("environment variable `ERIC_PATH` not set");
 
     let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
@@ -69,31 +70,22 @@ fn select_bindings() -> io::Result<()> {
         panic!("Missing bindings: Unknown Eric version");
     };
 
-    println!("Select bindings for Eric version {eric_version} and target {target_arch}");
+    println!("Select bindings for Eric version {eric_version} and target {target_os}/{target_arch}");
 
-    let bindings_file = match (&eric_version, target_arch.as_ref(), is_windows) {
-        (EricVersion::Eric38_1_6_0, "x86_64", false) => "bindings_eric_38_1_6_0_linux_x86_64.rs",
-        (EricVersion::Eric39_6_4_0, "x86_64", false) => "bindings_eric_39_6_4_0_linux_x86_64.rs",
-        (EricVersion::Eric40_1_8_0, "x86_64", false) => "bindings_eric_40_1_8_0_linux_x86_64.rs",
-        (EricVersion::Eric40_2_10_0, "x86_64", false) => "bindings_eric_40_2_10_0_linux_x86_64.rs",
-        (EricVersion::Eric43_3_2_0, "x86_64", false) => "bindings_eric_43_3_2_0_linux_x86_64.rs",
+    let bindings_file = match (&eric_version, target_os.as_ref(), target_arch.as_ref()) {
+        (EricVersion::Eric38_1_6_0, "linux", "x86_64") => "bindings_eric_38_1_6_0_linux_x86_64.rs",
+        (EricVersion::Eric39_6_4_0, "linux", "x86_64") => "bindings_eric_39_6_4_0_linux_x86_64.rs",
+        (EricVersion::Eric40_1_8_0, "linux", "x86_64") => "bindings_eric_40_1_8_0_linux_x86_64.rs",
+        (EricVersion::Eric40_2_10_0, "linux", "x86_64") => "bindings_eric_40_2_10_0_linux_x86_64.rs",
+        (EricVersion::Eric43_3_2_0, "linux", "x86_64") => "bindings_eric_43_3_2_0_linux_x86_64.rs",
+        (EricVersion::Eric43_3_2_0, "macos", "aarch64") => "bindings_eric_43_3_2_0_darwin_aarch64.rs",
         _ => {
-            panic!("Missing bindings for Eric version {eric_version} and target {target_arch}");
+            panic!("Missing bindings for Eric version {eric_version} and target {target_os}/{target_arch}");
         }
     };
 
     #[cfg(not(feature = "no-linking"))]
-    {
-        let eric_path = Path::new(&eric_path);
-        let library_name = get_library_name();
-        let library_path = get_library_path(eric_path);
-        let header_file = get_header_file(eric_path);
-
-        println!("cargo:rustc-link-search={}", library_path.display());
-        println!("cargo:rustc-link-lib={}", library_name);
-        println!("cargo:rerun-if-changed={}", header_file.display());
-        println!("cargo:rustc-env=LD_LIBRARY_PATH={}", library_path.display());
-    }
+    emit_link_instructions(&eric_path, &target_os);
 
     let root_dir = std::env::var("CARGO_MANIFEST_DIR")
         .expect("environment variable `CARGO_MANIFEST_DIR` not set");
@@ -113,16 +105,14 @@ fn select_bindings() -> io::Result<()> {
 /// Generate bindings on-the-fly
 #[cfg(feature = "generate-bindings")]
 fn generate_bindings() -> io::Result<()> {
-    let eric_path = env::var("ERIC_PATH").expect("environment variable `ERIC_PATH` not set");
-    let eric_path = Path::new(&eric_path);
-    let library_name = get_library_name();
-    let library_path = get_library_path(eric_path);
+    let eric_path_str = env::var("ERIC_PATH").expect("environment variable `ERIC_PATH` not set");
+    let target_os = std::env::var("CARGO_CFG_TARGET_OS")
+        .expect("environment variable `CARGO_CFG_TARGET_OS` not set");
+    let eric_path = Path::new(&eric_path_str);
     let header_file = get_header_file(eric_path);
 
-    println!("cargo:rustc-link-search={}", library_path.display());
-    println!("cargo:rustc-link-lib={}", library_name);
-    println!("cargo:rerun-if-changed={}", header_file.display());
-    println!("cargo:rustc-env=LD_LIBRARY_PATH={}", library_path.display());
+    #[cfg(not(feature = "no-linking"))]
+    emit_link_instructions(&eric_path_str, &target_os);
 
     let header = header_file.to_str().expect("Can't convert path to string");
 
@@ -161,6 +151,24 @@ fn select_bindings_for_docs_rs() -> io::Result<()> {
         )
     });
     Ok(())
+}
+
+/// Emit cargo link instructions for the ERiC shared library.
+///
+/// Note: `cargo:rustc-link-arg` from a library crate's build script does not
+/// propagate to the final binary. Runtime library paths (rpath on macOS,
+/// LD_LIBRARY_PATH on Linux) must be set by the binary crate's build script
+/// or by the user's environment.
+#[cfg(not(feature = "no-linking"))]
+fn emit_link_instructions(eric_path_str: &str, _target_os: &str) {
+    let eric_path = Path::new(eric_path_str);
+    let library_name = get_library_name();
+    let library_path = get_library_path(eric_path);
+    let header_file = get_header_file(eric_path);
+
+    println!("cargo:rustc-link-search={}", library_path.display());
+    println!("cargo:rustc-link-lib={}", library_name);
+    println!("cargo:rerun-if-changed={}", header_file.display());
 }
 
 #[cfg(not(feature = "docs-rs"))]
