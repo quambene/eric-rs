@@ -22,6 +22,9 @@ features = ["docs-rs"]
 [features]
 default = []
 external-test = []
+# Generate FFI bindings at build time via bindgen (requires libclang).
+# Use this on platforms without pre-generated bindings (e.g. macOS aarch64).
+generate-bindings = ["eric-bindings/generate-bindings"]
 # This feature is used in CI pipeline for unit tests.
 no-linking = ["eric-bindings/no-linking"]
 # This feature is used to publish the documentation for `eric-sdk`.
