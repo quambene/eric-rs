@@ -6,7 +6,7 @@
 - changed
 - removed
 
-## 0.5.1 (unreleased)
+## 0.5.1 (2026-02-24)
 
 - added
   - Add bindings for macOS aarch64

@@ -6,7 +6,7 @@
 - changed
 - removed
 
-## v0.5.0 (unreleased)
+## v0.5.0 (2026-02-24)
 
 - added
   - Add structured error `EricError`
