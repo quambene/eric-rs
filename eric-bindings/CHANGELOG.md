@@ -8,6 +8,8 @@
 
 ## 0.5.1 (unreleased)
 
+- added
+  - Add bindings for macOS aarch64
 - changed
   - Match on `CARGO_CFG_TARGET_OS` instead of `CARGO_CFG_WINDOWS` for more explicit platform selection
 - removed
