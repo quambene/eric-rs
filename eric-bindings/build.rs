@@ -163,6 +163,7 @@ fn select_bindings_for_docs_rs() -> io::Result<()> {
 /// LD_LIBRARY_PATH on Linux) must be set by the binary crate's build script
 /// or by the user's environment.
 #[cfg(not(feature = "no-linking"))]
+#[cfg(not(feature = "docs-rs"))]
 fn emit_link_instructions(eric_path_str: &str, _target_os: &str) {
     let eric_path = Path::new(eric_path_str);
     let library_name = get_library_name();
