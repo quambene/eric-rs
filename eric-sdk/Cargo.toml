@@ -26,7 +26,7 @@ features = ["docs-rs"]
 
 [features]
 default = []
-# This feature is used to run external tests that connect the Elster servers.
+# This feature is used to run external tests that connect to the Elster servers.
 external-test = []
 # Generate FFI bindings at build time via bindgen (requires libclang).
 # Use this on platforms without pre-generated bindings.
