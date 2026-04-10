@@ -1,6 +1,5 @@
 use crate::{
     config::{CertificateConfig, PrintConfig},
-    error::EricError,
     error_code::ErrorCode,
     response::{EricResponse, ResponseBuffer},
     utils::ToCString,
@@ -26,18 +25,21 @@ impl Eric {
     /// Initializes a single-threaded Eric instance.
     ///
     /// The `log_path` specifies the path to the `eric.log` file.
-    pub fn new(log_path: &Path) -> Result<Self, EricError> {
+    pub fn new(log_path: &Path) -> Result<Self, anyhow::Error> {
         println!("Initializing eric");
 
         let plugin_path = env::var("PLUGIN_PATH").ok();
+        // CString must be bound to a variable so it lives until EricInitialisiere returns.
+        // Taking .as_ptr() on a temporary CString is UB — the pointer dangles immediately.
+        let plugin_cstring;
         let plugin_ptr = match plugin_path {
             Some(plugin_path) => {
                 println!(
                     "Setting plugin path '{}'",
                     Path::new(&plugin_path).display()
                 );
-
-                plugin_path.try_to_cstring()?.as_ptr()
+                plugin_cstring = plugin_path.try_to_cstring()?;
+                plugin_cstring.as_ptr()
             }
             None => ptr::null(),
         };
@@ -51,10 +53,7 @@ impl Eric {
 
         match error_code {
             x if x == ErrorCode::ERIC_OK as i32 => Ok(Eric),
-            error_code => Err(EricError::Internal(anyhow!(
-                "Can't init eric: {}",
-                error_code
-            ))),
+            error_code => Err(anyhow!("Can't init eric: {}", error_code)),
         }
     }
 
@@ -67,7 +66,7 @@ impl Eric {
         taxonomy_type: &str,
         taxonomy_version: &str,
         pdf_path: Option<&str>,
-    ) -> Result<EricResponse, EricError> {
+    ) -> Result<EricResponse, anyhow::Error> {
         let processing_flag: ProcessingFlag;
         let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
         let print_config = if let Some(pdf_path) = pdf_path {
@@ -92,7 +91,7 @@ impl Eric {
         taxonomy_type: &str,
         taxonomy_version: &str,
         pdf_path: Option<&str>,
-    ) -> Result<EricResponse, EricError> {
+    ) -> Result<EricResponse, anyhow::Error> {
         let certificate_path = env::var("CERTIFICATE_PATH")
             .context("Missing environment variable 'CERTIFICATE_PATH'")?;
         let certificate_password = env::var("CERTIFICATE_PASSWORD")
@@ -119,7 +118,7 @@ impl Eric {
     }
 
     /// Returns the error text for a specific error code.
-    pub fn get_error_text(&self, error_code: i32) -> Result<String, EricError> {
+    pub fn get_error_text(&self, error_code: i32) -> Result<String, anyhow::Error> {
         let response_buffer = ResponseBuffer::new()?;
 
         unsafe {
@@ -134,7 +133,7 @@ impl Eric {
         &self,
         encrypted_file: &str,
         certificate_config: CertificateConfig,
-    ) -> Result<i32, EricError> {
+    ) -> Result<i32, anyhow::Error> {
         let encrypted_data = encrypted_file.try_to_cstring()?;
         let response_buffer = ResponseBuffer::new()?;
 
@@ -157,7 +156,7 @@ impl Eric {
         print_config: Option<PrintConfig>,
         certificate_config: Option<CertificateConfig>,
         transfer_code: Option<u32>,
-    ) -> Result<EricResponse, EricError> {
+    ) -> Result<EricResponse, anyhow::Error> {
         println!("Processing xml file");
 
         match processing_flag {
@@ -182,10 +181,7 @@ impl Eric {
         match &print_config {
             Some(print_config) => println!(
                 "Printing confirmation to file '{}'",
-                print_config
-                    .pdf_path
-                    .to_str()
-                    .context("failed to convert path to string")?
+                print_config.pdf_path.to_str()?
             ),
             None => (),
         }
@@ -228,18 +224,25 @@ impl Eric {
         // TODO: parse server response via EricGetErrormessagesFromXMLAnswer()
         let server_response = server_response_buffer.read()?;
 
-        if error_code != ErrorCode::ERIC_OK as i32 {
+        // 610001002 (PRUEF_FEHLER) and 610001003 (HINWEISE) are plausibility check
+        // results, not technical errors. Return them as Ok so the caller can inspect
+        // the validation_response XML for the actual field-level errors.
+        let is_validation_result = error_code == ErrorCode::ERIC_GLOBAL_PRUEF_FEHLER as i32
+            || error_code == ErrorCode::ERIC_GLOBAL_HINWEISE as i32;
+
+        if error_code != ErrorCode::ERIC_OK as i32 && !is_validation_result {
             let response_buffer = ResponseBuffer::new()?;
             unsafe {
                 EricHoleFehlerText(error_code, response_buffer.as_ptr());
             }
             let error_text = response_buffer.read()?;
-            return Err(EricError::ApiError {
-                code: error_code,
-                message: error_text.to_string(),
-                validation_response: validation_response.to_string(),
-                server_response: server_response.to_string(),
-            });
+            return Err(anyhow!(
+                "processing failed with error code {}: {}\nValidation response: {}\nServer response: {}",
+                error_code,
+                error_text,
+                validation_response,
+                server_response
+            ));
         }
 
         let response = EricResponse::new(
@@ -264,8 +267,9 @@ impl Drop for Eric {
 
         let error_code = unsafe { EricBeende() };
 
-        if error_code != ErrorCode::ERIC_OK as i32 {
-            println!("Can't close eric: {}", error_code)
+        match error_code {
+            x if x == ErrorCode::ERIC_OK as i32 => (),
+            error_code => println!("Can't close eric: {}", error_code),
         }
     }
 }

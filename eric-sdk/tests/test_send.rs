@@ -34,7 +34,7 @@ fn test_send() {
     let log_path = current_dir().unwrap();
     let xml = get_xml_with_vendor_id().unwrap();
     let taxonomy_type = "Bilanz";
-    let taxonomy_version = "6.5";
+    let taxonomy_version = "6.7";
     let pdf_path = None;
 
     let eric = Eric::new(&log_path).unwrap();
@@ -58,7 +58,7 @@ fn test_send_and_print() {
     let log_path = current_dir().unwrap();
     let xml = get_xml_with_vendor_id().unwrap();
     let taxonomy_type = "Bilanz";
-    let taxonomy_version = "6.5";
+    let taxonomy_version = "6.7";
     let pdf_path = "ebilanz_send.pdf";
 
     let eric = Eric::new(&log_path).unwrap();

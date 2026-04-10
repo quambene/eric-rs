@@ -12,7 +12,7 @@ fn test_validate() {
         .context(format!("Can't read file: {}", xml_path.display()))
         .unwrap();
     let taxonomy_type = "Bilanz";
-    let taxonomy_version = "6.5";
+    let taxonomy_version = "6.7";
     let pdf_path = None;
 
     let eric = Eric::new(&log_path).unwrap();
@@ -43,7 +43,7 @@ fn test_validate_and_print() {
         .context(format!("Can't read file: {}", xml_path.display()))
         .unwrap();
     let taxonomy_type = "Bilanz";
-    let taxonomy_version = "6.5";
+    let taxonomy_version = "6.7";
     let pdf_path = "ebilanz.pdf";
 
     let eric = Eric::new(&log_path).unwrap();
@@ -71,15 +71,24 @@ fn test_validate_invalid_xml() {
     let log_path = current_dir().unwrap();
     let xml = "<Invalid>XML</Invalid>".to_string();
     let taxonomy_type = "Bilanz";
-    let taxonomy_version = "6.5";
+    let taxonomy_version = "6.7";
     let pdf_path = None;
 
     let eric = Eric::new(&log_path).unwrap();
 
     let res = eric.validate(xml, taxonomy_type, taxonomy_version, pdf_path);
-    assert!(res.is_err());
-    let err = res.unwrap_err().to_string();
-    println!("Caught expected error: {}", err);
-    // Expecting something like "Error during processing: Fehler während der Plausibilitätsprüfung... (610001002)"
-    assert!(err.contains("610001002") || err.contains("610301200"));
+    // 610001002 (PRUEF_FEHLER) is a plausibility result, not a hard error — returned as Ok.
+    // Other structural errors (e.g. 610301200) still surface as Err.
+    match res {
+        Ok(response) => {
+            println!("Plausibility failure (Ok): error_code={}", response.error_code);
+            println!("Validation response: {}", response.validation_response);
+            assert_eq!(response.error_code, ErrorCode::ERIC_GLOBAL_PRUEF_FEHLER as i32);
+        }
+        Err(err) => {
+            println!("Hard error: {}", err);
+            // A non-plausibility structural error is also acceptable
+            assert!(err.to_string().contains("610301200") || err.to_string().contains("610001"));
+        }
+    }
 }
