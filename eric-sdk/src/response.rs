@@ -5,6 +5,52 @@ use eric_bindings::{
 };
 use std::ffi::CStr;
 
+/// The outcome of an [`Eric::validate`](crate::Eric::validate) call.
+///
+/// ERIC distinguishes three outcomes for a validation run:
+///
+/// - [`Valid`](ValidationOutcome::Valid): the document passed all checks (`ERIC_OK`).
+/// - [`Invalid`](ValidationOutcome::Invalid): plausibility errors were found
+///   (`ERIC_GLOBAL_PRUEF_FEHLER`, 610001002). The inner [`EricResponse`] carries
+///   the field-level error details in `validation_response`.
+/// - [`Hints`](ValidationOutcome::Hints): only informational hints
+///   (`ERIC_GLOBAL_HINWEISE`, 610001003). The document is technically acceptable
+///   but has warnings.
+///
+/// All three variants wrap the raw [`EricResponse`] so callers can inspect the
+/// full XML regardless of the outcome.
+#[derive(Debug)]
+pub enum ValidationOutcome {
+    Valid(EricResponse),
+    Invalid(EricResponse),
+    Hints(EricResponse),
+}
+
+impl ValidationOutcome {
+    /// Returns `true` only when validation passed without errors or hints.
+    pub fn is_valid(&self) -> bool {
+        matches!(self, ValidationOutcome::Valid(_))
+    }
+
+    /// Borrows the inner [`EricResponse`] regardless of the outcome variant.
+    pub fn response(&self) -> &EricResponse {
+        match self {
+            ValidationOutcome::Valid(r)
+            | ValidationOutcome::Invalid(r)
+            | ValidationOutcome::Hints(r) => r,
+        }
+    }
+
+    /// Consumes the outcome and returns the inner [`EricResponse`].
+    pub fn into_response(self) -> EricResponse {
+        match self {
+            ValidationOutcome::Valid(r)
+            | ValidationOutcome::Invalid(r)
+            | ValidationOutcome::Hints(r) => r,
+        }
+    }
+}
+
 /// A structure which summarizes the response from the Eric instance.
 #[derive(Debug)]
 pub struct EricResponse {

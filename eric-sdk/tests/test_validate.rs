@@ -1,5 +1,5 @@
 use anyhow::Context;
-use eric_sdk::{Eric, ErrorCode};
+use eric_sdk::{Eric, ErrorCode, ValidationOutcome};
 use roxmltree::Document;
 use std::{env::current_dir, fs, path::Path};
 
@@ -17,20 +17,19 @@ fn test_validate() {
 
     let eric = Eric::new(&log_path).unwrap();
 
-    let res = eric.validate(xml, taxonomy_type, taxonomy_version, pdf_path);
-    println!("{:#?}", res);
-    assert!(res.is_ok(), "{}", res.unwrap_err());
+    let outcome = eric
+        .validate(xml, taxonomy_type, taxonomy_version, pdf_path)
+        .expect("ERIC validation failed");
+    println!("{:#?}", outcome);
 
-    let response = res.unwrap();
-    assert_eq!(response.error_code, ErrorCode::ERIC_OK as i32);
-
+    let ValidationOutcome::Valid(response) = outcome else {
+        panic!("expected Valid, got {:?}", outcome);
+    };
     let doc = Document::parse(&response.validation_response).unwrap();
     println!("Doc: {:#?}", doc);
     let node = doc.descendants().find(|node| node.has_tag_name("Erfolg"));
     assert!(node.is_some());
-    let node = node.unwrap();
-    assert_eq!(node.tag_name().name(), "Erfolg");
-
+    assert_eq!(node.unwrap().tag_name().name(), "Erfolg");
     assert!(response.server_response.is_empty());
 }
 
@@ -48,20 +47,19 @@ fn test_validate_and_print() {
 
     let eric = Eric::new(&log_path).unwrap();
 
-    let res = eric.validate(xml, taxonomy_type, taxonomy_version, Some(pdf_path));
-    println!("{:#?}", res);
-    assert!(res.is_ok(), "{}", res.unwrap_err());
+    let outcome = eric
+        .validate(xml, taxonomy_type, taxonomy_version, Some(pdf_path))
+        .expect("ERIC validation failed");
+    println!("{:#?}", outcome);
 
-    let response = res.unwrap();
-    assert_eq!(response.error_code, ErrorCode::ERIC_OK as i32);
-
+    let ValidationOutcome::Valid(response) = outcome else {
+        panic!("expected Valid, got {:?}", outcome);
+    };
     let doc = Document::parse(&response.validation_response).unwrap();
     println!("Doc: {:#?}", doc);
     let node = doc.descendants().find(|node| node.has_tag_name("Erfolg"));
     assert!(node.is_some());
-    let node = node.unwrap();
-    assert_eq!(node.tag_name().name(), "Erfolg");
-
+    assert_eq!(node.unwrap().tag_name().name(), "Erfolg");
     assert!(response.server_response.is_empty());
 }
 
@@ -76,18 +74,20 @@ fn test_validate_invalid_xml() {
 
     let eric = Eric::new(&log_path).unwrap();
 
-    let res = eric.validate(xml, taxonomy_type, taxonomy_version, pdf_path);
-    // 610001002 (PRUEF_FEHLER) is a plausibility result, not a hard error — returned as Ok.
-    // Other structural errors (e.g. 610301200) still surface as Err.
-    match res {
-        Ok(response) => {
-            println!("Plausibility failure (Ok): error_code={}", response.error_code);
-            println!("Validation response: {}", response.validation_response);
+    match eric.validate(xml, taxonomy_type, taxonomy_version, pdf_path) {
+        Ok(ValidationOutcome::Invalid(response)) => {
+            println!("Plausibility errors (Invalid): {}", response.validation_response);
             assert_eq!(response.error_code, ErrorCode::ERIC_GLOBAL_PRUEF_FEHLER as i32);
+        }
+        Ok(ValidationOutcome::Hints(response)) => {
+            println!("Hints: {}", response.validation_response);
+        }
+        Ok(ValidationOutcome::Valid(_)) => {
+            panic!("expected Invalid or a hard error for malformed XML, got Valid");
         }
         Err(err) => {
             println!("Hard error: {}", err);
-            // A non-plausibility structural error is also acceptable
+            // A structural error before plausibility checks is also acceptable
             assert!(err.to_string().contains("610301200") || err.to_string().contains("610001"));
         }
     }

@@ -7,7 +7,7 @@ mod utils;
 
 pub use eric::Eric;
 pub use error_code::ErrorCode;
-pub use response::EricResponse;
+pub use response::{EricResponse, ValidationOutcome};
 
 #[derive(Debug, Clone, Copy)]
 pub(crate) enum ProcessingFlag {

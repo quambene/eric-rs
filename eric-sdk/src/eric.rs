@@ -1,7 +1,7 @@
 use crate::{
     config::{CertificateConfig, PrintConfig},
     error_code::ErrorCode,
-    response::{EricResponse, ResponseBuffer},
+    response::{EricResponse, ResponseBuffer, ValidationOutcome},
     utils::ToCString,
     ProcessingFlag,
 };
@@ -59,6 +59,15 @@ impl Eric {
 
     /// Validates an XML file for a specific taxonomy.
     ///
+    /// Returns a [`ValidationOutcome`] that distinguishes between a clean pass
+    /// ([`Valid`](ValidationOutcome::Valid)), plausibility errors
+    /// ([`Invalid`](ValidationOutcome::Invalid)), and informational hints
+    /// ([`Hints`](ValidationOutcome::Hints)).  All three carry the raw
+    /// [`EricResponse`] so callers can inspect the validation XML.
+    ///
+    /// Hard failures (bad certificate, unknown taxonomy, etc.) are returned as
+    /// `Err`.
+    ///
     /// Optionally, a confirmation is printed to `pdf_path`.
     pub fn validate(
         &self,
@@ -66,7 +75,7 @@ impl Eric {
         taxonomy_type: &str,
         taxonomy_version: &str,
         pdf_path: Option<&str>,
-    ) -> Result<EricResponse, anyhow::Error> {
+    ) -> Result<ValidationOutcome, anyhow::Error> {
         let processing_flag: ProcessingFlag;
         let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
         let print_config = if let Some(pdf_path) = pdf_path {
@@ -76,7 +85,21 @@ impl Eric {
             processing_flag = ProcessingFlag::Validate;
             None
         };
-        Self::process(xml, type_version, processing_flag, print_config, None, None)
+        let response =
+            Self::process(xml, type_version, processing_flag, print_config, None, None)?;
+        match response.error_code {
+            x if x == ErrorCode::ERIC_OK as i32 => Ok(ValidationOutcome::Valid(response)),
+            x if x == ErrorCode::ERIC_GLOBAL_PRUEF_FEHLER as i32 => {
+                Ok(ValidationOutcome::Invalid(response))
+            }
+            x if x == ErrorCode::ERIC_GLOBAL_HINWEISE as i32 => {
+                Ok(ValidationOutcome::Hints(response))
+            }
+            _ => unreachable!(
+                "process() returned an unexpected non-error code: {}",
+                response.error_code
+            ),
+        }
     }
 
     /// Sends an XML file for a specific taxonomy to the tax authorities.
