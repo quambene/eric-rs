@@ -31,6 +31,10 @@ fn get_xml_with_vendor_id() -> Result<String, anyhow::Error> {
 fn test_send() {
     require_test_env().unwrap();
 
+    let certificate_path = env::var("CERTIFICATE_PATH").unwrap();
+    let certificate_path = Path::new(&certificate_path);
+    let certificate_password = env::var("CERTIFICATE_PASSWORD").unwrap();
+
     let log_path = current_dir().unwrap();
     let xml = get_xml_with_vendor_id().unwrap();
     let taxonomy_type = "Bilanz";
@@ -39,7 +43,14 @@ fn test_send() {
 
     let eric = Eric::new(&log_path).unwrap();
 
-    let res = eric.send(xml, taxonomy_type, taxonomy_version, pdf_path);
+    let res = eric.send(
+        xml,
+        taxonomy_type,
+        taxonomy_version,
+        certificate_path,
+        &certificate_password,
+        pdf_path,
+    );
     assert!(res.is_ok(), "{}", res.unwrap_err());
 
     let response = res.unwrap();
@@ -55,6 +66,10 @@ fn test_send() {
 fn test_send_and_print() {
     require_test_env().unwrap();
 
+    let certificate_path = env::var("CERTIFICATE_PATH").unwrap();
+    let certificate_path = Path::new(&certificate_path);
+    let certificate_password = env::var("CERTIFICATE_PASSWORD").unwrap();
+
     let log_path = current_dir().unwrap();
     let xml = get_xml_with_vendor_id().unwrap();
     let taxonomy_type = "Bilanz";
@@ -63,7 +78,14 @@ fn test_send_and_print() {
 
     let eric = Eric::new(&log_path).unwrap();
 
-    let res = eric.send(xml, taxonomy_type, taxonomy_version, Some(pdf_path));
+    let res = eric.send(
+        xml,
+        taxonomy_type,
+        taxonomy_version,
+        certificate_path,
+        &certificate_password,
+        Some(pdf_path),
+    );
     assert!(res.is_ok(), "{}", res.unwrap_err());
 
     let response = res.unwrap();

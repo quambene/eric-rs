@@ -6,8 +6,10 @@
 - changed
 - removed
 
-## v0.5.1 (unreleased)
+## v0.6.0 (unreleased)
 
+- changed
+  - Provide path and password as parameter in `Eric::send`
 - fixed
   - Fix dangling pointer
 
