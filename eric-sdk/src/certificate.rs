@@ -3,6 +3,7 @@ use anyhow::anyhow;
 use eric_bindings::{EricCloseHandleToCertificate, EricGetHandleToCertificate};
 use std::{ffi::CStr, ptr};
 
+/// A wrapper type for the handle of the certificate.
 pub struct Certificate {
     pub handle: u32,
 }
@@ -12,9 +13,14 @@ impl Certificate {
         println!("Preparing certificate '{}'", path.to_str()?);
 
         let mut handle = 0;
-        let pin_support = ptr::null::<u32>() as *mut u32;
 
-        // SAFETY: path.as_ptr() is not dangling as path is allocated in struct CertificateConfig and path is not moved as a reference to the CString is given
+        // SAFETY: the Eric API accepts NULL for `pin_support` when PIN-based
+        // authentication is not used.
+        let pin_support = ptr::null_mut::<u32>();
+
+        // SAFETY: path.as_ptr() is not dangling  as path is allocated in struct
+        // CertificateConfig and path is not moved as a reference to the CString
+        // is given.
         let error_code =
             unsafe { EricGetHandleToCertificate(&mut handle, pin_support, path.as_ptr()) };
 
