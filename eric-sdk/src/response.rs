@@ -1,4 +1,5 @@
 use crate::error_code::ErrorCode;
+use anyhow::anyhow;
 use eric_bindings::{
     EricReturnBufferApi, EricRueckgabepufferErzeugen, EricRueckgabepufferFreigeben,
     EricRueckgabepufferInhalt,
@@ -34,6 +35,10 @@ impl ResponseBuffer {
     pub fn new() -> Result<Self, anyhow::Error> {
         let response_buffer = unsafe { EricRueckgabepufferErzeugen() };
 
+        if response_buffer.is_null() {
+            return Err(anyhow!("EricRueckgabepufferErzeugen returned null"));
+        }
+
         Ok(ResponseBuffer {
             ctx: response_buffer,
         })
@@ -46,6 +51,11 @@ impl ResponseBuffer {
     pub fn read(&self) -> Result<&str, anyhow::Error> {
         let buffer = unsafe {
             let ptr = EricRueckgabepufferInhalt(self.ctx);
+
+            if ptr.is_null() {
+                return Err(anyhow!("EricRueckgabepufferInhalt returned null"));
+            }
+
             CStr::from_ptr(ptr)
         };
 
