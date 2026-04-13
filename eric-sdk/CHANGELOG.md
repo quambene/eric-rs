@@ -6,6 +6,11 @@
 - changed
 - removed
 
+## v0.5.1 (unreleased)
+
+- fixed
+  - Fix dangling pointer
+
 ## v0.5.0 (2026-02-24)
 
 - added
