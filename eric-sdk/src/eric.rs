@@ -30,17 +30,20 @@ impl Eric {
         println!("Initializing eric");
 
         let plugin_path = env::var("PLUGIN_PATH").ok();
-        let plugin_ptr = match plugin_path {
-            Some(plugin_path) => {
+
+        // SAFETY: `plugin_path_cstring` must outlive `plugin_ptr`.
+        let plugin_path_cstring = plugin_path
+            .map(|plugin_path| {
                 println!(
                     "Setting plugin path '{}'",
                     Path::new(&plugin_path).display()
                 );
-
-                plugin_path.try_to_cstring()?.as_ptr()
-            }
-            None => ptr::null(),
-        };
+                plugin_path.try_to_cstring()
+            })
+            .transpose()?;
+        let plugin_ptr = plugin_path_cstring
+            .as_deref()
+            .map_or(ptr::null(), |cstr| cstr.as_ptr());
 
         println!("Setting log path '{}'", log_path.display());
         println!("Logging to '{}'", log_path.join("eric.log").display());
@@ -173,11 +176,12 @@ impl Eric {
         let type_version = type_version.try_to_cstring()?;
 
         // Transfer_code should be NULL except for data retrieval; if
-        // transfer_code is not NULL in the other cases, it will be ignored
-        let transfer_code = match transfer_code {
-            Some(mut code) => &mut code,
-            None => ptr::null::<u32>() as *mut u32,
-        };
+        // transfer_code is not NULL in the other cases, it will be ignored.
+        // SAFETY: `transfer_code_storage` must outlive `transfer_code_ptr`.
+        let mut transfer_code_storage = transfer_code;
+        let transfer_code_ptr: *mut u32 = transfer_code_storage
+            .as_mut()
+            .map_or(ptr::null_mut(), |c| c as *mut u32);
 
         match &print_config {
             Some(print_config) => println!(
@@ -212,13 +216,13 @@ impl Eric {
                     Some(el) => el.certificate_parameter.as_ptr(),
                     None => ptr::null(),
                 },
-                transfer_code,
+                transfer_code_ptr,
                 validation_response_buffer.as_ptr(),
                 server_response_buffer.as_ptr(),
             )
         };
 
-        let transfer_code = unsafe { transfer_code.as_ref() };
+        let transfer_code = unsafe { transfer_code_ptr.as_ref() };
 
         if let Some(code) = transfer_code {
             println!("Transfer code: {}", code)
