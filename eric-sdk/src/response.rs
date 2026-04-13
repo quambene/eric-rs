@@ -27,6 +27,7 @@ impl EricResponse {
     }
 }
 
+/// A wrapper type for the response buffer of the Eric instance.
 pub struct ResponseBuffer {
     ctx: *mut EricReturnBufferApi,
 }
