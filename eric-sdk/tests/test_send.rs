@@ -41,7 +41,7 @@ fn test_send() {
     let taxonomy_version = "6.5";
     let pdf_path = None;
 
-    let eric = Eric::new(&log_path).unwrap();
+    let eric = Eric::new(Some(&log_path), None).unwrap();
 
     let res = eric.send(
         xml,
@@ -76,7 +76,7 @@ fn test_send_and_print() {
     let taxonomy_version = "6.5";
     let pdf_path = "ebilanz_send.pdf";
 
-    let eric = Eric::new(&log_path).unwrap();
+    let eric = Eric::new(Some(&log_path), None).unwrap();
 
     let res = eric.send(
         xml,

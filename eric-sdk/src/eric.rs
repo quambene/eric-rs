@@ -11,11 +11,7 @@ use eric_bindings::{
     EricBearbeiteVorgang, EricBeende, EricDekodiereDaten, EricEntladePlugins, EricHoleFehlerText,
     EricInitialisiere,
 };
-use std::{
-    env::{self},
-    path::Path,
-    ptr,
-};
+use std::{path::Path, ptr};
 
 /// A structure to manage the Eric instance from the shared C library.
 ///
@@ -25,32 +21,44 @@ pub struct Eric;
 impl Eric {
     /// Initializes a single-threaded Eric instance.
     ///
-    /// The `log_path` specifies the path to the `eric.log` file.
-    pub fn new(log_path: &Path) -> Result<Self, EricError> {
+    /// If `log_path` is `None`, the system directory for temporary files is
+    /// used. If `plugin_path` is `None`, the path to the shared C library is
+    /// used.
+    pub fn new(log_path: Option<&Path>, plugin_path: Option<&Path>) -> Result<Self, EricError> {
         println!("Initializing eric");
 
-        let plugin_path = env::var("PLUGIN_PATH").ok();
+        if let Some(log_path) = log_path {
+            println!("Setting log path '{}'", log_path.display());
+            println!("Logging to '{}'", log_path.join("eric.log").display());
+        } else {
+            println!("No log path provided, using ERiC default temporary directory");
+        }
+
+        if let Some(plugin_path) = plugin_path {
+            println!("Setting plugin path '{}'", plugin_path.display());
+        } else {
+            println!("No plugin path provided, using ERiC default plugin directory");
+        }
 
         // SAFETY: `plugin_path_cstring` must outlive `plugin_ptr`.
         let plugin_path_cstring = plugin_path
-            .map(|plugin_path| {
-                println!(
-                    "Setting plugin path '{}'",
-                    Path::new(&plugin_path).display()
-                );
-                plugin_path.try_to_cstring()
-            })
-            .transpose()?;
+            .map(|plugin_path| plugin_path.try_to_cstring())
+            .transpose()
+            .context("failed to convert plugin path to CString")?;
         let plugin_ptr = plugin_path_cstring
             .as_deref()
             .map_or(ptr::null(), |cstr| cstr.as_ptr());
 
-        println!("Setting log path '{}'", log_path.display());
-        println!("Logging to '{}'", log_path.join("eric.log").display());
+        // SAFETY: `log_path_cstring` must outlive `log_path_ptr`.
+        let log_path_cstring = log_path
+            .map(|path| path.try_to_cstring())
+            .transpose()
+            .context("failed to convert log path to CString")?;
+        let log_path_ptr = log_path_cstring
+            .as_deref()
+            .map_or(ptr::null(), |cstr| cstr.as_ptr());
 
-        let log_path = log_path.try_to_cstring()?;
-
-        let error_code = unsafe { EricInitialisiere(plugin_ptr, log_path.as_ptr()) };
+        let error_code = unsafe { EricInitialisiere(plugin_ptr, log_path_ptr) };
 
         match error_code {
             x if x == ErrorCode::ERIC_OK as i32 => Ok(Eric),

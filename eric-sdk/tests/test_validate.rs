@@ -15,7 +15,7 @@ fn test_validate() {
     let taxonomy_version = "6.5";
     let pdf_path = None;
 
-    let eric = Eric::new(&log_path).unwrap();
+    let eric = Eric::new(Some(&log_path), None).unwrap();
 
     let res = eric.validate(xml, taxonomy_type, taxonomy_version, pdf_path);
     println!("{:#?}", res);
@@ -46,7 +46,7 @@ fn test_validate_and_print() {
     let taxonomy_version = "6.5";
     let pdf_path = "ebilanz.pdf";
 
-    let eric = Eric::new(&log_path).unwrap();
+    let eric = Eric::new(Some(&log_path), None).unwrap();
 
     let res = eric.validate(xml, taxonomy_type, taxonomy_version, Some(pdf_path));
     println!("{:#?}", res);
@@ -74,7 +74,7 @@ fn test_validate_invalid_xml() {
     let taxonomy_version = "6.5";
     let pdf_path = None;
 
-    let eric = Eric::new(&log_path).unwrap();
+    let eric = Eric::new(Some(&log_path), None).unwrap();
 
     let res = eric.validate(xml, taxonomy_type, taxonomy_version, pdf_path);
     assert!(res.is_err());
