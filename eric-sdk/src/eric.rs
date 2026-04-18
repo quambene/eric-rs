@@ -170,7 +170,7 @@ impl Eric {
         certificate_config: Option<CertificateConfig>,
         transfer_code: Option<u32>,
     ) -> Result<EricResponse, EricError> {
-        info!("Processing xml file");
+        debug!("Processing xml file");
 
         match processing_flag {
             ProcessingFlag::Validate => debug!("Validating xml file"),
