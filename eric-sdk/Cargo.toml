@@ -40,6 +40,8 @@ docs-rs = ["eric-bindings/docs-rs"]
 eric-bindings = { version = "0.5.0", path = "../eric-bindings" }
 anyhow = { workspace = true }
 thiserror = { workspace = true }
+tracing = { workspace = true }
 
 [dev-dependencies]
 roxmltree = "0.20.0"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

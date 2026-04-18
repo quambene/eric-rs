@@ -11,6 +11,7 @@
 - changed
   - Provide path and password as parameter in `Eric::send`
   - Make `log_path` in `Eric::new` optional, and add parameter `plugin_path`
+  - Refactor logging to use `tracing` crate
 - fixed
   - Fix dangling pointer
 

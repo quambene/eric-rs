@@ -39,5 +39,4 @@ docs-rs = []
 anyhow = { workspace = true }
 
 [build-dependencies]
-anyhow = { workspace = true }
 bindgen = { version = "0.69.4", optional = true }

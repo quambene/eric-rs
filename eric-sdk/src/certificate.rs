@@ -2,6 +2,7 @@ use crate::error_code::ErrorCode;
 use anyhow::anyhow;
 use eric_bindings::{EricCloseHandleToCertificate, EricGetHandleToCertificate};
 use std::{ffi::CStr, ptr};
+use tracing::debug;
 
 /// A wrapper type for the handle of the certificate.
 pub struct Certificate {
@@ -10,7 +11,7 @@ pub struct Certificate {
 
 impl Certificate {
     pub fn new(path: &CStr) -> Result<Self, anyhow::Error> {
-        println!("Preparing certificate '{}'", path.to_str()?);
+        debug!(path = %path.to_str()?, "Preparing certificate");
 
         let mut handle = 0;
 
@@ -36,7 +37,7 @@ impl Certificate {
 
 impl Drop for Certificate {
     fn drop(&mut self) {
-        println!("Cleaning up certificate");
+        debug!("Cleaning up certificate");
 
         let error_code = unsafe { EricCloseHandleToCertificate(self.handle) };
 

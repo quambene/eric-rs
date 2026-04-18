@@ -5,6 +5,7 @@ use eric_bindings::{
     EricRueckgabepufferInhalt,
 };
 use std::ffi::CStr;
+use tracing::debug;
 
 /// A structure which summarizes the response from the Eric instance.
 #[derive(Debug)]
@@ -66,7 +67,7 @@ impl ResponseBuffer {
 
 impl Drop for ResponseBuffer {
     fn drop(&mut self) {
-        println!("Cleaning up response buffer");
+        debug!("Cleaning up response buffer");
 
         let error_code = unsafe { EricRueckgabepufferFreigeben(self.ctx) };
 

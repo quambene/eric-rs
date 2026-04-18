@@ -16,3 +16,4 @@ repository = "https://github.com/quambene/eric-rs"
 [workspace.dependencies]
 anyhow = "1.0.86"
 thiserror = "2.0.18"
+tracing = "0.1"
