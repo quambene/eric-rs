@@ -12,6 +12,7 @@ use eric_bindings::{
     EricInitialisiere,
 };
 use std::{path::Path, ptr};
+use tracing::{debug, error, info};
 
 /// A structure to manage the Eric instance from the shared C library.
 ///
@@ -25,19 +26,19 @@ impl Eric {
     /// used. If `plugin_path` is `None`, the path to the shared C library is
     /// used.
     pub fn new(log_path: Option<&Path>, plugin_path: Option<&Path>) -> Result<Self, EricError> {
-        println!("Initializing eric");
+        info!("Initializing eric");
 
         if let Some(log_path) = log_path {
-            println!("Setting log path '{}'", log_path.display());
-            println!("Logging to '{}'", log_path.join("eric.log").display());
+            info!(log_path = %log_path.display(), "Setting log path");
+            info!(log_file = %log_path.join("eric.log").display(), "Logging to file");
         } else {
-            println!("No log path provided, using ERiC default temporary directory");
+            info!("No log path provided, using ERiC default temporary directory");
         }
 
         if let Some(plugin_path) = plugin_path {
-            println!("Setting plugin path '{}'", plugin_path.display());
+            info!(plugin_path = %plugin_path.display(), "Setting plugin path");
         } else {
-            println!("No plugin path provided, using ERiC default plugin directory");
+            info!("No plugin path provided, using ERiC default plugin directory");
         }
 
         // SAFETY: `plugin_path_cstring` must outlive `plugin_ptr`.
@@ -169,15 +170,15 @@ impl Eric {
         certificate_config: Option<CertificateConfig>,
         transfer_code: Option<u32>,
     ) -> Result<EricResponse, EricError> {
-        println!("Processing xml file");
+        info!("Processing xml file");
 
         match processing_flag {
-            ProcessingFlag::Validate => println!("Validating xml file"),
-            ProcessingFlag::Print => println!("Validating xml file"),
-            ProcessingFlag::Send => println!("Sending xml file"),
-            ProcessingFlag::SendAndPrint => println!("Send and print"),
-            ProcessingFlag::CheckHints => println!("Check hints"),
-            ProcessingFlag::ValidateWithoutDate => println!("Validate without release date"),
+            ProcessingFlag::Validate => debug!("Validating xml file"),
+            ProcessingFlag::Print => debug!("Validating xml file"),
+            ProcessingFlag::Send => debug!("Sending xml file"),
+            ProcessingFlag::SendAndPrint => debug!("Send and print"),
+            ProcessingFlag::CheckHints => debug!("Check hints"),
+            ProcessingFlag::ValidateWithoutDate => debug!("Validate without release date"),
         }
 
         let xml = xml.try_to_cstring()?;
@@ -192,12 +193,12 @@ impl Eric {
             .map_or(ptr::null_mut(), |c| c as *mut u32);
 
         match &print_config {
-            Some(print_config) => println!(
-                "Printing confirmation to file '{}'",
-                print_config
+            Some(print_config) => info!(
+                pdf_path = %print_config
                     .pdf_path
                     .to_str()
-                    .context("failed to convert path to string")?
+                    .context("failed to convert path to string")?,
+                "Printing confirmation to file"
             ),
             None => (),
         }
@@ -233,7 +234,7 @@ impl Eric {
         let transfer_code = unsafe { transfer_code_ptr.as_ref() };
 
         if let Some(code) = transfer_code {
-            println!("Transfer code: {}", code)
+            debug!(transfer_code = %code, "Transfer code received")
         }
 
         let validation_response = validation_response_buffer.read()?;
@@ -266,18 +267,18 @@ impl Eric {
 
 impl Drop for Eric {
     fn drop(&mut self) {
-        println!("Closing eric");
+        info!("Closing eric");
 
         let error_code = unsafe { EricEntladePlugins() };
 
         if error_code != ErrorCode::ERIC_OK as i32 {
-            println!("Error while unloading plugins: {}", error_code);
+            error!(error_code = %error_code, "Error while unloading plugins");
         }
 
         let error_code = unsafe { EricBeende() };
 
         if error_code != ErrorCode::ERIC_OK as i32 {
-            println!("Can't close eric: {}", error_code)
+            error!(error_code = %error_code, "Can't close eric");
         }
     }
 }
