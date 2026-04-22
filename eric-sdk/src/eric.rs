@@ -192,15 +192,14 @@ impl Eric {
             .as_mut()
             .map_or(ptr::null_mut(), |c| c as *mut u32);
 
-        match &print_config {
-            Some(print_config) => info!(
+        if let Some(print_config) = &print_config {
+            info!(
                 pdf_path = %print_config
                     .pdf_path
                     .to_str()
                     .context("failed to convert path to string")?,
                 "Printing confirmation to file"
-            ),
-            None => (),
+            )
         }
 
         let validation_response_buffer = ResponseBuffer::new()?;
