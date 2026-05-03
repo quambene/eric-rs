@@ -175,6 +175,14 @@ fn emit_link_instructions(eric_path_str: &str, _target_os: &str) {
 
     println!("cargo:rustc-link-search={}", library_path.display());
     println!("cargo:rustc-link-lib={}", library_name);
+
+    // Rerun build script if relevant environment variables change.
+    println!("cargo:rerun-if-env-changed=ERIC_PATH");
+    println!("cargo:rerun-if-env-changed=LIBRARY_NAME");
+    println!("cargo:rerun-if-env-changed=LIBRARY_PATH");
+    println!("cargo:rerun-if-env-changed=HEADER_FILE");
+
+    // Rerun build script if file itself changes.
     println!("cargo:rerun-if-changed={}", header_file.display());
 }
 
