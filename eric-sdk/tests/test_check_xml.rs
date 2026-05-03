@@ -1,5 +1,5 @@
 use anyhow::Context;
-use eric_sdk::{Eric, EricError, ErrorCode};
+use eric_sdk::{Eric, ErrorCode};
 use roxmltree::Document;
 use std::{env::current_dir, fs, path::Path};
 

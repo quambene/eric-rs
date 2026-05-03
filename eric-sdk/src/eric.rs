@@ -293,10 +293,13 @@ impl Eric {
 
         if error_code != ErrorCode::ERIC_OK as i32 {
             let response_buffer = ResponseBuffer::new()?;
+
             unsafe {
                 EricHoleFehlerText(error_code, response_buffer.as_ptr());
             }
+
             let error_text = response_buffer.read()?;
+
             return Err(EricError::ApiError {
                 code: error_code,
                 message: error_text.to_string(),
