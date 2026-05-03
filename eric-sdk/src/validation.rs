@@ -65,14 +65,15 @@ struct XmlValidationIssue {
 
 #[cfg(test)]
 mod tests {
-    use crate::EricError;
+    use crate::{EricApiPayload, EricError};
 
     #[test]
     fn parse_validation_report_from_api_error() {
         let err = EricError::ApiError {
             code: 610001002,
             message: "Fehler waehrend der Plausibilitaetspruefung".to_string(),
-            validation_response: r#"<?xml version="1.0" encoding="UTF-8"?>
+            payload: EricApiPayload::new(
+                r#"<?xml version="1.0" encoding="UTF-8"?>
 <EricBearbeiteVorgang xmlns="http://www.elster.de/EricXML/1.1/EricBearbeiteVorgang">
   <FehlerRegelpruefung>
     <Nutzdatenticket>-</Nutzdatenticket>
@@ -82,8 +83,9 @@ mod tests {
     <Text>missing required attribute 'unitRef'</Text>
   </FehlerRegelpruefung>
 </EricBearbeiteVorgang>"#
-                .to_string(),
-            server_response: String::new(),
+                    .to_string(),
+                String::new(),
+            ),
         };
 
         let report = err

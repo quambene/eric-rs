@@ -19,22 +19,19 @@ fn test_check_xml_valid() {
 
     match res {
         Ok(response) => {
-            assert_eq!(response.error_code, ErrorCode::ERIC_OK as i32);
-            assert!(response.server_response.is_empty());
+            assert!(response.server_response().is_empty());
 
-            let doc = Document::parse(&response.validation_response).unwrap();
+            let doc = Document::parse(response.validation_response()).unwrap();
             let node = doc.descendants().find(|node| node.has_tag_name("Erfolg"));
             assert!(node.is_some());
         }
         Err(err) => {
-            let err = err.to_string();
-            // Depending on ERiC data-version support, schema check might not be available.
+            let error_code = err.code().unwrap();
+            // Depending on ERiC data-version support, schema check might not be
+            // available.
             assert!(
-                err.contains(
-                    &(ErrorCode::ERIC_GLOBAL_FUNKTION_NICHT_UNTERSTUETZT as i32).to_string()
-                ) || err.contains(
-                    &(ErrorCode::ERIC_GLOBAL_DATENARTVERSION_UNBEKANNT as i32).to_string()
-                )
+                error_code == ErrorCode::ERIC_GLOBAL_FUNKTION_NICHT_UNTERSTUETZT as i32
+                    || error_code == ErrorCode::ERIC_GLOBAL_DATENARTVERSION_UNBEKANNT as i32
             );
         }
     }
@@ -51,15 +48,13 @@ fn test_check_xml_invalid_xml() {
     let res = eric.check_xml(xml, "Bilanz", "6.5");
     assert!(res.is_err());
 
-    let err = res.unwrap_err().to_string();
-    println!("Caught expected error: {}", err);
+    let error_code = res.unwrap_err().code().unwrap();
 
+    // Depending on ERiC data-version support, schema check might not be
+    // available.
     assert!(
-        err.contains(&(ErrorCode::ERIC_IO_PARSE_FEHLER as i32).to_string())
-            || err.contains(
-                &(ErrorCode::ERIC_IO_READER_SCHEMA_VALIDIERUNGSFEHLER as i32).to_string()
-            )
-            || err
-                .contains(&(ErrorCode::ERIC_GLOBAL_FUNKTION_NICHT_UNTERSTUETZT as i32).to_string())
+        error_code == ErrorCode::ERIC_IO_PARSE_FEHLER as i32
+            || error_code == ErrorCode::ERIC_IO_READER_SCHEMA_VALIDIERUNGSFEHLER as i32
+            || error_code == ErrorCode::ERIC_GLOBAL_FUNKTION_NICHT_UNTERSTUETZT as i32
     );
 }

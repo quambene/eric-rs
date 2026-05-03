@@ -10,7 +10,7 @@ mod validation;
 pub use eric::Eric;
 pub use error::EricError;
 pub use error_code::ErrorCode;
-pub use response::EricResponse;
+pub use response::{EricApiPayload, EricResponse};
 pub use validation::{ValidationIssue, ValidationReport};
 
 #[derive(Debug, Clone, Copy)]

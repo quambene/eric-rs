@@ -1,4 +1,4 @@
-use crate::ValidationReport;
+use crate::{EricApiPayload, ValidationReport};
 use thiserror::Error;
 
 #[derive(Debug, Error)]
@@ -7,8 +7,7 @@ pub enum EricError {
     ApiError {
         code: i32,
         message: String,
-        validation_response: String,
-        server_response: String,
+        payload: EricApiPayload,
     },
     /// Unstructured catch all for internal errors
     #[error("Internal error: {0}")]
@@ -27,10 +26,7 @@ impl EricError {
     /// Returns the raw validation XML returned by ERiC.
     pub fn validation_response(&self) -> Option<&str> {
         match self {
-            Self::ApiError {
-                validation_response,
-                ..
-            } => Some(validation_response.as_str()),
+            Self::ApiError { payload, .. } => Some(payload.validation_response.as_str()),
             Self::Internal(_) => None,
         }
     }
@@ -38,9 +34,7 @@ impl EricError {
     /// Returns the raw server XML returned by ERiC.
     pub fn server_response(&self) -> Option<&str> {
         match self {
-            Self::ApiError {
-                server_response, ..
-            } => Some(server_response.as_str()),
+            Self::ApiError { payload, .. } => Some(payload.server_response.as_str()),
             Self::Internal(_) => None,
         }
     }

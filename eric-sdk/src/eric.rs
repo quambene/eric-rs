@@ -2,7 +2,7 @@ use crate::{
     config::{CertificateConfig, PrintConfig},
     error::EricError,
     error_code::ErrorCode,
-    response::{EricResponse, ResponseBuffer},
+    response::{EricApiPayload, EricResponse, ResponseBuffer},
     utils::ToCString,
     ProcessingFlag,
 };
@@ -159,26 +159,25 @@ impl Eric {
         };
 
         let validation_response = validation_response_buffer.read()?;
+        let payload = EricApiPayload::new(validation_response.to_string(), String::new());
 
-        if error_code != ErrorCode::ERIC_OK as i32 {
+        if error_code == ErrorCode::ERIC_OK as i32 {
+            Ok(EricResponse::new(payload))
+        } else {
             let response_buffer = ResponseBuffer::new()?;
+
             unsafe {
                 EricHoleFehlerText(error_code, response_buffer.as_ptr());
             }
+
             let error_text = response_buffer.read()?;
-            return Err(EricError::ApiError {
+
+            Err(EricError::ApiError {
                 code: error_code,
                 message: error_text.to_string(),
-                validation_response: validation_response.to_string(),
-                server_response: String::new(),
-            });
+                payload,
+            })
         }
-
-        Ok(EricResponse::new(
-            error_code,
-            validation_response.to_string(),
-            String::new(),
-        ))
     }
 
     /// Returns the error text for a specific error code.
@@ -290,8 +289,12 @@ impl Eric {
         let validation_response = validation_response_buffer.read()?;
         // TODO: parse server response via EricGetErrormessagesFromXMLAnswer()
         let server_response = server_response_buffer.read()?;
+        let payload =
+            EricApiPayload::new(validation_response.to_string(), server_response.to_string());
 
-        if error_code != ErrorCode::ERIC_OK as i32 {
+        if error_code == ErrorCode::ERIC_OK as i32 {
+            Ok(EricResponse::new(payload))
+        } else {
             let response_buffer = ResponseBuffer::new()?;
 
             unsafe {
@@ -300,21 +303,12 @@ impl Eric {
 
             let error_text = response_buffer.read()?;
 
-            return Err(EricError::ApiError {
+            Err(EricError::ApiError {
                 code: error_code,
                 message: error_text.to_string(),
-                validation_response: validation_response.to_string(),
-                server_response: server_response.to_string(),
-            });
+                payload,
+            })
         }
-
-        let response = EricResponse::new(
-            error_code,
-            validation_response.to_string(),
-            server_response.to_string(),
-        );
-
-        Ok(response)
     }
 }
 

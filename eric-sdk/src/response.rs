@@ -7,24 +7,52 @@ use eric_bindings::{
 use std::ffi::CStr;
 use tracing::debug;
 
-/// A structure which summarizes the response from the Eric instance.
-#[derive(Debug)]
-pub struct EricResponse {
-    /// The error code returned by the Eric instance.
-    pub error_code: i32,
+/// Shared payload for `EricResponse` and `EricError` returned by ERiC API
+/// calls.
+#[derive(Debug, Clone)]
+pub struct EricApiPayload {
     /// The response when validating an XML file.
     pub validation_response: String,
-    /// The response when an XML file is send to the tax authorities.
+    /// The response when an XML file is sent to the tax authorities.
     pub server_response: String,
 }
 
-impl EricResponse {
-    pub fn new(error_code: i32, validation_response: String, server_response: String) -> Self {
+impl EricApiPayload {
+    pub fn new(validation_response: String, server_response: String) -> Self {
         Self {
-            error_code,
             validation_response,
             server_response,
         }
+    }
+}
+
+/// A structure which summarizes the response from the Eric instance.
+///
+/// Usually returned payload can be ignored when the API call was successful and
+/// looks like this:
+/// ```xml
+/// <?xml version="1.0" encoding="UTF-8"?>
+/// <EricBearbeiteVorgang xmlns="http://www.elster.de/EricXML/1.1/EricBearbeiteVorgang">
+///     <Erfolg/>
+/// </EricBearbeiteVorgang>
+/// ```
+#[derive(Debug)]
+pub struct EricResponse {
+    /// XML payload returned by ERiC.
+    pub payload: EricApiPayload,
+}
+
+impl EricResponse {
+    pub fn new(payload: EricApiPayload) -> Self {
+        Self { payload }
+    }
+
+    pub fn validation_response(&self) -> &str {
+        self.payload.validation_response.as_str()
+    }
+
+    pub fn server_response(&self) -> &str {
+        self.payload.server_response.as_str()
     }
 }
 

@@ -1,5 +1,5 @@
 use anyhow::Context;
-use eric_sdk::{Eric, ErrorCode};
+use eric_sdk::Eric;
 use roxmltree::Document;
 use std::{env::current_dir, fs, path::Path};
 
@@ -22,16 +22,14 @@ fn test_validate() {
     assert!(res.is_ok(), "{}", res.unwrap_err());
 
     let response = res.unwrap();
-    assert_eq!(response.error_code, ErrorCode::ERIC_OK as i32);
-
-    let doc = Document::parse(&response.validation_response).unwrap();
+    let doc = Document::parse(response.validation_response()).unwrap();
     println!("Doc: {:#?}", doc);
     let node = doc.descendants().find(|node| node.has_tag_name("Erfolg"));
     assert!(node.is_some());
     let node = node.unwrap();
     assert_eq!(node.tag_name().name(), "Erfolg");
 
-    assert!(response.server_response.is_empty());
+    assert!(response.server_response().is_empty());
 }
 
 #[test]
@@ -53,16 +51,14 @@ fn test_validate_and_print() {
     assert!(res.is_ok(), "{}", res.unwrap_err());
 
     let response = res.unwrap();
-    assert_eq!(response.error_code, ErrorCode::ERIC_OK as i32);
-
-    let doc = Document::parse(&response.validation_response).unwrap();
+    let doc = Document::parse(response.validation_response()).unwrap();
     println!("Doc: {:#?}", doc);
     let node = doc.descendants().find(|node| node.has_tag_name("Erfolg"));
     assert!(node.is_some());
     let node = node.unwrap();
     assert_eq!(node.tag_name().name(), "Erfolg");
 
-    assert!(response.server_response.is_empty());
+    assert!(response.server_response().is_empty());
 }
 
 #[test]
