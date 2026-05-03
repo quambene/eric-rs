@@ -15,7 +15,7 @@ fn require_test_env() -> Result<(), anyhow::Error> {
 }
 
 fn get_xml_with_vendor_id() -> Result<String, anyhow::Error> {
-    let xml_path = Path::new("test_data/taxonomy/v6.5/SteuerbilanzAutoverkaeufer_PersG.xml");
+    let xml_path = Path::new("test_data/taxonomy/v6.5/tax_balance_sheet.xml");
     let xml =
         fs::read_to_string(xml_path).context(format!("Can't read file: {}", xml_path.display()))?;
 
