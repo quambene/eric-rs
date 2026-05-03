@@ -92,6 +92,44 @@ impl Eric {
         Self::process(xml, type_version, processing_flag, print_config, None, None)
     }
 
+    /// Sends an XML file for a specific taxonomy to the tax authorities.
+    ///
+    /// The Elster certificate needs to be provided at path `certificate_path`
+    /// with password `certificate_password`.
+    ///
+    /// Optionally, a confirmation is printed to `pdf_path`.
+    pub fn send(
+        &self,
+        xml: String,
+        taxonomy_type: &str,
+        taxonomy_version: &str,
+        certificate_path: &Path,
+        certificate_password: &str,
+        pdf_path: Option<&str>,
+    ) -> Result<EricResponse, EricError> {
+        let certificate_path = certificate_path
+            .to_str()
+            .context("failed to convert path to string")?;
+        let processing_flag: ProcessingFlag;
+        let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
+        let print_config = if let Some(pdf_path) = pdf_path {
+            processing_flag = ProcessingFlag::SendAndPrint;
+            Some(PrintConfig::new(pdf_path, &processing_flag)?)
+        } else {
+            processing_flag = ProcessingFlag::Send;
+            None
+        };
+        let certificate_config = CertificateConfig::new(certificate_path, certificate_password)?;
+        Self::process(
+            xml,
+            type_version,
+            processing_flag,
+            print_config,
+            Some(certificate_config),
+            None,
+        )
+    }
+
     /// Validates an XML file against the schema of a specific taxonomy.
     ///
     /// This is a schema-only check via ERiC's `EricCheckXML` and does not
@@ -141,44 +179,6 @@ impl Eric {
             validation_response.to_string(),
             String::new(),
         ))
-    }
-
-    /// Sends an XML file for a specific taxonomy to the tax authorities.
-    ///
-    /// The Elster certificate needs to be provided at path `certificate_path`
-    /// with password `certificate_password`.
-    ///
-    /// Optionally, a confirmation is printed to `pdf_path`.
-    pub fn send(
-        &self,
-        xml: String,
-        taxonomy_type: &str,
-        taxonomy_version: &str,
-        certificate_path: &Path,
-        certificate_password: &str,
-        pdf_path: Option<&str>,
-    ) -> Result<EricResponse, EricError> {
-        let certificate_path = certificate_path
-            .to_str()
-            .context("failed to convert path to string")?;
-        let processing_flag: ProcessingFlag;
-        let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
-        let print_config = if let Some(pdf_path) = pdf_path {
-            processing_flag = ProcessingFlag::SendAndPrint;
-            Some(PrintConfig::new(pdf_path, &processing_flag)?)
-        } else {
-            processing_flag = ProcessingFlag::Send;
-            None
-        };
-        let certificate_config = CertificateConfig::new(certificate_path, certificate_password)?;
-        Self::process(
-            xml,
-            type_version,
-            processing_flag,
-            print_config,
-            Some(certificate_config),
-            None,
-        )
     }
 
     /// Returns the error text for a specific error code.

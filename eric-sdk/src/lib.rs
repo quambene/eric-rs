@@ -5,11 +5,13 @@ mod error;
 mod error_code;
 mod response;
 mod utils;
+mod validation;
 
 pub use eric::Eric;
 pub use error::EricError;
 pub use error_code::ErrorCode;
 pub use response::EricResponse;
+pub use validation::{ValidationIssue, ValidationReport};
 
 #[derive(Debug, Clone, Copy)]
 pub(crate) enum ProcessingFlag {

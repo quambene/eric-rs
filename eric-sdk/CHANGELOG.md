@@ -10,6 +10,8 @@
 
 - added
   - Provide `Eric::check_xml`
+  - Parse `ValidationReport` from `EricError`
+  - Make `ValidationIssue` and `ValidationReport` public
 - changed
   - Provide path and password as parameter in `Eric::send`
   - Make `log_path` in `Eric::new` optional, and add parameter `plugin_path`
