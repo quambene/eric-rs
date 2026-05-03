@@ -7,6 +7,9 @@ ERiC-*/
 **/eric.log
 **/*.pdf
 
+# Bindings
+eric-bindings/bindings/*docs.rs
+
 # Environment
 **/.env
 

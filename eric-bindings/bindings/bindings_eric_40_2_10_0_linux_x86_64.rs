@@ -302,15 +302,10 @@ fn bindgen_test_layout_eric_zertifikat_parameter_t() {
         )
     );
 }
-#[doc = " Fehler, der zum Programmabbruch führt."]
 pub const eric_log_level_t_ERIC_LOG_ERROR: eric_log_level_t = 4;
-#[doc = " Hinweise auf Zustände, die zu Fehlern führen können."]
 pub const eric_log_level_t_ERIC_LOG_WARN: eric_log_level_t = 3;
-#[doc = " Grobe Informationen über den Programmablauf und Werte."]
 pub const eric_log_level_t_ERIC_LOG_INFO: eric_log_level_t = 2;
-#[doc = " Feingranulare Informationen über den Programmablauf und Werte."]
 pub const eric_log_level_t_ERIC_LOG_DEBUG: eric_log_level_t = 1;
-#[doc = " Sehr feingranulare Informationen über den Programmablauf und Werte."]
 pub const eric_log_level_t_ERIC_LOG_TRACE: eric_log_level_t = 0;
 pub type eric_log_level_t = ::std::os::raw::c_uint;
 pub type EricLogCallback = ::std::option::Option<
