@@ -8,6 +8,8 @@
 
 ## v0.6.0 (unreleased)
 
+- added
+  - Provide `Eric::check_xml`
 - changed
   - Provide path and password as parameter in `Eric::send`
   - Make `log_path` in `Eric::new` optional, and add parameter `plugin_path`

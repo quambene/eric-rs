@@ -8,8 +8,8 @@ use crate::{
 };
 use anyhow::{anyhow, Context};
 use eric_bindings::{
-    EricBearbeiteVorgang, EricBeende, EricDekodiereDaten, EricEntladePlugins, EricHoleFehlerText,
-    EricInitialisiere,
+    EricBearbeiteVorgang, EricBeende, EricCheckXML, EricDekodiereDaten, EricEntladePlugins,
+    EricHoleFehlerText, EricInitialisiere,
 };
 use std::{path::Path, ptr};
 use tracing::{debug, error, info};
@@ -90,6 +90,57 @@ impl Eric {
             None
         };
         Self::process(xml, type_version, processing_flag, print_config, None, None)
+    }
+
+    /// Validates an XML file against the schema of a specific taxonomy.
+    ///
+    /// This is a schema-only check via ERiC's `EricCheckXML` and does not
+    /// execute the full validation/send pipeline of [`Eric::validate`] or
+    /// [`Eric::send`].
+    ///
+    /// Note that ERiC may report unsupported data types/versions for this
+    /// API function.
+    pub fn check_xml(
+        &self,
+        xml: String,
+        taxonomy_type: &str,
+        taxonomy_version: &str,
+    ) -> Result<EricResponse, EricError> {
+        let type_version = format!("{}_{}", taxonomy_type, taxonomy_version);
+        let xml = xml.try_to_cstring()?;
+        let type_version = type_version.try_to_cstring()?;
+
+        let validation_response_buffer = ResponseBuffer::new()?;
+
+        let error_code = unsafe {
+            EricCheckXML(
+                xml.as_ptr(),
+                type_version.as_ptr(),
+                validation_response_buffer.as_ptr(),
+            )
+        };
+
+        let validation_response = validation_response_buffer.read()?;
+
+        if error_code != ErrorCode::ERIC_OK as i32 {
+            let response_buffer = ResponseBuffer::new()?;
+            unsafe {
+                EricHoleFehlerText(error_code, response_buffer.as_ptr());
+            }
+            let error_text = response_buffer.read()?;
+            return Err(EricError::ApiError {
+                code: error_code,
+                message: error_text.to_string(),
+                validation_response: validation_response.to_string(),
+                server_response: String::new(),
+            });
+        }
+
+        Ok(EricResponse::new(
+            error_code,
+            validation_response.to_string(),
+            String::new(),
+        ))
     }
 
     /// Sends an XML file for a specific taxonomy to the tax authorities.
