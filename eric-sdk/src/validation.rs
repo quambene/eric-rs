@@ -6,10 +6,10 @@ use serde::Deserialize;
 /// One `<FehlerRegelpruefung>` entry from ERiC validation XML.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValidationIssue {
-    pub nutzdatenticket: Option<String>,
-    pub mehrfachzeilenindex: Option<u32>,
-    pub lfd_nr_vordruck: Option<u32>,
-    pub fachliche_fehler_id: Option<String>,
+    pub data_ticket: Option<String>,
+    pub multi_line_index: Option<u32>,
+    pub form_sequence_number: Option<u32>,
+    pub error_code: Option<String>,
     pub text: Option<String>,
 }
 
@@ -28,10 +28,10 @@ impl ValidationReport {
             .issues
             .into_iter()
             .map(|issue| ValidationIssue {
-                nutzdatenticket: issue.nutzdatenticket,
-                mehrfachzeilenindex: issue.mehrfachzeilenindex,
-                lfd_nr_vordruck: issue.lfd_nr_vordruck,
-                fachliche_fehler_id: issue.fachliche_fehler_id,
+                data_ticket: issue.data_ticket,
+                multi_line_index: issue.multi_line_index,
+                form_sequence_number: issue.form_sequence_number,
+                error_code: issue.error_code,
                 text: issue.text,
             })
             .collect();
@@ -52,13 +52,13 @@ struct XmlValidationReport {
 #[derive(Debug, Deserialize)]
 struct XmlValidationIssue {
     #[serde(rename = "Nutzdatenticket")]
-    nutzdatenticket: Option<String>,
+    data_ticket: Option<String>,
     #[serde(rename = "Mehrfachzeilenindex")]
-    mehrfachzeilenindex: Option<u32>,
+    multi_line_index: Option<u32>,
     #[serde(rename = "LfdNrVordruck")]
-    lfd_nr_vordruck: Option<u32>,
+    form_sequence_number: Option<u32>,
     #[serde(rename = "FachlicheFehlerId")]
-    fachliche_fehler_id: Option<String>,
+    error_code: Option<String>,
     #[serde(rename = "Text")]
     text: Option<String>,
 }
@@ -95,9 +95,9 @@ mod tests {
         assert_eq!(report.issues.len(), 1);
 
         let issue = &report.issues[0];
-        assert_eq!(issue.mehrfachzeilenindex, Some(1));
-        assert_eq!(issue.lfd_nr_vordruck, Some(1));
-        assert_eq!(issue.fachliche_fehler_id.as_deref(), Some("170105000"));
+        assert_eq!(issue.multi_line_index, Some(1));
+        assert_eq!(issue.form_sequence_number, Some(1));
+        assert_eq!(issue.error_code.as_deref(), Some("170105000"));
         assert!(issue
             .text
             .as_deref()
