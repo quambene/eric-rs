@@ -7,6 +7,7 @@ use serde::Deserialize;
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValidationIssue {
     pub data_ticket: Option<String>,
+    pub field_identifier: Option<String>,
     pub multi_line_index: Option<u32>,
     pub form_sequence_number: Option<u32>,
     pub error_code: Option<String>,
@@ -29,6 +30,7 @@ impl ValidationReport {
             .into_iter()
             .map(|issue| ValidationIssue {
                 data_ticket: issue.data_ticket,
+                field_identifier: issue.field_identifier,
                 multi_line_index: issue.multi_line_index,
                 form_sequence_number: issue.form_sequence_number,
                 error_code: issue.error_code,
@@ -53,6 +55,8 @@ struct XmlValidationReport {
 struct XmlValidationIssue {
     #[serde(rename = "Nutzdatenticket")]
     data_ticket: Option<String>,
+    #[serde(rename = "Feldidentifikator")]
+    field_identifier: Option<String>,
     #[serde(rename = "Mehrfachzeilenindex")]
     multi_line_index: Option<u32>,
     #[serde(rename = "LfdNrVordruck")]
@@ -77,6 +81,7 @@ mod tests {
 <EricBearbeiteVorgang xmlns="http://www.elster.de/EricXML/1.1/EricBearbeiteVorgang">
   <FehlerRegelpruefung>
     <Nutzdatenticket>-</Nutzdatenticket>
+        <Feldidentifikator>gcd:genInfo.report.id.accountingStandard</Feldidentifikator>
     <Mehrfachzeilenindex>1</Mehrfachzeilenindex>
     <LfdNrVordruck>1</LfdNrVordruck>
     <FachlicheFehlerId>170105000</FachlicheFehlerId>
@@ -95,6 +100,10 @@ mod tests {
         assert_eq!(report.issues.len(), 1);
 
         let issue = &report.issues[0];
+        assert_eq!(
+            issue.field_identifier.as_deref(),
+            Some("gcd:genInfo.report.id.accountingStandard")
+        );
         assert_eq!(issue.multi_line_index, Some(1));
         assert_eq!(issue.form_sequence_number, Some(1));
         assert_eq!(issue.error_code.as_deref(), Some("170105000"));
