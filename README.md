@@ -101,7 +101,7 @@ To use `eric-sdk`, add the shared C library to your path (e.g. to `LD_LIBRARY_PA
 export LD_LIBRARY_PATH="$ERIC_PATH/lib:$LD_LIBRARY_PATH"
 ```
 
-To send the xml file, the path and password of the Elster certificate have to be provided via environment variables `CERTIFICATE_PATH` and `CERTIFICATE_PASSWORD`.
+To send the xml file, the path and password of the Elster certificate have to be provided.
 
 ### Supported Eric versions
 
