@@ -11,7 +11,7 @@
 - added
   - Provide `Eric::check_xml`
   - Parse `ValidationReport` from `EricError`
-  - Make `ValidationIssue` and `ValidationReport` public
+  - Add `ValidationIssue` and `ValidationReport`
   - Add `EricApiPayload`
 - changed
   - Provide path and password as parameter in `Eric::send`

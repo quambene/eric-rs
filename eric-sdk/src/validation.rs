@@ -10,6 +10,7 @@ pub struct ValidationIssue {
     pub field_identifier: Option<String>,
     pub multi_line_index: Option<u32>,
     pub form_sequence_number: Option<u32>,
+    pub rule_name: Option<String>,
     pub error_code: Option<String>,
     pub text: Option<String>,
 }
@@ -33,6 +34,7 @@ impl ValidationReport {
                 field_identifier: issue.field_identifier,
                 multi_line_index: issue.multi_line_index,
                 form_sequence_number: issue.form_sequence_number,
+                rule_name: issue.rule_name,
                 error_code: issue.error_code,
                 text: issue.text,
             })
@@ -61,6 +63,8 @@ struct XmlValidationIssue {
     multi_line_index: Option<u32>,
     #[serde(rename = "LfdNrVordruck")]
     form_sequence_number: Option<u32>,
+    #[serde(rename = "RegelName")]
+    rule_name: Option<String>,
     #[serde(rename = "FachlicheFehlerId")]
     error_code: Option<String>,
     #[serde(rename = "Text")]
@@ -106,6 +110,7 @@ mod tests {
         );
         assert_eq!(issue.multi_line_index, Some(1));
         assert_eq!(issue.form_sequence_number, Some(1));
+        assert_eq!(issue.rule_name, None);
         assert_eq!(issue.error_code.as_deref(), Some("170105000"));
         assert!(issue
             .text
