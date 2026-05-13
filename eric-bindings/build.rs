@@ -90,6 +90,9 @@ fn select_bindings() -> io::Result<()> {
             "bindings_eric_43_3_2_0_darwin_aarch64.rs"
         }
         (EricVersion::Eric43_4_6_0, "linux", "x86_64") => "bindings_eric_43_4_6_0_linux_x86_64.rs",
+        (EricVersion::Eric43_4_6_0, "macos", "aarch64") => {
+            "bindings_eric_43_4_6_0_darwin_aarch64.rs"
+        }
         _ => {
             panic!("Missing bindings for Eric version {eric_version} and target {target_os}/{target_arch}");
         }
