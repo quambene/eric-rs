@@ -6,7 +6,7 @@
 - changed
 - removed
 
-## v0.6.0 (unreleased)
+## v0.6.0 (2026-05-15)
 
 - added
   - Provide `Eric::check_xml`
