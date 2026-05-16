@@ -73,6 +73,14 @@ cargo build -p eric-bindings --features generate-bindings
 The bindings are generated in
 `target/debug/build/eric-bindings-<random-id>/out/bindings.rs`.
 
+By default the generated output matches the comment-free shape of the
+bundled binding files. Add the `bindgen-comments` feature to include the
+documentation from the C header:
+
+``` bash
+cargo build -p eric-bindings --features "generate-bindings bindgen-comments"
+```
+
 To generate the bindings on your platform and architecture, you need `libclang` as well. For example, on Debian/Ubuntu install:
 
 ``` bash
