@@ -76,3 +76,14 @@ jobs:
         run: cargo package -p eric-bindings --features docs-rs
       # - name: cargo package -p eric-sdk
       #   run: cargo package -p eric-sdk --features docs-rs
+  bindings-no-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assert no `#[doc = ...]` in committed bindings
+        run: |
+          if grep -RnE '^\s*#\[doc = ' eric-bindings/bindings/; then
+            echo "::error::Committed bindings include #[doc = ...] attributes."
+            echo "Regenerate with --features generate-bindings (without bindgen-comments)."
+            exit 1
+          fi
