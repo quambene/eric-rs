@@ -113,14 +113,15 @@ To send the xml file, the path and password of the Elster certificate have to be
 
 ### Supported Eric versions
 
-Currently, only the latest version of the Eric library is supported.
+The latest ERiC version is supported; older versions may work if the API is unchanged.
 
-| Rust SDK | Rust bindings | Eric     |
-| -------- | ------------- | -------- |
-| 0.1.0    | 0.2.0         | 38.1.6.0 |
-| 0.2.0    | 0.3.0         | 39.6.4.0 |
-| 0.3.0    | 0.4.0         | 40.1.8.0 |
-| 0.6.0    | 0.5.1         | 43.3.2.0 |
+| Rust SDK | Rust bindings      | Eric     |
+| -------- | ------------------ | -------- |
+| 0.1.0    | 0.2.0              | 38.1.6.0 |
+| 0.2.0    | 0.3.0              | 39.6.4.0 |
+| 0.3.0    | 0.4.0              | 40.1.8.0 |
+| 0.6.0    | 0.5.1              | 43.3.2.0 |
+| 0.6.0    | 0.5.2 (unreleased) | 43.4.6.0 |
 
 ### Test SDK
 
