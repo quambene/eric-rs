@@ -122,11 +122,16 @@ fn generate_bindings() -> io::Result<()> {
 
     let header = header_file.to_str().expect("Can't convert path to string");
 
+    let include_comments = env::var("CARGO_FEATURE_BINDGEN_COMMENTS").is_ok();
+
     let bindings = bindgen::Builder::default()
         .header(header)
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
+        .generate_comments(include_comments)
         .generate()
         .expect("Can't generate bindings");
+
+    println!("cargo:rerun-if-env-changed=CARGO_FEATURE_BINDGEN_COMMENTS");
 
     let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
     let output_path = PathBuf::from(out_dir);

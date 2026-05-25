@@ -30,6 +30,9 @@ features = ["docs-rs"]
 [features]
 default = []
 generate-bindings = ["dep:bindgen"]
+# Opt-in: include comments from the C header in generated bindings.
+# Default off so generated output matches the committed bundled shape.
+bindgen-comments = []
 # This feature is used in CI pipeline for unit tests.
 no-linking = []
 # This feature is used to publish the documentation for `eric-bindings`.
