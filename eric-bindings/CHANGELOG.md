@@ -3,6 +3,8 @@
 ## Unreleased
 
 - added
+  - Add bindings for Eric v43.4.6.0 (Linux x86_64).
+  - Add bindings for Eric v43.4.6.0 (Darwin aarch64).
 - changed
 - removed
 

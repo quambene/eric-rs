@@ -11,6 +11,7 @@ pub enum EricVersion {
     Eric40_1_8_0,
     Eric40_2_10_0,
     Eric43_3_2_0,
+    Eric43_4_6_0,
 }
 
 impl fmt::Display for EricVersion {
@@ -21,6 +22,7 @@ impl fmt::Display for EricVersion {
             Self::Eric40_1_8_0 => "40.1.8.0",
             Self::Eric40_2_10_0 => "40.2.10.0",
             Self::Eric43_3_2_0 => "43.3.2.0",
+            Self::Eric43_4_6_0 => "43.4.6.0",
         };
 
         write!(f, "{request_method}")
@@ -66,6 +68,8 @@ fn select_bindings() -> io::Result<()> {
         EricVersion::Eric40_2_10_0
     } else if eric_path.contains("43.3.2.0") {
         EricVersion::Eric43_3_2_0
+    } else if eric_path.contains("43.4.6.0") {
+        EricVersion::Eric43_4_6_0
     } else {
         panic!("Missing bindings: Unknown Eric version");
     };
@@ -84,6 +88,10 @@ fn select_bindings() -> io::Result<()> {
         (EricVersion::Eric43_3_2_0, "linux", "x86_64") => "bindings_eric_43_3_2_0_linux_x86_64.rs",
         (EricVersion::Eric43_3_2_0, "macos", "aarch64") => {
             "bindings_eric_43_3_2_0_darwin_aarch64.rs"
+        }
+        (EricVersion::Eric43_4_6_0, "linux", "x86_64") => "bindings_eric_43_4_6_0_linux_x86_64.rs",
+        (EricVersion::Eric43_4_6_0, "macos", "aarch64") => {
+            "bindings_eric_43_4_6_0_darwin_aarch64.rs"
         }
         _ => {
             panic!("Missing bindings for Eric version {eric_version} and target {target_os}/{target_arch}");
