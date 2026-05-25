@@ -67,6 +67,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo test --doc
         run: cargo test --locked --doc -p eric-sdk
+  # This job ensures that the eric-bindings crate can be packaged successfully.
   package-test:
     runs-on: ubuntu-latest
     steps:
@@ -76,6 +77,7 @@ jobs:
         run: cargo package -p eric-bindings --features docs-rs
       # - name: cargo package -p eric-sdk
       #   run: cargo package -p eric-sdk --features docs-rs
+  # This job ensures that the committed bindings do not include `#[doc = ...]` attributes.
   bindings-no-docs:
     runs-on: ubuntu-latest
     steps:
