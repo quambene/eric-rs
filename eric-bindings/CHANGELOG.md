@@ -3,8 +3,6 @@
 ## Unreleased
 
 - added
-  - Add bindings for Eric v43.4.6.0 (Linux x86_64).
-  - Add bindings for Eric v43.4.6.0 (Darwin aarch64).
 - changed
 - removed
 
@@ -12,6 +10,8 @@
 
 - added
   - Add `bindgen-comments` feature flag to opt in to C header doc comments in generated bindings (off by default)
+  - Add bindings for Eric v43.4.6.0 (Linux x86_64)
+  - Add bindings for Eric v43.4.6.0 (Darwin aarch64)
 
 ## 0.5.1 (2026-02-24)
 
