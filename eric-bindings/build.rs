@@ -58,6 +58,8 @@ fn select_bindings() -> io::Result<()> {
     let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
+    println!("cargo:rerun-if-env-changed=ERIC_VERSION");
+
     // Version detection precedence:
     //   1. Explicit `ERIC_VERSION` env var — the robust path, used when the
     //      caller stages ERIC_PATH at a version-less location.
