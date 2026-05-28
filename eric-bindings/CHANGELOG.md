@@ -3,7 +3,6 @@
 ## Unreleased
 
 - added
-  - Honour `ERIC_VERSION` environment variable as the primary version-detection signal. Falls back to substring matching on `ERIC_PATH` (previous behaviour) when the env var is unset, so existing callers that embed the version in the install path keep working.
 - changed
 - removed
 
@@ -13,6 +12,8 @@
   - Add `bindgen-comments` feature flag to opt in to C header doc comments in generated bindings (off by default)
   - Add bindings for Eric v43.4.6.0 (Linux x86_64)
   - Add bindings for Eric v43.4.6.0 (Darwin aarch64)
+  - Support `ERIC_VERSION` environment variable as the primary version detection
+    signal (falls back to substring matching on `ERIC_PATH`)
 
 ## 0.5.1 (2026-02-24)
 
