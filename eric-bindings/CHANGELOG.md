@@ -3,6 +3,7 @@
 ## Unreleased
 
 - added
+  - Honour `ERIC_VERSION` environment variable as the primary version-detection signal. Falls back to substring matching on `ERIC_PATH` (previous behaviour) when the env var is unset, so existing callers that embed the version in the install path keep working.
 - changed
 - removed
 

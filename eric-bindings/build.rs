@@ -58,7 +58,30 @@ fn select_bindings() -> io::Result<()> {
     let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
-    let eric_version = if eric_path.contains("38.1.6.0") {
+    // Version detection precedence:
+    //   1. Explicit `ERIC_VERSION` env var — the robust path, used when the
+    //      caller stages ERIC_PATH at a version-less location.
+    //      Downstream callers should set this.
+    //   2. Substring match in `eric_path` — backwards-compatible fallback
+    //      for callers that historically embed the version in the install
+    //      path (e.g. `/opt/eric-43.3.2.0/`).
+    //
+    // Mismatching values across the two channels (e.g. ERIC_VERSION=43.3.2.0
+    // but the path contains "40.2.10.0") is the caller's bug; we prefer the
+    // explicit env var when it's set.
+    let eric_version = if let Ok(v) = env::var("ERIC_VERSION") {
+        match v.as_str() {
+            "38.1.6.0" => EricVersion::Eric38_1_6_0,
+            "39.6.4.0" => EricVersion::Eric39_6_4_0,
+            "40.1.8.0" => EricVersion::Eric40_1_8_0,
+            "40.2.10.0" => EricVersion::Eric40_2_10_0,
+            "43.3.2.0" => EricVersion::Eric43_3_2_0,
+            other => panic!(
+                "Unsupported ERIC_VERSION={other:?}; \
+                 add the corresponding bindings file and EricVersion variant"
+            ),
+        }
+    } else if eric_path.contains("38.1.6.0") {
         EricVersion::Eric38_1_6_0
     } else if eric_path.contains("39.6.4.0") {
         EricVersion::Eric39_6_4_0
@@ -71,7 +94,11 @@ fn select_bindings() -> io::Result<()> {
     } else if eric_path.contains("43.4.6.0") {
         EricVersion::Eric43_4_6_0
     } else {
-        panic!("Missing bindings: Unknown Eric version");
+        panic!(
+            "Missing bindings: Unknown Eric version. \
+             Either embed the version in ERIC_PATH (e.g. /opt/eric-43.3.2.0/) \
+             or set the ERIC_VERSION env var explicitly."
+        );
     };
 
     println!(
