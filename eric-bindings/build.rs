@@ -71,8 +71,8 @@ fn select_bindings() -> io::Result<()> {
     // Mismatching values across the two channels (e.g. ERIC_VERSION=43.3.2.0
     // but the path contains "40.2.10.0") is the caller's bug; we prefer the
     // explicit env var when it's set.
-    let eric_version = if let Ok(v) = env::var("ERIC_VERSION") {
-        match v.as_str() {
+    let eric_version = if let Ok(version) = env::var("ERIC_VERSION") {
+        match version.as_str() {
             "38.1.6.0" => EricVersion::Eric38_1_6_0,
             "39.6.4.0" => EricVersion::Eric39_6_4_0,
             "40.1.8.0" => EricVersion::Eric40_1_8_0,
