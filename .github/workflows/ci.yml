@@ -75,9 +75,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo package -p eric-bindings
-        run: cargo package -p eric-bindings --features docs-rs
+        run: cargo package -p eric-bindings --features no-linking
       # - name: cargo package -p eric-sdk
-      #   run: cargo package -p eric-sdk --features docs-rs
+      #   run: cargo package -p eric-sdk --features no-linking
   # This job ensures that the committed bindings do not include `#[doc = ...]` attributes.
   bindings-no-docs:
     runs-on: ubuntu-latest
