@@ -37,11 +37,13 @@ You need to have the shared library `libericapi.so` and the header file `ericapi
 
 ## Rust bindings
 
-Specify the path to the Eric library via environment variable `ERIC_PATH`. For
+Specify the path to and version of the Eric library via environment variable
+`ERIC_PATH` and `ERIC_VERSION`. For
 example:
 
 ``` bash
 ERIC_PATH="ERiC-43.3.2.0-Linux-x86_64/ERiC-43.3.2.0/Linux-x86_64"
+ERIC_VERSION=43.3.2.0
 ```
 
 Relevant environment variables then default to
@@ -115,13 +117,13 @@ To send the xml file, the path and password of the Elster certificate have to be
 
 The latest ERiC version is supported; older versions may work if the API is unchanged.
 
-| Rust SDK | Rust bindings      | Eric     |
-| -------- | ------------------ | -------- |
-| 0.1.0    | 0.2.0              | 38.1.6.0 |
-| 0.2.0    | 0.3.0              | 39.6.4.0 |
-| 0.3.0    | 0.4.0              | 40.1.8.0 |
-| 0.6.0    | 0.5.1              | 43.3.2.0 |
-| 0.6.0    | 0.5.2 (unreleased) | 43.4.6.0 |
+| Rust SDK | Rust bindings | Eric     |
+| -------- | ------------- | -------- |
+| 0.1.0    | 0.2.0         | 38.1.6.0 |
+| 0.2.0    | 0.3.0         | 39.6.4.0 |
+| 0.3.0    | 0.4.0         | 40.1.8.0 |
+| 0.6.0    | 0.5.1         | 43.3.2.0 |
+| 0.6.0    | 0.5.2         | 43.4.6.0 |
 
 ### Test SDK
 
