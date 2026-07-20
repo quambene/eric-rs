@@ -1,6 +1,7 @@
 use std::{
     env, fmt, io,
     path::{Path, PathBuf},
+    str::FromStr,
 };
 
 /// Supported versions of the Eric library.
@@ -16,7 +17,7 @@ pub enum EricVersion {
 
 impl fmt::Display for EricVersion {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let request_method = match self {
+        let version = match self {
             Self::Eric38_1_6_0 => "38.1.6.0",
             Self::Eric39_6_4_0 => "39.6.4.0",
             Self::Eric40_1_8_0 => "40.1.8.0",
@@ -25,7 +26,26 @@ impl fmt::Display for EricVersion {
             Self::Eric43_4_6_0 => "43.4.6.0",
         };
 
-        write!(f, "{request_method}")
+        write!(f, "{version}")
+    }
+}
+
+impl FromStr for EricVersion {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "38.1.6.0" => Ok(Self::Eric38_1_6_0),
+            "39.6.4.0" => Ok(Self::Eric39_6_4_0),
+            "40.1.8.0" => Ok(Self::Eric40_1_8_0),
+            "40.2.10.0" => Ok(Self::Eric40_2_10_0),
+            "43.3.2.0" => Ok(Self::Eric43_3_2_0),
+            "43.4.6.0" => Ok(Self::Eric43_4_6_0),
+            other => Err(format!(
+                "Unsupported ERIC_VERSION={other:?}; \
+                 add the corresponding bindings file and EricVersion variant"
+            )),
+        }
     }
 }
 
@@ -34,74 +54,28 @@ pub fn main() -> io::Result<()> {
     generate_bindings()?;
 
     #[cfg(not(feature = "generate-bindings"))]
-    {
-        #[cfg(not(feature = "docs-rs"))]
-        select_bindings()?;
-
-        #[cfg(feature = "docs-rs")]
-        select_bindings_for_docs_rs()?;
-    }
+    select_bindings()?;
 
     Ok(())
 }
 
 /// Select existing bindings
 #[cfg(not(feature = "generate-bindings"))]
-#[cfg(not(feature = "docs-rs"))]
 fn select_bindings() -> io::Result<()> {
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH")
         .expect("environment variable `CARGO_CFG_TARGET_ARCH` not set");
     let target_os = std::env::var("CARGO_CFG_TARGET_OS")
         .expect("environment variable `CARGO_CFG_TARGET_OS` not set");
-    let eric_path = env::var("ERIC_PATH").expect("environment variable `ERIC_PATH` not set");
 
     let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
     let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
 
     println!("cargo:rerun-if-env-changed=ERIC_VERSION");
 
-    // Version detection precedence:
-    //   1. Explicit `ERIC_VERSION` env var — the robust path, used when the
-    //      caller stages ERIC_PATH at a version-less location.
-    //      Downstream callers should set this.
-    //   2. Substring match in `eric_path` — backwards-compatible fallback
-    //      for callers that historically embed the version in the install
-    //      path (e.g. `/opt/eric-43.3.2.0/`).
-    //
-    // Mismatching values across the two channels (e.g. ERIC_VERSION=43.3.2.0
-    // but the path contains "40.2.10.0") is the caller's bug; we prefer the
-    // explicit env var when it's set.
-    let eric_version = if let Ok(version) = env::var("ERIC_VERSION") {
-        match version.as_str() {
-            "38.1.6.0" => EricVersion::Eric38_1_6_0,
-            "39.6.4.0" => EricVersion::Eric39_6_4_0,
-            "40.1.8.0" => EricVersion::Eric40_1_8_0,
-            "40.2.10.0" => EricVersion::Eric40_2_10_0,
-            "43.3.2.0" => EricVersion::Eric43_3_2_0,
-            other => panic!(
-                "Unsupported ERIC_VERSION={other:?}; \
-                 add the corresponding bindings file and EricVersion variant"
-            ),
-        }
-    } else if eric_path.contains("38.1.6.0") {
-        EricVersion::Eric38_1_6_0
-    } else if eric_path.contains("39.6.4.0") {
-        EricVersion::Eric39_6_4_0
-    } else if eric_path.contains("40.1.8.0") {
-        EricVersion::Eric40_1_8_0
-    } else if eric_path.contains("40.2.10.0") {
-        EricVersion::Eric40_2_10_0
-    } else if eric_path.contains("43.3.2.0") {
-        EricVersion::Eric43_3_2_0
-    } else if eric_path.contains("43.4.6.0") {
-        EricVersion::Eric43_4_6_0
-    } else {
-        panic!(
-            "Missing bindings: Unknown Eric version. \
-             Either embed the version in ERIC_PATH (e.g. /opt/eric-43.3.2.0/) \
-             or set the ERIC_VERSION env var explicitly."
-        );
-    };
+    let eric_version = env::var("ERIC_VERSION")
+        .expect("environment variable `ERIC_VERSION` not set")
+        .parse::<EricVersion>()
+        .unwrap_or_else(|err| panic!("{err}"));
 
     println!(
         "Select bindings for Eric version {eric_version} and target {target_os}/{target_arch}"
@@ -128,7 +102,10 @@ fn select_bindings() -> io::Result<()> {
     };
 
     #[cfg(not(feature = "no-linking"))]
-    emit_link_instructions(&eric_path, &target_os);
+    {
+        let eric_path = env::var("ERIC_PATH").expect("environment variable `ERIC_PATH` not set");
+        emit_link_instructions(&eric_path);
+    }
 
     let root_dir = std::env::var("CARGO_MANIFEST_DIR")
         .expect("environment variable `CARGO_MANIFEST_DIR` not set");
@@ -149,13 +126,11 @@ fn select_bindings() -> io::Result<()> {
 #[cfg(feature = "generate-bindings")]
 fn generate_bindings() -> io::Result<()> {
     let eric_path_str = env::var("ERIC_PATH").expect("environment variable `ERIC_PATH` not set");
-    let target_os = std::env::var("CARGO_CFG_TARGET_OS")
-        .expect("environment variable `CARGO_CFG_TARGET_OS` not set");
     let eric_path = Path::new(&eric_path_str);
     let header_file = get_header_file(eric_path);
 
     #[cfg(not(feature = "no-linking"))]
-    emit_link_instructions(&eric_path_str, &target_os);
+    emit_link_instructions(&eric_path_str);
 
     let header = header_file.to_str().expect("Can't convert path to string");
 
@@ -180,27 +155,6 @@ fn generate_bindings() -> io::Result<()> {
     Ok(())
 }
 
-/// Select latest bindings for documentation on docs.rs
-#[cfg(feature = "docs-rs")]
-fn select_bindings_for_docs_rs() -> io::Result<()> {
-    let bindings_file = "bindings_eric_43_3_2_0_linux_x86_64.rs";
-
-    let root_dir = env::var("CARGO_MANIFEST_DIR").expect("Set by cargo");
-    let bindings_path = Path::new(&root_dir).join("bindings").join(bindings_file);
-
-    let out_dir = env::var("OUT_DIR").expect("environment variable `OUT_DIR` not set");
-    let bindings_target = PathBuf::from(out_dir).join("bindings.rs");
-
-    std::fs::copy(bindings_path.clone(), bindings_target.clone()).unwrap_or_else(|_| {
-        panic!(
-            "Can't copy file from {} to {}",
-            bindings_path.display(),
-            bindings_target.display(),
-        )
-    });
-    Ok(())
-}
-
 /// Emit cargo link instructions for the ERiC shared library.
 ///
 /// Note: `cargo:rustc-link-arg` from a library crate's build script does not
@@ -208,8 +162,7 @@ fn select_bindings_for_docs_rs() -> io::Result<()> {
 /// LD_LIBRARY_PATH on Linux) must be set by the binary crate's build script
 /// or by the user's environment.
 #[cfg(not(feature = "no-linking"))]
-#[cfg(not(feature = "docs-rs"))]
-fn emit_link_instructions(eric_path_str: &str, _target_os: &str) {
+fn emit_link_instructions(eric_path_str: &str) {
     let eric_path = Path::new(eric_path_str);
     let library_name = get_library_name();
     let library_path = get_library_path(eric_path);
@@ -228,25 +181,21 @@ fn emit_link_instructions(eric_path_str: &str, _target_os: &str) {
     println!("cargo:rerun-if-changed={}", header_file.display());
 }
 
-#[cfg(not(feature = "docs-rs"))]
+#[cfg(not(feature = "no-linking"))]
 fn get_library_name() -> String {
     env::var("LIBRARY_NAME").unwrap_or_else(|_| "ericapi".to_owned())
 }
 
-#[cfg(not(feature = "docs-rs"))]
+#[cfg(not(feature = "no-linking"))]
 fn get_library_path(eric_path: &Path) -> PathBuf {
-    use std::str::FromStr;
-
     env::var("LIBRARY_PATH")
         .ok()
         .map(|path| PathBuf::from_str(&path).expect("invalid path for `LIBRARY_PATH`"))
         .unwrap_or_else(|| eric_path.join("lib"))
 }
 
-#[cfg(not(feature = "docs-rs"))]
+#[cfg(any(feature = "generate-bindings", not(feature = "no-linking")))]
 fn get_header_file(eric_path: &Path) -> PathBuf {
-    use std::str::FromStr;
-
     env::var("HEADER_FILE")
         .ok()
         .map(|path| PathBuf::from_str(&path).expect("invalid path for `HEADER_FILE`"))

@@ -25,7 +25,8 @@ path = "src/lib.rs"
 name = "eric_bindings"
 
 [package.metadata.docs.rs]
-features = ["docs-rs"]
+features = ["no-linking"]
+environment = { ERIC_VERSION = "43.4.6.0" }
 
 [features]
 default = []
@@ -33,10 +34,8 @@ generate-bindings = ["dep:bindgen"]
 # Opt-in: include comments from the C header in generated bindings.
 # Default off so generated output matches the committed bundled shape.
 bindgen-comments = []
-# This feature is used in CI pipeline for unit tests.
+# Skip linking against libericapi.so. Used in CI unit tests and for docs.rs publishing.
 no-linking = []
-# This feature is used to publish the documentation for `eric-bindings`.
-docs-rs = []
 
 [dependencies]
 anyhow = { workspace = true }
