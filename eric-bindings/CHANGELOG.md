@@ -13,6 +13,7 @@
   - Add bindings for Eric v43.4.6.0 (Linux x86_64)
   - Add bindings for Eric v43.4.6.0 (Darwin aarch64)
   - Support `ERIC_VERSION` environment variable as the version detection signal
+  - Remove `docs-rs` feature
 
 ## 0.5.1 (2026-02-24)
 

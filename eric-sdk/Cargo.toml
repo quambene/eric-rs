@@ -23,7 +23,6 @@ name = "eric_sdk"
 
 [package.metadata.docs.rs]
 features = ["no-linking"]
-environment = { ERIC_VERSION = "43.4.6.0" }
 
 [features]
 default = []

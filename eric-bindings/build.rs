@@ -15,6 +15,11 @@ pub enum EricVersion {
     Eric43_4_6_0,
 }
 
+#[cfg(not(feature = "generate-bindings"))]
+impl EricVersion {
+    const LATEST: Self = Self::Eric43_4_6_0;
+}
+
 impl fmt::Display for EricVersion {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let version = match self {
@@ -73,7 +78,13 @@ fn select_bindings() -> io::Result<()> {
     println!("cargo:rerun-if-env-changed=ERIC_VERSION");
 
     let eric_version = env::var("ERIC_VERSION")
-        .expect("environment variable `ERIC_VERSION` not set")
+        .unwrap_or_else(|_| {
+            if env::var("DOCS_RS").is_ok() {
+                EricVersion::LATEST.to_string()
+            } else {
+                panic!("environment variable `ERIC_VERSION` not set")
+            }
+        })
         .parse::<EricVersion>()
         .unwrap_or_else(|err| panic!("{err}"));
 
