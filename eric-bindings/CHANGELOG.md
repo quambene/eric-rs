@@ -6,6 +6,11 @@
 - changed
 - removed
 
+## 0.6.1 (2026-07-21)
+
+- fixed
+  - Fix build failure on docs.rs
+
 ## 0.6.0 (2026-07-21)
 
 - added
