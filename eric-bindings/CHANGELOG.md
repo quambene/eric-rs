@@ -6,7 +6,7 @@
 - changed
 - removed
 
-## 0.5.2 (2026-07-21)
+## 0.6.0 (2026-07-21)
 
 - added
   - Add `bindgen-comments` feature flag to opt in to C header doc comments in generated bindings (off by default)
