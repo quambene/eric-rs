@@ -1,6 +1,6 @@
 [package]
 name = "eric-sdk"
-version = "0.6.0"
+version = "0.7.0"
 authors.workspace = true
 edition.workspace = true
 readme.workspace = true
@@ -35,7 +35,7 @@ generate-bindings = ["eric-bindings/generate-bindings"]
 no-linking = ["eric-bindings/no-linking"]
 
 [dependencies]
-eric-bindings = { version = "0.6.0", path = "../eric-bindings" }
+eric-bindings = { version = "0.6", path = "../eric-bindings" }
 anyhow = { workspace = true }
 thiserror = { workspace = true }
 tracing = { workspace = true }

@@ -6,6 +6,14 @@
 - changed
 - removed
 
+## 0.7.0 (2026-07-21)
+
+- added
+  - Support `ERIC_VERSION` environment variable as the version detection signal
+  - Remove `docs-rs` feature
+- changed
+  - Update eric-bindings to 0.6.1
+
 ## v0.6.0 (2026-05-15)
 
 - added
