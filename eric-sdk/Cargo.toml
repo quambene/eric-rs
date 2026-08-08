@@ -1,6 +1,6 @@
 [package]
 name = "eric-sdk"
-version = "0.7.0"
+version = "0.7.1"
 authors.workspace = true
 edition.workspace = true
 readme.workspace = true
@@ -13,6 +13,7 @@ keywords = ["eric", "sdk",  "taxes", "accounting"]
 categories = ["finance"]
 include = [
   "src/**",
+  "build.rs",
   "LICENSE",
   "CHANGELOG.md",
 ]
