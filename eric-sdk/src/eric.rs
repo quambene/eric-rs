@@ -237,10 +237,20 @@ impl Eric {
         // Transfer_code should be NULL except for data retrieval; if
         // transfer_code is not NULL in the other cases, it will be ignored.
         // SAFETY: `transfer_code_storage` must outlive `transfer_code_ptr`.
+        #[cfg(eric_lt_44)]
         let mut transfer_code_storage = transfer_code;
+        #[cfg(eric_lt_44)]
         let transfer_code_ptr: *mut u32 = transfer_code_storage
             .as_mut()
             .map_or(ptr::null_mut(), |c| c as *mut u32);
+
+        // ERiC >= 44 removed the `transferHandle` parameter from
+        // `EricBearbeiteVorgang`; a provided transfer code has no FFI
+        // destination anymore and is ignored.
+        #[cfg(not(eric_lt_44))]
+        if transfer_code.is_some() {
+            debug!("Transfer code ignored: removed from EricBearbeiteVorgang in ERiC >= 44");
+        }
 
         if let Some(print_config) = &print_config {
             info!(
@@ -274,16 +284,20 @@ impl Eric {
                     Some(config) => config.certificate_parameter.as_ptr(),
                     None => ptr::null(),
                 },
+                #[cfg(eric_lt_44)]
                 transfer_code_ptr,
                 validation_response_buffer.as_ptr(),
                 server_response_buffer.as_ptr(),
             )
         };
 
-        let transfer_code = unsafe { transfer_code_ptr.as_ref() };
+        #[cfg(eric_lt_44)]
+        {
+            let transfer_code = unsafe { transfer_code_ptr.as_ref() };
 
-        if let Some(code) = transfer_code {
-            debug!(transfer_code = %code, "Transfer code received")
+            if let Some(code) = transfer_code {
+                debug!(transfer_code = %code, "Transfer code received")
+            }
         }
 
         let validation_response = validation_response_buffer.read()?;

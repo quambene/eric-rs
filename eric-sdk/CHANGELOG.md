@@ -6,6 +6,13 @@
 - changed
 - removed
 
+## 0.7.1 (2026-08-08)
+
+- changed
+  - Support ERiC >= 44: `EricBearbeiteVorgang` no longer takes a `transferHandle` parameter there.
+    A new build script derives the target ERiC major from `ERIC_VERSION` and keeps the old call shape for < 44, so one SDK source serves both lines.
+    A `transfer_code` passed for ERiC >= 44 is ignored (debug-logged).
+
 ## 0.7.0 (2026-07-21)
 
 - added
