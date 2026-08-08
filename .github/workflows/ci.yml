@@ -5,8 +5,8 @@ on:
   pull_request:
 env:
   CARGO_TERM_COLOR: always
-  ERIC_VERSION: 43.4.6.0
-  ERIC_PATH: ERiC-43.4.6.0-Linux-x86_64/ERiC-43.4.6.0/Linux-x86_64
+  ERIC_VERSION: 44.1.6.0
+  ERIC_PATH: ERiC-44.1.6.0-Linux-x86_64/ERiC-44.1.6.0/Linux-x86_64
 jobs:
   check:
     runs-on: ubuntu-latest
