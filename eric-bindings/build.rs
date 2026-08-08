@@ -13,11 +13,12 @@ pub enum EricVersion {
     Eric40_2_10_0,
     Eric43_3_2_0,
     Eric43_4_6_0,
+    Eric44_1_6_0,
 }
 
 #[cfg(not(feature = "generate-bindings"))]
 impl EricVersion {
-    const LATEST: Self = Self::Eric43_4_6_0;
+    const LATEST: Self = Self::Eric44_1_6_0;
 }
 
 impl fmt::Display for EricVersion {
@@ -29,6 +30,7 @@ impl fmt::Display for EricVersion {
             Self::Eric40_2_10_0 => "40.2.10.0",
             Self::Eric43_3_2_0 => "43.3.2.0",
             Self::Eric43_4_6_0 => "43.4.6.0",
+            Self::Eric44_1_6_0 => "44.1.6.0",
         };
 
         write!(f, "{version}")
@@ -46,6 +48,7 @@ impl FromStr for EricVersion {
             "40.2.10.0" => Ok(Self::Eric40_2_10_0),
             "43.3.2.0" => Ok(Self::Eric43_3_2_0),
             "43.4.6.0" => Ok(Self::Eric43_4_6_0),
+            "44.1.6.0" => Ok(Self::Eric44_1_6_0),
             other => Err(format!(
                 "Unsupported ERIC_VERSION={other:?}; \
                  add the corresponding bindings file and EricVersion variant"
