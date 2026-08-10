@@ -9,7 +9,7 @@ use crate::{
 use anyhow::{anyhow, Context};
 use eric_bindings::{
     EricBearbeiteVorgang, EricBeende, EricCheckXML, EricDekodiereDaten, EricEntladePlugins,
-    EricHoleFehlerText, EricInitialisiere,
+    EricHoleFehlerText, EricHoleZertifikatEigenschaften, EricInitialisiere,
 };
 use std::{path::Path, ptr};
 use tracing::{debug, error, info};
@@ -189,6 +189,52 @@ impl Eric {
         }
 
         Ok(response_buffer.read()?.to_string())
+    }
+
+    /// Reads the properties of a certificate as an XML document, via
+    /// `EricHoleZertifikatEigenschaften`.
+    ///
+    /// The returned XML conforms to the `EricHoleZertifikatEigenschaften`
+    /// return schema and carries, among other fields, `<TokenTyp>`
+    /// (`Software` / `Stick` / `Karte` / …) and an optional
+    /// `<Testzertifikat>` boolean.
+    ///
+    /// Useful as a local check of certificate suitability before `send`.
+    /// Purely local: no server contact.
+    pub fn certificate_properties(
+        &self,
+        certificate_path: &Path,
+        pin: &str,
+    ) -> Result<String, EricError> {
+        let path = certificate_path
+            .to_str()
+            .context("failed to convert path to string")?
+            .try_to_cstring()?;
+        let pin = pin.try_to_cstring()?;
+        let certificate = crate::certificate::Certificate::new(&path)?;
+
+        let response_buffer = ResponseBuffer::new()?;
+
+        let error_code = unsafe {
+            EricHoleZertifikatEigenschaften(
+                certificate.handle,
+                pin.as_ptr(),
+                response_buffer.as_ptr(),
+            )
+        };
+
+        if error_code == ErrorCode::ERIC_OK as i32 {
+            Ok(response_buffer.read()?.to_string())
+        } else {
+            let error_text = self
+                .get_error_text(error_code)
+                .unwrap_or_else(|_| String::new());
+            Err(EricError::ApiError {
+                code: error_code,
+                message: error_text,
+                payload: EricApiPayload::new(String::new(), String::new()),
+            })
+        }
     }
 
     #[allow(dead_code)]

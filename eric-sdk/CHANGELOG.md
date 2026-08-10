@@ -6,6 +6,12 @@
 - changed
 - removed
 
+## 0.7.2 (2026-08-10)
+
+- added
+  - `Eric::certificate_properties`, a safe wrapper over `EricHoleZertifikatEigenschaften`.
+    Returns the certificate-properties XML (`<TokenTyp>`, optional `<Testzertifikat>`, …) for a local pre-flight before `send`; no server contact.
+
 ## 0.7.1 (2026-08-08)
 
 - changed
