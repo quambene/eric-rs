@@ -9,8 +9,8 @@
 ## 0.6.2 (2026-08-08)
 
 - added
-  - Add bindings for Eric v44.1.6.0 (Linux x86_64).
-    Darwin aarch64 bindings for 44.1.6.0 are pending; selecting that combination fails the build with the usual "Missing bindings" message until they are generated on an Apple Silicon host.
+  - Add bindings for Eric v44.1.6.0 (Linux x86_64)
+  - Add bindings for Eric v44.1.6.0 (Darwin aarch64)
 - changed
   - `EricBearbeiteVorgang` lost its `transferHandle` parameter in ERiC 44; the v44.1.6.0 bindings reflect that upstream API change.
 
