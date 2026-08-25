@@ -89,7 +89,7 @@ impl Eric {
             processing_flag = ProcessingFlag::Validate;
             None
         };
-        Self::process(xml, type_version, processing_flag, print_config, None, None)
+        Self::process(xml, type_version, processing_flag, print_config, None)
     }
 
     /// Sends an XML file for a specific taxonomy to the tax authorities.
@@ -126,7 +126,6 @@ impl Eric {
             processing_flag,
             print_config,
             Some(certificate_config),
-            None,
         )
     }
 
@@ -218,7 +217,6 @@ impl Eric {
         processing_flag: ProcessingFlag,
         print_config: Option<PrintConfig>,
         certificate_config: Option<CertificateConfig>,
-        transfer_code: Option<u32>,
     ) -> Result<EricResponse, EricError> {
         debug!("Processing xml file");
 
@@ -233,14 +231,6 @@ impl Eric {
 
         let xml = xml.try_to_cstring()?;
         let type_version = type_version.try_to_cstring()?;
-
-        // Transfer_code should be NULL except for data retrieval; if
-        // transfer_code is not NULL in the other cases, it will be ignored.
-        // SAFETY: `transfer_code_storage` must outlive `transfer_code_ptr`.
-        let mut transfer_code_storage = transfer_code;
-        let transfer_code_ptr: *mut u32 = transfer_code_storage
-            .as_mut()
-            .map_or(ptr::null_mut(), |c| c as *mut u32);
 
         if let Some(print_config) = &print_config {
             info!(
@@ -274,17 +264,10 @@ impl Eric {
                     Some(config) => config.certificate_parameter.as_ptr(),
                     None => ptr::null(),
                 },
-                transfer_code_ptr,
                 validation_response_buffer.as_ptr(),
                 server_response_buffer.as_ptr(),
             )
         };
-
-        let transfer_code = unsafe { transfer_code_ptr.as_ref() };
-
-        if let Some(code) = transfer_code {
-            debug!(transfer_code = %code, "Transfer code received")
-        }
 
         let validation_response = validation_response_buffer.read()?;
         // TODO: parse server response via EricGetErrormessagesFromXMLAnswer()
