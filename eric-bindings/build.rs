@@ -14,6 +14,7 @@ pub enum EricVersion {
     Eric43_3_2_0,
     Eric43_4_6_0,
     Eric44_1_6_0,
+    ERiC44_2_4_0,
 }
 
 #[cfg(not(feature = "generate-bindings"))]
@@ -31,6 +32,7 @@ impl fmt::Display for EricVersion {
             Self::Eric43_3_2_0 => "43.3.2.0",
             Self::Eric43_4_6_0 => "43.4.6.0",
             Self::Eric44_1_6_0 => "44.1.6.0",
+            Self::ERiC44_2_4_0 => "44.2.4.0",
         };
 
         write!(f, "{version}")
@@ -49,6 +51,7 @@ impl FromStr for EricVersion {
             "43.3.2.0" => Ok(Self::Eric43_3_2_0),
             "43.4.6.0" => Ok(Self::Eric43_4_6_0),
             "44.1.6.0" => Ok(Self::Eric44_1_6_0),
+            "44.2.4.0" => Ok(Self::ERiC44_2_4_0),
             other => Err(format!(
                 "Unsupported ERIC_VERSION={other:?}; \
                  add the corresponding bindings file and EricVersion variant"
@@ -114,6 +117,7 @@ fn select_bindings() -> io::Result<()> {
         (EricVersion::Eric44_1_6_0, "macos", "aarch64") => {
             "bindings_eric_44_1_6_0_darwin_aarch64.rs"
         }
+        (EricVersion::ERiC44_2_4_0, "linux", "x86_64") => "bindings_eric_44_2_4_0_linux_x86_64.rs",
         _ => {
             panic!("Missing bindings for Eric version {eric_version} and target {target_os}/{target_arch}");
         }
