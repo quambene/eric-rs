@@ -26,11 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: taiki-e/install-action@cargo-audit
       - name: cargo audit
-        run: |
-          cargo install cargo-audit
-          cargo audit
+        run: cargo audit
   doc:
     runs-on: ubuntu-latest
     steps:
