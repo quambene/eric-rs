@@ -24,6 +24,10 @@ build:
 build-release:
     cargo build --release
 
+# Run cargo semver-checks with env vars
+semver:
+    cargo semver-checks
+
 # Generate bindings via bindgen
 generate-bindings:
     cargo build -p eric-bindings --features generate-bindings
