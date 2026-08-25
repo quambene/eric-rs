@@ -6,7 +6,7 @@
 - changed
 - removed
 
-## 0.7.0 (unreleased)
+## 0.7.0 (2026-08-26)
 
 - added
   - Add bindings for Eric v44.1.6.0 (Linux x86_64)

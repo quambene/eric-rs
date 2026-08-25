@@ -6,7 +6,7 @@
 - changed
 - removed
 
-## 0.7.1 (unreleased)
+## 0.7.1 (2026-08-26)
 
 - removed
   - Remove `transfer_code` from `Eric::process`
