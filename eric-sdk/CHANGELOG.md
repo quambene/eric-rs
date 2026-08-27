@@ -3,6 +3,7 @@
 ## Unreleased
 
 - added
+  - `Eric::certificate_properties`, a safe wrapper over `EricHoleZertifikatEigenschaften`.
 - changed
 - removed
 
