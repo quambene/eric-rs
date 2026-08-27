@@ -3,6 +3,7 @@
 ## Unreleased
 
 - added
+  - Add bindings for Eric v44.2.4.0 (Darwin aarch64)
 - changed
 - removed
 
