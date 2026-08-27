@@ -12,6 +12,7 @@
 - added
   - Add bindings for Eric v44.1.6.0 (Linux x86_64)
   - Add bindings for Eric v44.1.6.0 (Darwin aarch64)
+  - Add bindings for Eric v44.2.4.0 (Linux x86_64)
 - removed
   - `EricBearbeiteVorgang` lost its `transferHandle` parameter in ERiC 44; the v44.1.6.0 bindings reflect that upstream API change.
 
