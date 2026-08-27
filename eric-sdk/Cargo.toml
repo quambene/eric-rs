@@ -3,6 +3,7 @@ name = "eric-sdk"
 version = "0.7.1"
 authors.workspace = true
 edition.workspace = true
+rust-version.workspace = true
 readme.workspace = true
 license.workspace = true
 homepage.workspace = true

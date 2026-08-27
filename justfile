@@ -28,6 +28,10 @@ build-release:
 semver:
     cargo semver-checks
 
+# Run cargo msrv with env vars
+msrv:
+    cargo msrv find
+
 # Generate bindings via bindgen
 generate-bindings:
     cargo build -p eric-bindings --features generate-bindings

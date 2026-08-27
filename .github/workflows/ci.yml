@@ -15,6 +15,14 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: cargo check
         run: cargo check --all-targets
+  check-msrv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Keep in sync with `rust-version` in Cargo.toml.
+      - uses: dtolnay/rust-toolchain@1.79.0
+      - name: cargo check (MSRV)
+        run: cargo check --all-targets
   clippy:
     runs-on: ubuntu-latest
     steps:
