@@ -32,6 +32,10 @@ semver:
 msrv:
     cargo msrv find
 
+# Run cargo udeps with env vars
+udeps:
+    cargo +nightly udeps
+
 # Generate bindings via bindgen
 generate-bindings:
     cargo build -p eric-bindings --features generate-bindings
