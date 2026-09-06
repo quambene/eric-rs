@@ -38,6 +38,8 @@ bindgen-comments = []
 no-linking = []
 
 [dependencies]
+
+[dev-dependencies]
 anyhow = { workspace = true }
 
 [build-dependencies]
